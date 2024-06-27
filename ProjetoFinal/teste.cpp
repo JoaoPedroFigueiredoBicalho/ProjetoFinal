@@ -7,10 +7,21 @@ using namespace std;
 
 class Jogos {
   private:
-  int lig4_tabuleiro[7][4];
+  char lig4_tabuleiro[7][6] = {
+  {' ', ' ', ' ', ' ', ' ', ' '}, 
+  {' ', ' ', ' ', ' ', ' ', ' '}, 
+  {' ', ' ', ' ', ' ', ' ', ' '}, 
+  {' ', ' ', ' ', ' ', ' ', ' '}, 
+  {' ', ' ', ' ', ' ', ' ', ' '}, 
+  {' ', ' ', ' ', ' ', ' ', ' '},
+  {' ', ' ', ' ', ' ', ' ', ' '}, 
+  };
 
 public:
-  int retornar_id() {
+  void lig4_lerjogada() {
+
   }
 
-}
+};
+
+int main()
