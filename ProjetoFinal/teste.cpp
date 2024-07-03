@@ -1,28 +1,50 @@
-#include <string>
+#include <vector>
 #include <iostream>
-#include <set>
-#include <list>
 
 using namespace std;
 
-class Jogos {
-  private:
-  char lig4_tabuleiro[7][6] = {
-  {' ', ' ', ' ', ' ', ' ', ' '}, 
-  {' ', ' ', ' ', ' ', ' ', ' '}, 
-  {' ', ' ', ' ', ' ', ' ', ' '}, 
-  {' ', ' ', ' ', ' ', ' ', ' '}, 
-  {' ', ' ', ' ', ' ', ' ', ' '}, 
-  {' ', ' ', ' ', ' ', ' ', ' '},
-  {' ', ' ', ' ', ' ', ' ', ' '}, 
-  };
+class Jogos
+{
+private:
+  int linha = 6;
+
+  vector<vector<char>> tabuleiro{
+      {' ', ' ', ' ', ' ', ' ', ' ', ' '},
+      {' ', ' ', ' ', ' ', ' ', ' ', ' '},
+      {' ', ' ', ' ', ' ', ' ', ' ', ' '},
+      {' ', ' ', ' ', ' ', ' ', ' ', ' '},
+      {' ', ' ', ' ', ' ', ' ', ' ', ' '},
+      {' ', ' ', ' ', ' ', ' ', ' ', ' '}};
 
 public:
-  void lig4_lerjogada() {
-
+  void lerjogada(int jogadaX, int jogadaY, char jogada)
+  {
+    tabuleiro[jogadaX - 1][jogadaY - 1] = jogada;
   }
 
+  void imprimir_tabuleiro()
+  {
+    for (int i = 0; i < tabuleiro.size(); i++)
+    {
+      cout << endl;
+      for (int j = 0; j < tabuleiro[0].size(); j++)
+      {
+        cout << "|" << tabuleiro[i][j];
+        if (j == tabuleiro[0].size() - 1)
+          cout << "|";
+      }
+    }
+  }
 };
 
 int main()
-{}
+{
+  int jogadaLinha, jogadaColuna;
+  char jogada;
+  Jogos lig4;
+
+  cin >> jogadaLinha >> jogadaColuna >> jogada;
+  lig4.lerjogada(jogadaLinha, jogadaColuna, jogada);
+
+  lig4.imprimir_tabuleiro();
+}
