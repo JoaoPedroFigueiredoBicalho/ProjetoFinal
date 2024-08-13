@@ -16,6 +16,7 @@ public:
   void imprimir_tabuleiro();
   void inicializar_tabuleiro(int tamanho);
   std::vector<std::vector<char>> get_tabuleiro();
+  void set_tabuleiro(int linha, int coluna, char jogada);
 };
 
 #endif

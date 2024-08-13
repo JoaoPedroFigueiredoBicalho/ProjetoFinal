@@ -4,9 +4,9 @@ void boardLogic::lerjogada(int jogadaLinha, int jogadaColuna, char jogada)
 {
 }
 
-std::vector<std::vector<char>> boardLogic::get_tabuleiro()
+void boardLogic::set_tabuleiro(int linha, int coluna, char jogada)
 {
-  return tabuleiro;
+  tabuleiro[linha][coluna]=jogada;
 }
 
 void boardLogic::inicializar_tabuleiro(int tamanho)
