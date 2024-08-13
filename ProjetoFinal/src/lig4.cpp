@@ -2,6 +2,7 @@
 
 void Lig4::lerjogada(int jogadaColuna, char jogada)
 {
+    int coluna_cheia = 1;
     if (jogadaColuna < 0 || jogadaColuna >= tamanho) {
         std::cout << "Coluna inválida!" << std::endl;
         return;
@@ -10,16 +11,23 @@ void Lig4::lerjogada(int jogadaColuna, char jogada)
     for (int linha = tamanho; linha >= 0; linha--) {
         if (tabuleiro[linha][jogadaColuna] == ' ') {
             tabuleiro[linha][jogadaColuna] = jogada;
+            coluna_cheia = 0;
             break;
         } 
     }
+    if (coluna_cheia == 1) {
+        std::cout << "Coluna cheia!" << std::endl;
+        return;
     }
-    if (jogada = 'X') {
+    }
+    if (jogada == 'X') {
         jogada = 'O';
     } else {
         jogada = 'X';
     } 
-    //colocar o tratamento de excecao para coluna cheia
+
+    
+    
 }
 
 bool Lig4::tabuleiro_cheio(){
