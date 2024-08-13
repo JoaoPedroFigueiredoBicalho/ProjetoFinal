@@ -6,8 +6,9 @@
 
 class boardLogic
 {
-private:
+protected:
   std::vector<std::vector<char>> tabuleiro;
+  int tamanho;
 
 public:
   virtual void lerjogada(int jogadaLinha, int jogadaColuna, char jogada);
