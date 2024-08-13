@@ -53,9 +53,9 @@ bool Lig4::checarvitoria(char jogador){
         }
     }
 
-    //verificacao diagonal esquerda pra direita
+    //verificacao diagonal principal
     for (int i = 0; i < linhas - 3; i++) {
-        for (int j = 0; j < colunas; j++){
+        for (int j = 0; j < colunas - 3; j++){
             if (tabuleiro[i][j] == jogador && tabuleiro[i+1][j+1] == jogador && tabuleiro[i+2][j+2] == jogador && tabuleiro[i+3][j+3] == jogador){
                 return true;
             }
@@ -63,8 +63,8 @@ bool Lig4::checarvitoria(char jogador){
     }
 
 
-    // Verificação diagonal direita para esquerda
-    for (int i = 3; i < linhas; ++i) {
+    // Verificação diagonal secundaria
+    for (int i = 3; i < linhas ; ++i) {
         for (int j = 0; j < colunas - 3; ++j) {
             if (tabuleiro[i][j] == jogador && tabuleiro[i-1][j+1] == jogador &&
                 tabuleiro[i-2][j+2] == jogador && tabuleiro[i-3][j+3] == jogador) {
@@ -72,6 +72,5 @@ bool Lig4::checarvitoria(char jogador){
             }
         }
     }
-
+    return false
 }
-
