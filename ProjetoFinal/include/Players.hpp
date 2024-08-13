@@ -16,7 +16,9 @@ public:
     
     Player(string nick, string nome);
     ~Player();
+    Player* getPlayer(string nick);
     void RegisterPlayer(string nick, string nome);
+    void DeletePlayer(string nick);
     
 };
 
