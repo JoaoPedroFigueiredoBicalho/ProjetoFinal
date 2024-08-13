@@ -3,4 +3,4 @@
 void Lig4::lerjogada(int jogadaLinha, int jogadaColuna, char jogada)
 {
 }
-//AQUI E´GALO
+//AQUI E´GALO hoje tem galo hahahahahah
