@@ -13,6 +13,7 @@ public:
   virtual void lerjogada(int jogadaLinha, int jogadaColuna, char jogada);
   void imprimir_tabuleiro();
   void inicializar_tabuleiro(int tamanho);
+  std::vector<std::vector<char>> get_tabuleiro();
 };
 
 #endif

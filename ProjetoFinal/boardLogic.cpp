@@ -4,6 +4,11 @@ void boardLogic::lerjogada(int jogadaLinha, int jogadaColuna, char jogada)
 {
 }
 
+std::vector<std::vector<char>> boardLogic::get_tabuleiro()
+{
+  return tabuleiro;
+}
+
 void boardLogic::inicializar_tabuleiro(int tamanho)
 {
   for (int i = 0; i < tamanho; i++)
