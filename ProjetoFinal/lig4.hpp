@@ -4,9 +4,9 @@
 class Lig4 : public boardLogic
 {
 public:
-  void lerjogada(int jogadaColuna, char jogada) override;
-  void checarvitoria(char jogada);
-  void tabuleiro_cheio();
+  void lerjogada(int jogadaColuna, char jogada);
+  bool checarvitoria(char jogada);
+  bool tabuleiro_cheio();
   
 };
 #endif
