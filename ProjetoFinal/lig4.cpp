@@ -52,7 +52,14 @@ bool Lig4::checarvitoria(char jogador){
         }
     }
 
-    //verificacao diagonal 
+    //verificacao diagonal esquerda pra direita
+    for (int i = 0; i < linhas - 3; i++) {
+        for (int j = 0; j < colunas j++){
+            if (tabuleiro[i][j] == jogador && tabuleiro[i+1][j+1] == jogador && tabuleiro[i+2][j+2] == jogador && tabuleiro[i+3][j+3] == jogador){
+                return true;
+            }
+        }
+    }
 
 }
 
