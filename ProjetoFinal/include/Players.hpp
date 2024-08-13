@@ -16,6 +16,8 @@ public:
     
     Player(string nick, string nome);
     ~Player();
+    void setWin();
+    void setLoss();
     Player* getPlayer(string nick);
     void RegisterPlayer(string nick, string nome);
     void DeletePlayer(string nick);

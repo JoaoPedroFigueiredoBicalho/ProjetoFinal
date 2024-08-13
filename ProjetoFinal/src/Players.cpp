@@ -8,6 +8,14 @@ Player::Player(string nome, string nick)
     this->Wins = 0;
 }
 
+Player::~Player()
+{
+    for(vector<Player*>::const_iterator it=PlayersList.begin(); it!=PlayersList.end(); it++)
+    {
+         PlayersList.erase(it);
+    }
+}
+
 Player* Player::getPlayer(string nick)
 {
     int x = 0;
@@ -30,6 +38,16 @@ Player* Player::getPlayer(string nick)
         cout<<"ERRO: jogador inexistente";
         return(nullptr);
     }
+}
+
+void Player::setWin()
+{
+    this->Wins++;
+}
+
+void Player::setLoss()
+{
+    this->Loss++;
 }
 
 void Player::RegisterPlayer(string nick, string nome)
