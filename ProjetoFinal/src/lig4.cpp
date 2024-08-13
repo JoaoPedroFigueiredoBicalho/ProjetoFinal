@@ -8,7 +8,7 @@ void Lig4::lerjogada(int jogadaColuna, char jogada)
         return;
     } else {
 
-    for (int linha = tamanho; linha >= 0; linha--) {
+    for (int linha = tamanho - 1; linha >= 0; linha--) {
         if (tabuleiro[linha][jogadaColuna] == ' ') {
             tabuleiro[linha][jogadaColuna] = jogada;
             coluna_cheia = 0;
