@@ -29,6 +29,4 @@ void boardLogic::imprimir_tabuleiro()
     }
   }
   std::cout << "#########" << std::endl;
-
-  //teste qualquer// //2//
 }
