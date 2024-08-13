@@ -28,6 +28,7 @@ bool Reversi::checar_se_dentro_do_tabuleiro(int linha, int coluna)
   bool valido = true;
   if (((linha >= get_tabuleiro().size()) || (linha < 0)) || ((coluna >= get_tabuleiro().size()) || (coluna < 0)))
     valido = false;
+  return valido;
 }
 
 void Reversi::virar_casas(int linha, int coluna, int dir_l, int dir_c)
