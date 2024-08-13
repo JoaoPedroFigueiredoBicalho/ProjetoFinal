@@ -72,5 +72,5 @@ bool Lig4::checarvitoria(char jogador){
             }
         }
     }
-    return false
+    return false;
 }
