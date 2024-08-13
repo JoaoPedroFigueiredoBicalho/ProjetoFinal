@@ -1,6 +1,6 @@
 #include "lig4.hpp"
 
-void Lig4::lerjogada(int jogadaColuna, char jogada)
+void Lig4::lerjogada(int jogadaColuna)
 {
     int coluna_cheia = 1;
     if (jogadaColuna < 0 || jogadaColuna >= tamanho) {
@@ -46,7 +46,7 @@ bool Lig4::checarvitoria(char jogador){
     //verificação vertical
     for (int i = 0; i < linhas - 3; i++){
         for (int j = 0; j < colunas; j++){
-            if(tabuleiro[i][j] == jogador && tabuleiro[i+1][j] && tabuleiro[i+2][j] == jogador && tabuleiro[i+3][j] == jogador){
+            if(tabuleiro[i][j] == jogador && tabuleiro[i+1][j] == jogador && tabuleiro[i+2][j] == jogador && tabuleiro[i+3][j] == jogador){
                 return true;
             }
         }
@@ -55,7 +55,7 @@ bool Lig4::checarvitoria(char jogador){
     //verificacao horizontal
     for (int i = 0; i < linhas - 3; i++){
         for (int j = 0; j < colunas; j++){
-            if(tabuleiro[i][j] == jogador && tabuleiro[i][j+1] && tabuleiro[i][j+2] == jogador && tabuleiro[i][j+3] == jogador){
+            if(tabuleiro[i][j] == jogador && tabuleiro[i][j+1] == jogador && tabuleiro[i][j+2] == jogador && tabuleiro[i][j+3] == jogador){
                 return true;
             }
         }
