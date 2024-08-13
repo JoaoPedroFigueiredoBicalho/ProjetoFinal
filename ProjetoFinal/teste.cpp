@@ -17,9 +17,9 @@ private:
       {' ', ' ', ' ', ' ', ' ', ' ', ' '}};
 
 public:
-  void lerjogada(int jogadaX, int jogadaY, char jogada)
+  void lerjogada(int jogadaLinha, int jogadaColuna, char jogada)
   {
-    tabuleiro[jogadaX - 1][jogadaY - 1] = jogada;
+    tabuleiro[jogadaLinha - 1][jogadaColuna - 1] = jogada;
   }
 
   void imprimir_tabuleiro()
