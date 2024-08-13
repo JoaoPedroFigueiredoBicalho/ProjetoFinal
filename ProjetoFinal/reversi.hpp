@@ -10,6 +10,7 @@ private:
 public:
   void lerjogada(int jogadaLinha, int jogadaColuna, char jogada);
   void checar_jogada_valida(int linha, int coluna);
-  void checar_casas_viradas(int direcao);
+  void checar_casas_viradas(int linha, int coluna, int direcao);
+  bool checar_se_dentro_do_tabuleiro(int linha, int coluna);
 };
 #endif
