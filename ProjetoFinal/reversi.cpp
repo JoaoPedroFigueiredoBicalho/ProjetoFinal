@@ -12,7 +12,7 @@ void Reversi::checar_jogada_valida(int linha, int coluna)
     {
       for (coluna = (coluna - 1); coluna <= (coluna + 1); coluna++)
       {
-        if (((linha >= get_tabuleiro().size()) || (linha < 0)) || ((coluna >= get_tabuleiro().size()) || (coluna < 0)))
+        if (checar_se_dentro_do_tabuleiro(linha, coluna))
         {
           continue;
         }
@@ -24,10 +24,21 @@ void Reversi::checar_jogada_valida(int linha, int coluna)
   }
 }
 
-void Reversi::checar_casas_viradas(int direcao)
+bool Reversi::checar_se_dentro_do_tabuleiro(int linha, int coluna)
+{
+  bool valido = true;
+  if (((linha >= get_tabuleiro().size()) || (linha < 0)) || ((coluna >= get_tabuleiro().size()) || (coluna < 0)))
+    valido = false;
+}
+
+void Reversi::checar_casas_viradas(int linha, int coluna, int direcao)
 {
   switch (direcao)
   case '1':
   {
+    for (int i = 1; checar_se_dentro_do_tabuleiro(linha - i, coluna - i); i++)
+      if (get_tabuleiro()[linha - i][coluna - i] == Jogador2)
+      {
+            }
   }
 }
