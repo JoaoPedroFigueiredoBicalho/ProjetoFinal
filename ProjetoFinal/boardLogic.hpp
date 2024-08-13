@@ -9,6 +9,7 @@ class boardLogic
 protected:
   std::vector<std::vector<char>> tabuleiro;
   int tamanho;
+  char jogada = 'X';
 
 public:
   virtual void lerjogada(int jogadaLinha, int jogadaColuna, char jogada);
