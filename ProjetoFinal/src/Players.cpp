@@ -72,4 +72,3 @@ void Player::RegisterPlayer(string nick, string nome)
             cout<<"ERRO: jogador inexistente"<<endl;
         }
     }
-//    Rodrigo galo
