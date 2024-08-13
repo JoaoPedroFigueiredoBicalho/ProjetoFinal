@@ -11,3 +11,5 @@ void Lig4::lerjogada(int jogadaColuna)
         if (tabuleiro)
     }
 }
+}
+//.
