@@ -4,6 +4,6 @@
 class Lig4 : public boardLogic
 {
 public:
-  void lerjogada(int jogadaLinha, int jogadaColuna, char jogada);
+  void lerjogada(int jogadaColuna);
 };
 #endif

@@ -1,6 +1,6 @@
 #include "lig4.hpp"
 
-void Lig4::lerjogada(int jogadaLinha, int jogadaColuna, char jogada)
+void Lig4::lerjogada(int jogadaColuna)
 {
-}
-//AQUI E´GALO
+    
+};
