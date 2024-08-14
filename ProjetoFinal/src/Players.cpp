@@ -60,7 +60,7 @@ void Player::LigWon(string nick)
         if(temp->NickName==nick)
         {
             temp->LigWins++;
-            cout<<nick<<"GANHOU!"
+            cout<<nick<<"GANHOU!";
         }
     };
 }
