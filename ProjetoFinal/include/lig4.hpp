@@ -7,6 +7,5 @@ public:
   void lerjogada(int jogadaColuna);
   bool checarvitoria(char jogada);
   bool tabuleiro_cheio();
-  
 };
 #endif

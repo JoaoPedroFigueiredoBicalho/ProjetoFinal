@@ -35,3 +35,11 @@ void boardLogic::imprimir_tabuleiro()
   }
   std::cout << "#########" << std::endl;
 }
+
+int boardLogic::get_tamanho() const {
+  return tamanho;
+}
+
+std::vector<std::vector<char>>& boardLogic::get_tabuleiro() {
+  return tabuleiro;
+};
