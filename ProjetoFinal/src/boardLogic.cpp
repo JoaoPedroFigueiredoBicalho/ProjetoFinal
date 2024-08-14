@@ -17,7 +17,7 @@ void boardLogic::inicializar_tabuleiro(int tamanho)
     {
       tabuleiro[i][j] = ' ';
     }
-  }
+  } 
 }
 
 void boardLogic::imprimir_tabuleiro()

@@ -18,15 +18,15 @@ public:
     
     Player(string nick, string nome);
     ~Player();
-    void LigWon();
-    void LigLost();
-    void RevWon();
-    void RevLost();
+    void LigWon(string nick);
+    void LigLost(string nick);
+    void RevWon(string nick);
+    void RevLost(string nick);
     Player* getPlayer(string nick);
     void RegisterPlayer(string nick, string nome);
     void DeletePlayer(string nick);
     void ListPlayersbyNick();
-    void ListPlayersbyName();
+    void ListPlayersbyName( );
     void Victory();
 
 };

@@ -1,6 +1,6 @@
 #include "Players.hpp"
 
-Player::Player(string nome, string nick)
+Player::Player(string nick, string nome)
 {
     this->Nome = nome;
     this->NickName = nick;
@@ -24,7 +24,7 @@ Player* Player::getPlayer(string nick)
     int erro = 1;
     for(vector<Player*>::const_iterator it=PlayersList.begin(); it!=PlayersList.end(); it++)
     {
-        Player* temp = *it;
+        Player* temp =  *it;
         x++;
         if(temp->NickName==nick)
         {
@@ -42,23 +42,55 @@ Player* Player::getPlayer(string nick)
     }
 }
 
-void Player::LigWon()
+void Player::LigWon(string nick)
 {
-    this->LigWins++;
+    Player* temp;
+    for(vector<Player*>::const_iterator it=PlayersList.begin(); it!=PlayersList.end(); it++)
+    {
+        temp = *it;
+        if(temp->NickName==nick)
+        {
+            temp->LigWins++;
+        }
+    };
 }
 
-void Player::LigLost()
+void Player::LigLost(string nick)
 {
-    this->LigLoss++;
+    Player* temp;
+    for(vector<Player*>::const_iterator it=PlayersList.begin(); it!=PlayersList.end(); it++)
+    {
+        temp = *it;
+        if(temp->NickName==nick)
+        {
+            temp->LigLoss++;
+        }
+    };
 }
-void Player::RevWon()
+void Player::RevWon(string nick)
 {
-    this->RevWins++;
+    Player* temp;
+    for(vector<Player*>::const_iterator it=PlayersList.begin(); it!=PlayersList.end(); it++)
+    {
+        temp = *it;
+        if(temp->NickName==nick)
+        {
+            temp->RevWins++;
+        }
+    };
 }
 
-void Player::RevLost()
+void Player::RevLost(string nick)
 {
-    this->RevLoss++;
+    Player* temp;
+    for(vector<Player*>::const_iterator it=PlayersList.begin(); it!=PlayersList.end(); it++)
+    {
+        temp = *it;
+        if(temp->NickName==nick)
+        {
+            temp->RevLoss++;
+        }
+    };
 }
 void Player::RegisterPlayer(string nick, string nome)
 {

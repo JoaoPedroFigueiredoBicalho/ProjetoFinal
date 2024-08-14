@@ -6,7 +6,7 @@ class Lig4 : public boardLogic
 public:
   void lerjogada(int jogadaColuna);
   bool checarvitoria(char jogada);
-  bool tabuleiro_cheio();
+  bool tabuleiro_cheio(); 
   
 };
 #endif

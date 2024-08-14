@@ -25,7 +25,7 @@ void Reversi::checar_jogada(int linha, int coluna)
 
 bool Reversi::checar_se_dentro_do_tabuleiro(int linha, int coluna)
 {
-  bool valido = true;
+  bool valido = true; 
   if (((linha >= get_tabuleiro().size()) || (linha < 0)) || ((coluna >= get_tabuleiro().size()) || (coluna < 0)))
     valido = false;
   return valido;
