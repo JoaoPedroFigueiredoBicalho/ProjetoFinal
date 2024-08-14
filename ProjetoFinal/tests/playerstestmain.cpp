@@ -35,12 +35,17 @@ int main(){
         p.LigWon(jogador);
         break;
     }
-    case 'l':
+    case 'e':
     {
         string jogador;
         cout<<"digite o nick do jogador que ira jogar"<<endl;
         cin>>jogador;
-        p.LigWon(jogador);
+        p.LigLost(jogador);
+        break;
+    }
+    case 'l':
+    {
+        p.ListPlayersbyNick();
         break;
     }
     case 'v':
