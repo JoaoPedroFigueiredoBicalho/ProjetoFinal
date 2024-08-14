@@ -17,6 +17,7 @@ private:
 public:
     
     Player(string nick, string nome);
+    Player();
     ~Player();
     void LigWon(string nick);
     void LigLost(string nick);

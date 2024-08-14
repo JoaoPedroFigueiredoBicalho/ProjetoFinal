@@ -1,5 +1,14 @@
 #include "Players.hpp"
 
+Player::Player()
+{
+    this->Nome = "";
+    this->NickName = "";
+    this->LigLoss = 0;
+    this->LigWins = 0;
+    this->RevLoss = 0;
+    this->RevWins = 0;
+}
 Player::Player(string nick, string nome)
 {
     this->Nome = nome;
