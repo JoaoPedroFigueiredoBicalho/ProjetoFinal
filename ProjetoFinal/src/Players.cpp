@@ -60,7 +60,7 @@ void Player::LigWon(string nick)
         if(temp->NickName==nick)
         {
             temp->LigWins++;
-            cout<<nick<<"GANHOU!";
+            cout<<"@@@"<<nick<<"GANHOU!"<<"@@@"<<endl;
         }
     };
 }
@@ -86,6 +86,7 @@ void Player::RevWon(string nick)
         if(temp->NickName==nick)
         {
             temp->RevWins++;
+            cout<<"@@@"<<nick<<"GANHOU!"<<"@@@"<<endl;
         }
     };
 }
@@ -150,9 +151,9 @@ void Player::RegisterPlayer(string nick, string nome)
         for(vector<Player*>::const_iterator it=PlayersList.begin(); it!=PlayersList.end(); it++)
         {
             temp = *it;
-            cout<<"¨¨¨¨"<<temp->NickName<<"¨¨¨¨"<<endl;
-            cout<<"|REVERSI - V: "<<temp->RevWins<<"D: "<<temp->RevLoss<<"|"<<endl;
-            cout<<"|LIG4    - V: "<<temp->LigWins<<"D: "<<temp->LigLoss<<"|"<<endl;
+            cout<<"%%%%%%"<<temp->NickName<<"%%%%%%"<<endl;
+            cout<<"| REVERSI - V: "<<temp->RevWins<<" D: "<<temp->RevLoss<<" |"<<endl;
+            cout<<"| LIG4    - V: "<<temp->LigWins<<" D: "<<temp->LigLoss<<" |"<<endl;
             cout<<"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨"<<endl;
         }
     }
