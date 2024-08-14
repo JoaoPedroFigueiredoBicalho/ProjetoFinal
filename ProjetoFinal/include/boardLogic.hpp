@@ -16,10 +16,11 @@ protected:
 public:
   virtual void lerjogada(int jogadaLinha, int jogadaColuna, char jogada);
   void imprimir_tabuleiro();
-  void inicializar_tabuleiro(int tamanho);
+  void inicializar_tabuleiro();
   std::vector<std::vector<char>>& get_tabuleiro();
   void set_tabuleiro(int linha, int coluna, char jogada);
-  int get_tamanho() const;
+  int get_tamanho() ;
+  void set_tamanho(int tamanho);
 
 };
 
