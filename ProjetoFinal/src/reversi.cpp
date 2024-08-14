@@ -1,28 +1,35 @@
 #include "reversi.hpp"
 
-void Reversi::checar_jogadas_validas()
+void Reversi::lerjogada(int linha, int coluna, char c)
 {
 }
 
-void Reversi::checar_jogada(int linha, int coluna)
+void Reversi::checar_jogada()
 {
+  int linha, coluna;
   int dir = 1;
-  if (get_tabuleiro()[linha][coluna] == ' ')
+  for (int i = 0; i < get_tamanho(); i++)
   {
-    for (linha = (linha - 1); linha <= (linha + 1); linha++)
+    for (int j = 0; j < get_tamanho(); j++)
     {
-      for (coluna = (coluna - 1); coluna <= (coluna + 1); coluna++)
+      if (get_tabuleiro()[i][j] == Jogador1)
+        linha = i;
+      coluna = j;
+    }
+  }
+  for (linha = (linha - 1); linha <= (linha + 1); linha++)
+  {
+    for (coluna = (coluna - 1); coluna <= (coluna + 1); coluna++)
+    {
+      if (!(checar_se_dentro_do_tabuleiro(linha, coluna)))
       {
-        if (!(checar_se_dentro_do_tabuleiro(linha, coluna)))
-        {
-          continue;
-        }
-        else if ((get_tabuleiro()[linha][coluna] == Jogador2))
-        {
-          checar_casas_a_virar(linha, coluna, dir);
-        }
-        dir++;
+        continue;
       }
+      else if ((get_tabuleiro()[linha][coluna] == Jogador2))
+      {
+        checar_casas_a_virar(linha, coluna, dir);
+      }
+      dir++;
     }
   }
 }
@@ -43,9 +50,9 @@ void Reversi::virar_casas(int linha, int coluna, int dir_l, int dir_c)
     {
       continue;
     }
-    else if (get_tabuleiro()[linha + (i * dir_l)][coluna + (i * dir_c)] == Jogador1)
+    else if (get_tabuleiro()[linha + (i * dir_l)][coluna + (i * dir_c)] == ' ')
     {
-      for (i - 1; i >= 0; i--)
+      for (i; i > 0; i--)
       {
         set_tabuleiro(linha + (i * dir_l), coluna + (i * dir_c), Jogador1);
       }
