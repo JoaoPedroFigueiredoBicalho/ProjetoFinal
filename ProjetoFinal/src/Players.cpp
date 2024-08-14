@@ -118,8 +118,9 @@ void Player::RegisterPlayer(string nick, string nome)
         cout<<"ERRO: jogador repetido"<<endl;
     }else
     {
-        PlayersList.push_back(new Player(nome,nick));
-        cout<<"Jogador"<<temp->NickName<<"cadastrado com sucesso"<<endl;
+        temp=new Player(nick,nome);
+        PlayersList.push_back(temp);
+        cout<<"Jogador "<<temp->NickName<<" cadastrado com sucesso"<<endl;
     }
 }
     void Player::DeletePlayer(string nick)
@@ -160,7 +161,7 @@ void Player::RegisterPlayer(string nick, string nome)
         for(vector<Player*>::const_iterator it=PlayersList.begin(); it!=PlayersList.end(); it++)
         {
             temp = *it;
-            cout<<"¨¨¨¨"<<temp->Nome<<"¨¨¨¨"<<endl;
+            cout<<"%%%%%%"<<temp->Nome<<"%%%%%%"<<endl;
             cout<<"|REVERSI - V: "<<temp->RevWins<<"D: "<<temp->RevLoss<<"|"<<endl;
             cout<<"|LIG4    - V: "<<temp->LigWins<<"D: "<<temp->LigLoss<<"|"<<endl;
             cout<<"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨"<<endl;
@@ -174,13 +175,13 @@ void Player::RegisterPlayer(string nick, string nome)
         string vencedor;
         int v1=0;
         int v2=0;
-        int empate=0;
-        for(vector<Player*>::const_iterator it=PlayersList.begin(); it!=PlayersList.end(); it++)
+        int empate=1;
+        for(vector<Player*>::const_iterator it=PlayersList.begin(); it!=PlayersList.end()-1; it++)
         {
-            for(vector<Player*>::const_iterator it2=PlayersList.begin(); it2!=PlayersList.end(); ++it2)
+            for(vector<Player*>::const_iterator it2=PlayersList.begin()+1; it2!=PlayersList.end(); it2++)
         {
             temp = *it;
-            temp = *it2;
+            temp2 = *it2;
             if((temp->LigWins + temp->RevWins)>(temp2->LigWins + temp2->RevWins))
             {
                 empate=0;
@@ -193,10 +194,16 @@ void Player::RegisterPlayer(string nick, string nome)
             
         }
         }
-        if (empate=0)
+        if (empate==0)
         {
             cout<<"################"<<endl;
             cout<<vencedor<<" VENCEU!"<<endl;
+            cout<<"################"<<endl;
+        }
+        if (empate==1)
+        {
+            cout<<"################"<<endl;
+            cout<<"     EMPATE!    "<<endl;
             cout<<"################"<<endl;
         }
         
