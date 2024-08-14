@@ -19,11 +19,13 @@ void Reversi::checar_jogada()
     for (int j = 0; j < get_tamanho(); j++)
     {
       if (get_tabuleiro()[i][j] == Jogador1)
+      {
         linha = i;
-      coluna = j;
+        coluna = j;
+      }
     }
   }
-  for (linha = (linha - 1); linha <= (linha + 1); linha++)
+  for (linha = (linha + 1); linha <= (linha - 1); linha--)
   {
     for (coluna = (coluna - 1); coluna <= (coluna + 1); coluna++)
     {
@@ -77,17 +79,17 @@ void Reversi::checar_direcao(int linha, int coluna, int direcao)
   {
   case 1:
   {
-    checar_casas_a_virar(linha, coluna, -1, -1);
+    checar_casas_a_virar(linha, coluna, 1, -1);
     break;
   }
   case 2:
   {
-    checar_casas_a_virar(linha, coluna, -1, 0);
+    checar_casas_a_virar(linha, coluna, 1, 0);
     break;
   }
   case 3:
   {
-    checar_casas_a_virar(linha, coluna, -1, 1);
+    checar_casas_a_virar(linha, coluna, 1, 1);
     break;
   }
   case 4:
@@ -107,12 +109,12 @@ void Reversi::checar_direcao(int linha, int coluna, int direcao)
   }
   case 8:
   {
-    checar_casas_a_virar(linha, coluna, 1, 0);
+    checar_casas_a_virar(linha, coluna, -1, 0);
     break;
   }
   case 9:
   {
-    checar_casas_a_virar(linha, coluna, 1, 1);
+    checar_casas_a_virar(linha, coluna, -1, 1);
     break;
   }
   }
