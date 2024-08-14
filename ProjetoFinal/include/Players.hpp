@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -19,6 +20,7 @@ public:
     Player(string nick, string nome);
     Player();
     ~Player();
+    void ReadArq();
     void LigWon(string nick);
     void LigLost(string nick);
     void RevWon(string nick);

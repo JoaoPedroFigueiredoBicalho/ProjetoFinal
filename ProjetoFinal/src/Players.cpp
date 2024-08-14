@@ -8,6 +8,7 @@ Player::Player()
     this->LigWins = 0;
     this->RevLoss = 0;
     this->RevWins = 0;
+
 }
 Player::Player(string nick, string nome)
 {
@@ -25,6 +26,30 @@ Player::~Player()
     {
          PlayersList.erase(it);
     }
+}
+
+void Player::ReadArq()
+{
+    string linha;
+    int tamanho;
+    ifstream arquivo("Players.txt");
+    fgets(arquivo,"%d",&tamanho);
+    for (int i = 0; i < tamanho; i++)
+    {
+        if(i==0){fgets(lixo,8,arquivo);}
+        fgets(produtos[i].codigo,50,arquivo);
+                produtos[i].codigo[strcspn(produtos[i].codigo,"\n")]='\0';
+        fgets(produtos[i].nome, 50, arquivo);
+        produtos[i].nome[strlen(produtos[i].nome)-1]='\0';
+        fscanf(arquivo, "%d", &produtos[i].quantidade);
+                fgets(lixo,10,arquivo);
+        fscanf(arquivo, "%f",&produtos[i].preco );
+                fgets(lixo,10,arquivo);
+        fgets(produtos[i].estado, 50, arquivo);
+                produtos[i].estado[2]='\0';
+
+    }
+    
 }
 
 Player* Player::getPlayer(string nick)
@@ -198,9 +223,9 @@ void Player::RegisterPlayer(string nick, string nome)
         }
         if (empate==0)
         {
-            cout<<"##############"<<endl;
+            cout<<"################"<<endl;
             cout<<vencedor<<" VENCEU!"<<endl;
-            cout<<"##############"<<endl;
+            cout<<"################"<<endl;
         }
         if (empate==1)
         {
