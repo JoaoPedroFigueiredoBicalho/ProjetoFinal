@@ -198,9 +198,9 @@ void Player::RegisterPlayer(string nick, string nome)
         }
         if (empate==0)
         {
-            cout<<"#################"<<endl;
+            cout<<"##############"<<endl;
             cout<<vencedor<<" VENCEU!"<<endl;
-            cout<<"#################"<<endl;
+            cout<<"##############"<<endl;
         }
         if (empate==1)
         {
