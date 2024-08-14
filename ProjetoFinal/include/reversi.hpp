@@ -8,9 +8,10 @@ private:
   const char Jogador2 = 'O';
 
 public:
-  void checar_jogada(int linha, int coluna); 
+  void checar_jogadas_validas();
+  void checar_jogada(int linha, int coluna);
   void checar_casas_a_virar(int linha, int coluna, int direcao);
   bool checar_se_dentro_do_tabuleiro(int linha, int coluna);
   void virar_casas(int linha, int coluna, int dir_l, int dir_c);
 };
-#endif 
+#endif
