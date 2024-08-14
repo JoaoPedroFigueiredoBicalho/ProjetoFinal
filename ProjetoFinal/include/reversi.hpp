@@ -6,12 +6,15 @@ class Reversi : public boardLogic
 private:
   const char Jogador1 = 'X';
   const char Jogador2 = 'O';
+  std::vector<std::vector<int>> JogadasValidas;
 
 public:
   void checar_jogadas_validas();
+  void lerjogada(int linha, int coluna);
   void checar_jogada();
-  void checar_casas_a_virar(int linha, int coluna, int direcao);
+  void checar_direcao(int linha, int coluna, int direcao);
   bool checar_se_dentro_do_tabuleiro(int linha, int coluna);
-  void virar_casas(int linha, int coluna, int dir_l, int dir_c);
+  void checar_casas_a_virar(int linha, int coluna, int dir_l, int dir_c);
+  void virar_casas(int linha, int coluna, int dir_l, int dir_c, int i);
 };
 #endif
