@@ -1,7 +1,7 @@
 #include "Players.hpp"
 #include "reversi.hpp"
 #include "lig4.hpp"
-#include "boardlogic.hpp"
+#include "boardLogic.hpp"
 
 int main()
 {
