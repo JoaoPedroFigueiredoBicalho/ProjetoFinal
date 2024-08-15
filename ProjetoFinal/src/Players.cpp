@@ -59,29 +59,7 @@ void Player::ReadArq()
     }
 }
 
-void Player::RegisterPlayer(string nick, string nome)
-{
-    int erro = 0;
-    Player *temp;
-    for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
-    {
-        temp = *it;
-        if (temp->NickName == nick)
-            erro = 1;
-        //        throw std::invalid_argument("ERRO: jogador repetido");
-    }
 
-    if (erro == 1)
-    {
-        cout << "ERRO: jogador repetido" << endl;
-    }
-    else
-    {
-        temp = new Player(nick, nome);
-        PlayersList.push_back(temp);
-        cout << "Jogador " << temp->NickName << " cadastrado com sucesso" << endl;
-    }
-}
 
 Player *Player::getPlayer(string nick)
 {
@@ -278,7 +256,6 @@ void Player::Victory()
 void Player::WriteArq()
 {
     ofstream arq("Players.txt");
-    arq << NumPlayers;
     arq << PlayersCount;
     Player *temp;
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)

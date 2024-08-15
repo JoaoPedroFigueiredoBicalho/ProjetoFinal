@@ -30,7 +30,6 @@ int main()
       cout << "Digite o nome do jogador" << endl;
       cin >> nome;
       p->RegisterPlayer(nick, nome);
-      break;
     }
     else if (comando == "RJ")
     {
@@ -38,7 +37,6 @@ int main()
       cout << "Digite o nick do jogador" << endl;
       cin >> nick;
       p->DeletePlayer(nick);
-      break;
     }
     else if (comando == "EP")
     {
@@ -100,24 +98,17 @@ int main()
           cin >> coluna;
 
           tabuleiro->lerjogada((coluna - 1));
-          cout << "Digite a coluna de entrada (0-" << tamanho - 1 << "): ";
-          cin >> coluna;
-
-          tabuleiro->lerjogada(coluna);
           tabuleiro->imprimir_tabuleiro();
 
           //verifica se o jogador venceu
           if(tabuleiro->checarvitoria('X')){
             cout << "Vitoria do jogador X!" << endl;
-            break;
-          }
-          if(tabuleiro->checarvitoria('O')){
-            cout << "Vitoria do jogador O!" << endl;
             p->LigWon(jogador);
             p->LigLost(jogador2);
             break;
           }
           if(tabuleiro->checarvitoria('O')){
+            cout << "Vitoria do jogador O!" << endl;
             p->LigWon(jogador2);
             p->LigLost(jogador);
             break;
@@ -132,7 +123,6 @@ int main()
     else if (comando == "LJ")
     {
       p->ListPlayersbyNick();
-      break;
     }
     else if (comando == "FS")
     {
@@ -145,6 +135,7 @@ int main()
       cout << "Comando inválido :(" << endl;
       cout << "Digite um novo comando";
     }
-    delete p;
   }
+  delete p;
+  return 0;
 }
