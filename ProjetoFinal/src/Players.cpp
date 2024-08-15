@@ -33,21 +33,10 @@ void Player::ReadArq()
     string linha;
     int tamanho;
     ifstream arquivo("Players.txt");
-    fgets(arquivo,"%d",&tamanho);
+    if(getline(arquivo,linha)!=EOF);
     for (int i = 0; i < tamanho; i++)
     {
-        if(i==0){fgets(lixo,8,arquivo);}
-        fgets(produtos[i].codigo,50,arquivo);
-                produtos[i].codigo[strcspn(produtos[i].codigo,"\n")]='\0';
-        fgets(produtos[i].nome, 50, arquivo);
-        produtos[i].nome[strlen(produtos[i].nome)-1]='\0';
-        fscanf(arquivo, "%d", &produtos[i].quantidade);
-                fgets(lixo,10,arquivo);
-        fscanf(arquivo, "%f",&produtos[i].preco );
-                fgets(lixo,10,arquivo);
-        fgets(produtos[i].estado, 50, arquivo);
-                produtos[i].estado[2]='\0';
-
+        
     }
     
 }
@@ -233,5 +222,22 @@ void Player::RegisterPlayer(string nick, string nome)
             cout<<"     EMPATE!    "<<endl;
             cout<<"################"<<endl;
         }
-        
     }
+
+    void Player::WriteArq()
+        {
+            ofstream arq("Players.txt");
+            arq<<NumPlayers;
+            Player* temp;
+        for(vector<Player*>::const_iterator it=PlayersList.begin(); it!=PlayersList.end(); it++)
+        {
+            temp = *it;
+            arq<<temp->NickName<<endl;
+            arq<<temp->Nome<<endl;
+            arq<<temp->RevWins<<endl;
+            arq<<temp->RevLoss<<endl;
+            arq<<temp->LigWins<<endl;
+            arq<<temp->LigLoss<<endl;
+        }
+        }
+        

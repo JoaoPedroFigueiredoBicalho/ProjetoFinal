@@ -14,6 +14,7 @@ private:
     int LigLoss;
     int RevWins;
     int RevLoss;
+    int NumPlayers;
     vector<Player*> PlayersList;
 public:
     
@@ -31,6 +32,7 @@ public:
     void ListPlayersbyNick();
     void ListPlayersbyName( );
     void Victory();
+    void WriteArq();
 
 };
 
