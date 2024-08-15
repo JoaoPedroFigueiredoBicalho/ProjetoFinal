@@ -30,4 +30,3 @@ void boardLogic::imprimir_tabuleiro()
   }
   std::cout << "#########" << std::endl;
 }
-AQUI É GALO
