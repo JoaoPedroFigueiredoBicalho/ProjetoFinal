@@ -9,6 +9,7 @@ Player::Player()
     this->RevLoss = 0;
     this->RevWins = 0;
 }
+
 Player::Player(string nick, string nome)
 {
   this->Nome = nome;
@@ -63,8 +64,6 @@ void Player::ReadArq()
     }
 }
 
-
-
 bool Player::CheckPlayer(string nick)
 {
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
@@ -106,6 +105,7 @@ void Player::LigLost(string nick)
         }
     };
 }
+
 void Player::LigDraw(string nick, string nick2)
 {
     Player *temp;
@@ -119,6 +119,7 @@ void Player::LigDraw(string nick, string nick2)
     };
     
 }
+
 void Player::RevWon(string nick)
 {
     Player *temp;
@@ -145,6 +146,7 @@ void Player::RevLost(string nick)
         }
     };
 }
+
 void Player::RevDraw(string nick, string nick2)
 {
     Player *temp;
@@ -157,6 +159,7 @@ void Player::RevDraw(string nick, string nick2)
         }
     };
 }
+
 void Player::RegisterPlayer(string nick, string nome)
 {
   int erro = 0;
@@ -181,6 +184,7 @@ void Player::RegisterPlayer(string nick, string nome)
     PlayersCount++;
   }
 }
+
 void Player::DeletePlayer(string nick)
 {
   int erro = 1;
@@ -213,6 +217,7 @@ void Player::ListPlayersbyNick()
         cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
     }
 }
+
 void Player::ListPlayersbyName()
 {
     Player *temp;
@@ -227,6 +232,7 @@ void Player::ListPlayersbyName()
 }
 
 void Player::Victory()
+
 {
     Player *temp;
     Player *temp2;
@@ -277,6 +283,7 @@ void Player::WriteArq()
     ofstream arq("Players.txt");
     arq << PlayersCount;
     Player *temp;
+
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
         temp = *it;

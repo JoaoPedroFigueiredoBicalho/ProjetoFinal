@@ -1,4 +1,4 @@
-#include "Lig4.hpp"
+#include "lig4.hpp"
 #include <iostream>
 
 bool Lig4::lerjogada(int jogadaColuna) {

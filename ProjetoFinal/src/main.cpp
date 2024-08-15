@@ -10,6 +10,7 @@ int main()
 
   while (fim != 0)
   {
+    int teste = 0;
     string comando;
     cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
     cout << "Lista de comandos:" << endl;
@@ -26,7 +27,48 @@ int main()
       string nick;
       string nome;
       cout << "Digite o nick do jogador" << endl;
-      cin >> nick;
+      while (teste==0)
+      {
+        try
+        {
+          cin >> nick;
+          if ((nick.find(" ") != string::npos))
+          {
+            throw bad_exception();
+          }else{
+            teste = 1;
+          }
+          if (p->CheckPlayer(nick) == true)
+          {
+            throw invalid_argument(" Erro : este nick já está em uso !");
+          }else{
+            teste = 1;
+          }
+                          }
+        catch(const bad_exception& e)
+        {
+          cout << "NickName não pode conter espaços em branco" << endl;
+          cin >> nick;
+        }
+        catch(const invalid_argument& e)
+        {
+          cout << e.what();
+          cout << "Digite outro nome de usuário" << endl;
+          cin >> nick;
+        }
+      }
+      
+      /*while (nick.find(" ")!=string::npos)
+      {
+        cout << "NickName não pode conter espaços em branco" << endl;
+        cin >> nick;
+      }
+      while (p->CheckPlayer(nick)==true)
+      {
+        cout << "Erro: este nick já está em uso!" << endl;
+        cout << "Digite outro nome de usuário" << endl;
+      }*/
+
       cout << "Digite o nome do jogador" << endl;
       cin >> nome;
       p->RegisterPlayer(nick, nome);
@@ -47,7 +89,17 @@ int main()
       cin >> jogo;
       cout << "Digite os nicks dos jogadores que irão jogar" << endl;
       cin >> jogador;
+      while (p->CheckPlayer(jogador) == false)
+      {
+        cout << "Digite o Nick do jogador novamente" << endl;
+        cin >> jogador;
+      }
       cin >> jogador2;
+      while (p->CheckPlayer(jogador2) == false)
+      {
+        cout << "Digite o Nick do jogador novamente" << endl;
+        cin >> jogador2;
+      }
       switch (jogo)
       {
       case 'R':
@@ -105,24 +157,15 @@ int main()
             tabuleiro->imprimir_tabuleiro();
           
 
-<<<<<<< HEAD
           // verifica se o jogador venceu
           if (tabuleiro->checarvitoria('X'))
           {
-=======
-          //verifica se o jogador venceu
-          if(tabuleiro->checarvitoria('X')){
->>>>>>> 2652b48ce91849ddda2292ffb629bbf5c418ea27
             p->LigWon(jogador);
             p->LigLost(jogador2);
             break;
           }
-<<<<<<< HEAD
           if (tabuleiro->checarvitoria('O'))
           {
-=======
-          if(tabuleiro->checarvitoria('O')){
->>>>>>> 2652b48ce91849ddda2292ffb629bbf5c418ea27
             p->LigWon(jogador2);
             p->LigLost(jogador);
             break;
