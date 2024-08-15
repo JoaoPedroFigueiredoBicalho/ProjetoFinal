@@ -105,15 +105,24 @@ int main()
             tabuleiro->imprimir_tabuleiro();
           
 
+<<<<<<< HEAD
           // verifica se o jogador venceu
           if (tabuleiro->checarvitoria('X'))
           {
+=======
+          //verifica se o jogador venceu
+          if(tabuleiro->checarvitoria('X')){
+>>>>>>> 2652b48ce91849ddda2292ffb629bbf5c418ea27
             p->LigWon(jogador);
             p->LigLost(jogador2);
             break;
           }
+<<<<<<< HEAD
           if (tabuleiro->checarvitoria('O'))
           {
+=======
+          if(tabuleiro->checarvitoria('O')){
+>>>>>>> 2652b48ce91849ddda2292ffb629bbf5c418ea27
             p->LigWon(jogador2);
             p->LigLost(jogador);
             break;
