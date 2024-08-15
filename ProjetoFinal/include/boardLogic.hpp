@@ -1,6 +1,7 @@
 #ifndef BOARDLOGIC_HPP
 #define BOARDLOGIC_HPP
 
+#include <iostream>
 #include <vector>
 
 class boardLogic {

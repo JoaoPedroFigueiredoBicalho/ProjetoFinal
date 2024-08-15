@@ -2,13 +2,11 @@
 
 void Reversi::inicializar_tabuleiro(int tamanho)
 {
-  for (int i = 0; i < get_tamanho(); i++)
-  {
-
-    for (int j = 0; i < get_tamanho(); j++)
-    {
-    }
-  }
+    boardLogic::inicializar_tabuleiro(tamanho);
+    set_tabuleiro(tamanho/2,(tamanho/2),'X');
+    set_tabuleiro((tamanho/2)-1,(tamanho/2),'O');
+    set_tabuleiro((tamanho/2)-1,((tamanho/2)-1),'X');
+    set_tabuleiro(tamanho/2,((tamanho/2)-1),'O');
 }
 
 void Reversi::lerjogada(int linha, int coluna, char jogador)
@@ -26,14 +24,18 @@ void Reversi::checar_jogada(char jogador, char oponente)
 {
   int linha, coluna;
   int dir = 1;
-  for (int i = 0; i < get_tamanho(); i++)
+  JogadasValidas.clear();
+  JogadasValidas.resize(0);
+  for (int cont_l = 0; cont_l < get_tamanho(); cont_l++)
   {
-    for (int j = 0; j < get_tamanho(); j++)
+    for (int cont_c = 0; cont_c < get_tamanho(); cont_c++)
     {
-      if (get_tabuleiro()[i][j] == jogador)
+      if (get_tabuleiro()[cont_l][cont_c] == jogador)
       {
-        linha = i;
-        coluna = j;
+        if (jogador=='X') num_pecas_J1++;
+        else num_pecas_J2++;
+        linha = cont_l;
+        coluna = cont_c;
         dir = 1;
         for (int i = (linha + 1); i >= (linha - 1); i--)
         {
@@ -53,6 +55,7 @@ void Reversi::checar_jogada(char jogador, char oponente)
       }
     }
   }
+  if(JogadasValidas.empty()) game_over();
 }
 
 bool Reversi::checar_se_dentro_do_tabuleiro(int linha, int coluna)
@@ -80,6 +83,7 @@ void Reversi::checar_casas_a_virar(int linha, int coluna, int dir_l, int dir_c, 
       p1.push_back(dir_c);
       p1.push_back(i);
       JogadasValidas.push_back(p1);
+      termino=0;
       break;
     }
     else
@@ -141,4 +145,22 @@ void Reversi::virar_casas(int linha, int coluna, int dir_l, int dir_c, int i, ch
     set_tabuleiro(linha - (i * dir_l), coluna - (i * dir_c), jogador);
   }
   set_tabuleiro(linha, coluna, jogador);
+}
+
+bool Reversi::game_over()
+{
+  termino++;
+  if (termino==2)
+  {
+    if (num_pecas_J1>num_pecas_J2) std::cout<< "Jogador 1 venceu!"; 
+    else if (num_pecas_J1<num_pecas_J2) std::cout<< "Jogador 2 venceu!";
+    else std::cout<< "Empate";
+    return 0;
+  }
+  return 1;
+}
+
+int Reversi::get_termino()
+{
+    return this->termino;
 }
