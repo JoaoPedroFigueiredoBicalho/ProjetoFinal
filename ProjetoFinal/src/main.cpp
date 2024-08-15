@@ -7,19 +7,19 @@ int main()
 {
   Player *p = new Player();
   int fim = 1;
-  cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
-  cout << "Lista de comandos:" << endl;
-  cout << "CJ: Criar Jogador" << endl
-       << "RJ: Remover Jogador" << endl
-       << "LJ: [A/N] Listar jogadores" << endl;
-  cout << "EP: Executar Partida" << endl
-       << "FS: Finalizar Sistema" << endl;
-  cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
-  cout << "Digite um comando: " << endl;
 
   while (fim != 0)
   {
     string comando;
+    cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
+    cout << "Lista de comandos:" << endl;
+    cout << "CJ: Criar Jogador" << endl
+         << "RJ: Remover Jogador" << endl
+         << "LJ: [A/N] Listar jogadores" << endl;
+    cout << "EP: Executar Partida" << endl
+         << "FS: Finalizar Sistema" << endl;
+    cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
+    cout << "Digite um comando: " << endl;
     cin >> comando;
     if (comando == "CJ")
     {
@@ -77,7 +77,7 @@ int main()
       }
       case 'L':
       {
-        //obs: se der problema use Lig4 tabuleiro;
+        // obs: se der problema use Lig4 tabuleiro;
         Lig4 *tabuleiro = new Lig4;
         cout << "Digite o tamanho do tabuleiro n x n" << endl;
         int tamanho;
@@ -86,36 +86,41 @@ int main()
         tabuleiro->inicializar_tabuleiro(tamanho);
         tabuleiro->imprimir_tabuleiro();
         int contador = 0;
-        while(!tabuleiro->tabuleiro_cheio()){
-          if(contador % 2 == 0){
+        while (!tabuleiro->tabuleiro_cheio())
+        {
+          if (contador % 2 == 0)
+          {
             cout << "Turno do " << jogador << endl;
           }
-          else if(contador % 2 != 0){
+          else if (contador % 2 != 0)
+          {
             cout << "Turno do " << jogador2 << endl;
           }
           int coluna;
           cout << "Digite a coluna de entrada (1-" << tamanho << "): ";
           cin >> coluna;
 
-          tabuleiro->lerjogada((coluna - 1));
-          tabuleiro->imprimir_tabuleiro();
+          //chamar o ler jogada e ver se a jogada foi bem sucedida
+          if(tabuleiro->lerjogada((coluna-1))) {
+            tabuleiro->imprimir_tabuleiro();
+          
 
-          //verifica se o jogador venceu
-          if(tabuleiro->checarvitoria('X')){
-            cout << "Vitoria do jogador X!" << endl;
+          // verifica se o jogador venceu
+          if (tabuleiro->checarvitoria('X'))
+          {
             p->LigWon(jogador);
             p->LigLost(jogador2);
             break;
           }
-          if(tabuleiro->checarvitoria('O')){
-            cout << "Vitoria do jogador O!" << endl;
+          if (tabuleiro->checarvitoria('O'))
+          {
             p->LigWon(jogador2);
             p->LigLost(jogador);
             break;
           }
-        contador++;
+          contador++;
+          }
         }
-
       }
       }
       break;

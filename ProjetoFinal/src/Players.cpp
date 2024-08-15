@@ -50,10 +50,14 @@ void Player::ReadArq()
             getline(arquivo, linha);
             temp->RevLoss = stoi(linha);
             getline(arquivo, linha);
+            temp->RevDraws = stoi(linha);
+            getline(arquivo, linha);
             temp->LigWins = stoi(linha);
             getline(arquivo, linha);
             temp->LigLoss = stoi(linha);
             PlayersList.push_back(temp);
+            getline(arquivo, linha);
+            temp->LigDraws = stoi(linha);
         }
         arquivo.close();
     }
@@ -112,6 +116,18 @@ void Player::LigLost(string nick)
         }
     };
 }
+void Player::LigDraw(string nick)
+{
+    Player *temp;
+    for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
+    {
+        temp = *it;
+        if (temp->NickName == nick)
+        {
+            temp->LigDraws++;
+        }
+    };
+}
 void Player::RevWon(string nick)
 {
     Player *temp;
@@ -135,6 +151,18 @@ void Player::RevLost(string nick)
         if (temp->NickName == nick)
         {
             temp->RevLoss++;
+        }
+    };
+}
+void Player::RevDraw(string nick)
+{
+    Player *temp;
+    for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
+    {
+        temp = *it;
+        if (temp->NickName == nick)
+        {
+            temp->RevDraws++;
         }
     };
 }
@@ -188,9 +216,9 @@ void Player::ListPlayersbyNick()
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
         temp = *it;
-        cout << ">>>>>> " << temp->NickName << " <<<<<<" << endl;
-        cout << "  | REVERSI - V: " << temp->RevWins << " D: " << temp->RevLoss << " |" << endl;
-        cout << "  | LIG4    - V: " << temp->LigWins << " D: " << temp->LigLoss << " |" << endl;
+        cout << ">>>>>>>>>>> " << temp->NickName << " <<<<<<<<<<<" << endl;
+        cout << "  | REVERSI - V: " << temp->RevWins << " D: " << temp->RevLoss << " E: " << temp->RevDraws << " |" << endl;
+        cout << "  | LIG4    - V: " << temp->LigWins << " D: " << temp->LigLoss << " E: " << temp->LigDraws << " |" << endl;
         cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
     }
 }
@@ -200,9 +228,9 @@ void Player::ListPlayersbyName()
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
         temp = *it;
-        cout << ">>>>>> " << temp->Nome << " <<<<<<" << endl;
-        cout << "  |REVERSI - V: " << temp->RevWins << "D: " << temp->RevLoss << "|" << endl;
-        cout << "  |LIG4    - V: " << temp->LigWins << "D: " << temp->LigLoss << "|" << endl;
+        cout << ">>>>>>>>>>> " << temp->Nome << " <<<<<<<<<<<" << endl;
+        cout << "  | REVERSI - V: " << temp->RevWins << " D: " << temp->RevLoss << " E: " <<temp->RevDraws << " |" << endl;
+        cout << "  | LIG4    - V: " << temp->LigWins << " D: " << temp->LigLoss << " E: " << temp->LigDraws << " |" << endl;
         cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
     }
 }
@@ -265,8 +293,10 @@ void Player::WriteArq()
         arq << temp->Nome << endl;
         arq << temp->RevWins << endl;
         arq << temp->RevLoss << endl;
+        arq << temp->RevDraws << endl;
         arq << temp->LigWins << endl;
         arq << temp->LigLoss << endl;
+        arq << temp->LigDraws << endl;
     }
     arq.close();
 }
