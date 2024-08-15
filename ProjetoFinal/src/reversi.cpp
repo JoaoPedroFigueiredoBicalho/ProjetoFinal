@@ -32,8 +32,6 @@ void Reversi::checar_jogada(char jogador, char oponente)
     {
       if (get_tabuleiro()[cont_l][cont_c] == jogador)
       {
-        if (jogador=='X') num_pecas_J1++;
-        else num_pecas_J2++;
         linha = cont_l;
         coluna = cont_c;
         dir = 1;
@@ -122,7 +120,7 @@ void Reversi::checar_direcao(int linha, int coluna, int direcao, char oponente)
   }
   case 7:
   {
-    checar_casas_a_virar(linha, coluna, -1, 1, oponente);
+    checar_casas_a_virar(linha, coluna, -1, -1, oponente);
     break;
   }
   case 8:
@@ -143,6 +141,16 @@ void Reversi::virar_casas(int linha, int coluna, int dir_l, int dir_c, int i, ch
   for (i; i > 0; i--)
   {
     set_tabuleiro(linha - (i * dir_l), coluna - (i * dir_c), jogador);
+    if (jogador=='X') 
+    {
+        num_pecas_O--;
+        num_pecas_X++;
+    }
+    else 
+    {
+        num_pecas_X--;
+        num_pecas_O++;
+    }
   }
   set_tabuleiro(linha, coluna, jogador);
 }
@@ -150,14 +158,15 @@ void Reversi::virar_casas(int linha, int coluna, int dir_l, int dir_c, int i, ch
 bool Reversi::game_over()
 {
   termino++;
-  if (termino==2)
+  if (termino==2||num_pecas_X==0||num_pecas_O==0)
   {
-    if (num_pecas_J1>num_pecas_J2) std::cout<< "Jogador 1 venceu!"; 
-    else if (num_pecas_J1<num_pecas_J2) std::cout<< "Jogador 2 venceu!";
+    if (num_pecas_X>num_pecas_O) std::cout<< "Jogador 1 venceu!"; 
+    else if (num_pecas_X<num_pecas_O) std::cout<< "Jogador 2 venceu!";
     else std::cout<< "Empate";
-    return 0;
+    return (false);
   }
-  return 1;
+  
+  return (true);
 }
 
 int Reversi::get_termino()

@@ -7,8 +7,8 @@ private:
   const char Jogador1 = 'X';
   const char Jogador2 = 'O';
   std::vector<std::vector<int>> JogadasValidas;
-  int num_pecas_J1=0;
-  int num_pecas_J2=0;
+  int num_pecas_X=2;
+  int num_pecas_O=2;
   int termino=0;
 
 public:
