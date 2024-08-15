@@ -6,7 +6,7 @@
 class Lig4 : public boardLogic {
 public:
     // Processa a jogada na coluna especificada
-    void lerjogada(int jogadaColuna);
+    bool lerjogada(int jogadaColuna);
 
     // Verifica se o tabuleiro está cheio
     bool tabuleiro_cheio() const;

@@ -16,8 +16,10 @@ private:
   int PlayersCount;
   int LigWins;
   int LigLoss;
+  int LigDraws;
   int RevWins;
   int RevLoss;
+  int RevDraws;
   vector<Player *> PlayersList;
 
 public:
@@ -27,7 +29,9 @@ public:
   void ReadArq();
   void LigWon(string nick);
   void LigLost(string nick);
+  void LigDraw(string nick);
   void RevWon(string nick);
+  void RevDraw(string nick);
   void RevLost(string nick);
   Player *getPlayer(string nick);
   void RegisterPlayer(string nick, string nome);
