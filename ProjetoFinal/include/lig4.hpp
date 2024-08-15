@@ -16,3 +16,4 @@ public:
 };
 
 #endif // LIG4_HPP
+

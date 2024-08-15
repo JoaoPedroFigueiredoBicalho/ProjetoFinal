@@ -1,26 +1,38 @@
-#ifndef BOARDLOGIC_H
-#define BOARDLOGIC_H
+#ifndef BOARDLOGIC_HPP
+#define BOARDLOGIC_HPP
 
-#include <vector>
 #include <iostream>
+#include <vector>
 
-class boardLogic
-{
-private:
-  std::vector<std::vector<char>> tabuleiro;
-  int tamanho;
-
+class boardLogic {
 protected:
-   char jogada = 'X';
+    std::vector<std::vector<char>> tabuleiro;
+    int tamanho;
+    char jogada = 'X';
 
 public:
-  virtual void lerjogada(int jogadaLinha, int jogadaColuna, char jogada);
-  void imprimir_tabuleiro();
-  void inicializar_tabuleiro(int tamanho);
-  std::vector<std::vector<char>>& get_tabuleiro();
-  void set_tabuleiro(int linha, int coluna, char jogada);
-  int get_tamanho() const;
 
+    //metodo virtual
+    virtual void lerjogada(int jogadaLinha, int jogadaColuna, char jogada);
+
+    std::vector<std::vector<char>> &get_tabuleiro();
+
+    void set_tabuleiro(int linha, int coluna, char jogada);
+
+    // tamanho por parametro
+    void inicializar_tabuleiro(int tamanho);
+
+    // Imprime o tabuleiro no console
+    void imprimir_tabuleiro();
+
+    // Obtém o jogador que está realizando a jogada atual
+    char get_jogada_atual() const;
+
+    // Alterna entre os jogadores 'X' e 'O'
+    void alternar_jogador();
+
+    //pro reversi
+    int get_tamanho();
 };
 
-#endif
+#endif // BOARDLOGIC_HPP
