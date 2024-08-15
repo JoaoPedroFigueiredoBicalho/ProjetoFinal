@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -12,6 +13,7 @@ class Player
 private:
   string Nome;
   string NickName;
+  int PlayersCount;
   int LigWins;
   int LigLoss;
   int RevWins;
@@ -22,6 +24,7 @@ public:
   Player(string nick, string nome);
   Player();
   ~Player();
+  void ReadArq();
   void LigWon(string nick);
   void LigLost(string nick);
   void RevWon(string nick);
@@ -32,6 +35,7 @@ public:
   void ListPlayersbyNick();
   void ListPlayersbyName();
   void Victory();
+  void WriteArq();
 };
 
 #endif

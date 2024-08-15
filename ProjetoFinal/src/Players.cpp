@@ -181,6 +181,7 @@ void Player::RegisterPlayer(string nick, string nome)
     temp = new Player(nick, nome);
     PlayersList.push_back(temp);
     cout << "Jogador " << temp->NickName << " cadastrado com sucesso" << endl;
+    PlayersCount++;
   }
 }
 void Player::DeletePlayer(string nick)
@@ -277,7 +278,7 @@ void Player::Victory()
 void Player::WriteArq()
 {
     ofstream arq("Players.txt");
-    arq << NumPlayers;
+    arq << PlayersCount;
     Player *temp;
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
