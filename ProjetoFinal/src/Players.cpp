@@ -33,12 +33,28 @@ void Player::ReadArq()
     string linha;
     int tamanho;
     ifstream arquivo("Players.txt");
-    if(getline(arquivo,linha)!=EOF);
-    for (int i = 0; i < tamanho; i++)
+    if(arquivo.eof()){}
+    else
     {
-        
+        getline(arquivo,linha);
+        tamanho=stoi(linha);
+        Player* temp;
+        string converter;
+        for (int i = 0; i < tamanho; i++)
+        {
+            getline(arquivo,temp->NickName);
+            getline(arquivo,temp->Nome);
+            getline(arquivo,converter);
+            temp->RevWins=stoi(converter);
+            getline(arquivo,converter);
+            temp->RevLoss=stoi(converter);
+            getline(arquivo,converter);
+            temp->LigWins=stoi(converter);
+            getline(arquivo,converter);
+            temp->LigLoss=stoi(converter);
+            PlayersList.push_back(temp);
+        }
     }
-    
 }
 
 Player* Player::getPlayer(string nick)

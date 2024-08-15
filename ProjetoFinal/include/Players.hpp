@@ -10,10 +10,10 @@ class Player
 private:
     string Nome;
     string NickName;
-    int LigWins;
-    int LigLoss;
     int RevWins;
     int RevLoss;
+    int LigWins;
+    int LigLoss;
     int NumPlayers;
     vector<Player*> PlayersList;
 public:
