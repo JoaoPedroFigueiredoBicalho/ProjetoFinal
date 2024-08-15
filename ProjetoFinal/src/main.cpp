@@ -100,6 +100,10 @@ int main()
           cin >> coluna;
 
           tabuleiro->lerjogada((coluna - 1));
+          cout << "Digite a coluna de entrada (0-" << tamanho - 1 << "): ";
+          cin >> coluna;
+
+          tabuleiro->lerjogada(coluna);
           tabuleiro->imprimir_tabuleiro();
 
           //verifica se o jogador venceu
@@ -109,6 +113,13 @@ int main()
           }
           if(tabuleiro->checarvitoria('O')){
             cout << "Vitoria do jogador O!" << endl;
+            p->LigWon(jogador);
+            p->LigLost(jogador2);
+            break;
+          }
+          if(tabuleiro->checarvitoria('O')){
+            p->LigWon(jogador2);
+            p->LigLost(jogador);
             break;
           }
         contador++;
@@ -121,6 +132,7 @@ int main()
     else if (comando == "LJ")
     {
       p->ListPlayersbyNick();
+      break;
     }
     else if (comando == "FS")
     {

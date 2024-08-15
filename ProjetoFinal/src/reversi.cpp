@@ -152,6 +152,8 @@ void Reversi::virar_casas(int linha, int coluna, int dir_l, int dir_c, int i, ch
         num_pecas_O++;
     }
   }
+  if (jogador=='X')  num_pecas_X++;
+  else  num_pecas_O++;
   set_tabuleiro(linha, coluna, jogador);
 }
 
