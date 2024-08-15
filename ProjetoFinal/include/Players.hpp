@@ -29,11 +29,11 @@ public:
   void ReadArq();
   void LigWon(string nick);
   void LigLost(string nick);
-  void LigDraw(string nick);
+  void LigDraw(string nick, string nick2);
   void RevWon(string nick);
-  void RevDraw(string nick);
   void RevLost(string nick);
-  Player *getPlayer(string nick);
+  void RevDraw(string nick, string nick2);
+  bool CheckPlayer(string nick);
   void RegisterPlayer(string nick, string nome);
   void DeletePlayer(string nick);
   void ListPlayersbyNick();

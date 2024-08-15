@@ -65,29 +65,19 @@ void Player::ReadArq()
 
 
 
-Player *Player::getPlayer(string nick)
+bool Player::CheckPlayer(string nick)
 {
-    int x = 0;
-    int erro = 1;
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
         Player *temp = *it;
-        x++;
         if (temp->NickName == nick)
         {
-            erro = 0;
-            break;
+            return (true);
         }
     }
-    if (erro == 0)
-    {
-        return (PlayersList[x]);
-    }
-    else
-    {
         cout << "ERRO: jogador inexistente";
-        return (nullptr);
-    }
+        return (false);
+
 }
 
 void Player::LigWon(string nick)
@@ -99,7 +89,7 @@ void Player::LigWon(string nick)
         if (temp->NickName == nick)
         {
             temp->LigWins++;
-            cout << "@@@" << nick << "GANHOU!" << "@@@" << endl;
+            cout << "======= " << nick << "GANHOU!" << " ======" << endl;
         }
     };
 }
@@ -116,17 +106,18 @@ void Player::LigLost(string nick)
         }
     };
 }
-void Player::LigDraw(string nick)
+void Player::LigDraw(string nick, string nick2)
 {
     Player *temp;
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
         temp = *it;
-        if (temp->NickName == nick)
+        if ((temp->NickName == nick)||(temp->NickName == nick2))
         {
             temp->LigDraws++;
         }
     };
+    
 }
 void Player::RevWon(string nick)
 {
@@ -154,13 +145,13 @@ void Player::RevLost(string nick)
         }
     };
 }
-void Player::RevDraw(string nick)
+void Player::RevDraw(string nick, string nick2)
 {
     Player *temp;
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
         temp = *it;
-        if (temp->NickName == nick)
+        if ((temp->NickName == nick) || (temp->NickName == nick2))
         {
             temp->RevDraws++;
         }
