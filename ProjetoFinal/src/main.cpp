@@ -54,7 +54,7 @@ int main(){
                 boardLogic* tabuleiro=new Reversi;
                 tabuleiro->set_tamanho(tamanho);
                 tabuleiro->inicializar_tabuleiro();
-                tabuleiro->imprimir_tabuleiro();            
+                tabuleiro->imprimir_tabuleiro();              
             }
             case 'L':
             {

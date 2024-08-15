@@ -5,8 +5,10 @@ void Reversi::lerjogada(int linha, int coluna)
   checar_jogada();
   for (int i = 0; i < JogadasValidas.size(); i++)
   {
-    if (JogadasValidas[i][1] == linha && JogadasValidas[i][2] == coluna)
-      virar_casas(JogadasValidas[i][1], JogadasValidas[i][2], JogadasValidas[i][3], JogadasValidas[i][4], JogadasValidas[i][5]);
+    if ((JogadasValidas[i][0] == linha) && (JogadasValidas[i][1] == coluna))
+     {
+         virar_casas(JogadasValidas[i][0], JogadasValidas[i][1], JogadasValidas[i][2], JogadasValidas[i][3], JogadasValidas[i][4]);
+     }
   }
 }
 
@@ -22,24 +24,26 @@ void Reversi::checar_jogada()
       {
         linha = i;
         coluna = j;
+        dir=1;
+        for (int i = (linha + 1); i >= (linha - 1); i--)
+        {
+            for (int j = (coluna - 1); j <= (coluna + 1); j++)
+            {
+                if (!(checar_se_dentro_do_tabuleiro(i, j)))
+                {
+                    continue;
+                }
+                else if ((get_tabuleiro()[i][j] == Jogador2))
+                {
+                    checar_direcao(i, j, dir);
+                }
+                    dir++;
+            }
+        }
       }
     }
   }
-  for (linha = (linha + 1); linha <= (linha - 1); linha--)
-  {
-    for (coluna = (coluna - 1); coluna <= (coluna + 1); coluna++)
-    {
-      if (!(checar_se_dentro_do_tabuleiro(linha, coluna)))
-      {
-        continue;
-      }
-      else if ((get_tabuleiro()[linha][coluna] == Jogador2))
-      {
-        checar_direcao(linha, coluna, dir);
-      }
-      dir++;
-    }
-  }
+  
 }
 
 bool Reversi::checar_se_dentro_do_tabuleiro(int linha, int coluna)
@@ -67,6 +71,7 @@ void Reversi::checar_casas_a_virar(int linha, int coluna, int dir_l, int dir_c)
       p1.push_back(dir_c);
       p1.push_back(i);
       JogadasValidas.push_back(p1);
+      break;
     }
     else
       break;
@@ -124,6 +129,7 @@ void Reversi::virar_casas(int linha, int coluna, int dir_l, int dir_c, int i)
 {
   for (i; i > 0; i--)
   {
-    set_tabuleiro(linha + (i * dir_l), coluna + (i * dir_c), Jogador1);
+    set_tabuleiro(linha - (i * dir_l), coluna - (i * dir_c), Jogador1);
   }
+  set_tabuleiro(linha,coluna,Jogador1);
 }
