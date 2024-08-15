@@ -104,11 +104,13 @@ int main()
 
           //verifica se o jogador venceu
           if(tabuleiro->checarvitoria('X')){
-            cout << "Vitoria do jogador X!" << endl;
+            p->LigWon(jogador);
+            p->LigLost(jogador2);
             break;
           }
           if(tabuleiro->checarvitoria('O')){
-            cout << "Vitoria do jogador O!" << endl;
+            p->LigWon(jogador2);
+            p->LigLost(jogador);
             break;
           }
         contador++;
