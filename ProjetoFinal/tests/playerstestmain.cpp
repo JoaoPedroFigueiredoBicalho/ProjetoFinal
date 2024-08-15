@@ -3,7 +3,9 @@
 
 int main(){
     Player p;
+    p.ReadArq();
     while(1){
+        cout<<"digite um comando: ";
         char entrada;
         cin>>entrada;
     switch (entrada)
@@ -22,25 +24,41 @@ int main(){
     case 'd':
     {
         string nick;
-        cout<<"Digite o nick do jogador"<<endl;
+        cout<<"Digite o nick do jogador que deseja deletar"<<endl;
         cin>>nick;
         p.DeletePlayer(nick);
         break;
     }
-    case 'E':
+    case 'g':
     {
         string jogador;
-        cout<<"digite o nick do jogador que ira jogar"<<endl;
+        cout<<"digite o nick do jogador que ira ganhar Lig4"<<endl;
         cin>>jogador;
         p.LigWon(jogador);
         break;
     }
-    case 'e':
+     case 'G':
     {
         string jogador;
-        cout<<"digite o nick do jogador que ira jogar"<<endl;
+        cout<<"digite o nick do jogador que ira ganhar Reversi"<<endl;
+        cin>>jogador;
+        p.RevWon(jogador);
+        break;
+    }
+    case 'p':
+    {
+        string jogador;
+        cout<<"digite o nick do jogador que ira perder Lig4"<<endl;
         cin>>jogador;
         p.LigLost(jogador);
+        break;
+    }
+    case 'P':
+    {
+        string jogador;
+        cout<<"digite o nick do jogador que ira perder Reversi"<<endl;
+        cin>>jogador;
+        p.RevLost(jogador);
         break;
     }
     case 'l':
@@ -48,12 +66,20 @@ int main(){
         p.ListPlayersbyNick();
         break;
     }
+    case 'L':
+    {
+        p.ListPlayersbyName();
+        break;
+    }
     case 'v':
     {
         p.Victory();
+        p.WriteArq();
         break;
     }
+
     default:
+        cout<<"opção inválida"<<endl;
         break;
     }
 }

@@ -33,7 +33,7 @@ void Player::ReadArq()
     string linha;
     int tamanho;
     ifstream arquivo("Players.txt");
-    if(arquivo.eof()){}
+    if(! arquivo.eof()){}
     else
     {
         getline(arquivo,linha);
