@@ -1,16 +1,18 @@
-#ifndef LIG4_H
-#define LIG4_H
+#ifndef LIG4_HPP
+#define LIG4_HPP
+
 #include "boardLogic.hpp"
-class Lig4 : public boardLogic
-{
+
+class Lig4 : public boardLogic {
 public:
-  void lerjogada(int jogadaColuna);
-  bool checarvitoria(char jogada);
-<<<<<<< HEAD
-  bool tabuleiro_cheio();
-=======
-  bool tabuleiro_cheio(); 
-  
->>>>>>> 009b11fd6f31ea06c0e54161d0a9308cfbeac5eb
+    // Processa a jogada na coluna especificada
+    void lerjogada(int jogadaColuna);
+
+    // Verifica se o tabuleiro está cheio
+    bool tabuleiro_cheio() const;
+
+    // Verifica se há um vencedor no tabuleiro
+    bool checarvitoria(char jogador) const;
 };
-#endif
+
+#endif // LIG4_HPP
