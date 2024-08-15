@@ -6,18 +6,13 @@ void boardLogic::lerjogada(int jogadaLinha, int jogadaColuna, char jogada)
 
 void boardLogic::set_tabuleiro(int linha, int coluna, char jogada)
 {
-  tabuleiro[linha][coluna]=jogada;
+  tabuleiro[linha][coluna] = jogada;
 }
 
-void boardLogic::inicializar_tabuleiro()
+void boardLogic::inicializar_tabuleiro(int tamanho)
 {
-  for (int i = 0; i < this->tamanho; i++)
-  {
-    for (int j = 0; j < this->tamanho; j++)
-    {
-      tabuleiro[i][j] = ' ';
-    }
-  } 
+  this->tamanho = tamanho;
+  tabuleiro.resize(tamanho, std::vector<char>(tamanho, ' '));
 }
 
 void boardLogic::imprimir_tabuleiro()
@@ -33,10 +28,12 @@ void boardLogic::imprimir_tabuleiro()
         std::cout << "|";
     }
   }
-  std::cout << std::endl << "#########" << std::endl;
+  std::cout << std::endl
+            << "#########" << std::endl;
 }
 
-int boardLogic::get_tamanho()  {
+int boardLogic::get_tamanho()
+{
   return tamanho;
 }
 void boardLogic::set_tamanho(int tamanho)
@@ -44,6 +41,7 @@ void boardLogic::set_tamanho(int tamanho)
   this->tamanho = tamanho;
 }
 
-std::vector<std::vector<char>> boardLogic::get_tabuleiro() {
+std::vector<std::vector<char>> &boardLogic::get_tabuleiro()
+{
   return tabuleiro;
 };
