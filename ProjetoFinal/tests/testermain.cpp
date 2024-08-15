@@ -1,4 +1,39 @@
-#include "Players.hpp"
+#include <string>
+#include <iostream>
+#include <vector>
+#include <fstream>
+
+using namespace std;
+
+class Player
+{
+private:
+    string NickName;
+    string Nome;
+    int RevWins;
+    int RevLoss;
+    int LigWins;
+    int LigLoss;
+    int NumPlayers;
+    vector<Player *> PlayersList;
+
+public:
+    Player(string nick, string nome);
+    Player();
+    ~Player();
+    void ReadArq();
+    void RegisterPlayer(string nick, string nome);
+    void LigWon(string nick);
+    void LigLost(string nick);
+    void RevWon(string nick);
+    void RevLost(string nick);
+    Player *getPlayer(string nick);
+    void DeletePlayer(string nick);
+    void ListPlayersbyNick();
+    void ListPlayersbyName();
+    void Victory();
+    void WriteArq();
+};
 
 Player::Player()
 {
@@ -32,7 +67,7 @@ void Player::ReadArq()
     string linha;
     int tamanho;
     ifstream arquivo("Players.txt");
-    if (arquivo.eof())
+    if (!arquivo.eof())
     {
     }
     else
@@ -55,8 +90,8 @@ void Player::ReadArq()
             temp->LigLoss = stoi(linha);
             PlayersList.push_back(temp);
         }
-        arquivo.close();
     }
+    arquivo.close();
 }
 
 void Player::RegisterPlayer(string nick, string nome)
@@ -211,8 +246,6 @@ void Player::Victory()
     Player *temp;
     Player *temp2;
     string vencedor;
-    int v1 = 0;
-    int v2 = 0;
     int empate = 1;
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end() - 1; it++)
     {
@@ -268,4 +301,90 @@ void Player::WriteArq()
         arq << temp->LigLoss << endl;
     }
     arq.close();
+}
+
+int main()
+{
+    Player p;
+    p.ReadArq();
+    while (1)
+    {
+        cout << "digite um comando: ";
+        char entrada;
+        cin >> entrada;
+        switch (entrada)
+        {
+        case 'c':
+        {
+            string nick;
+            string nome;
+            cout << "Digite o nick do jogador" << endl;
+            cin >> nick;
+            cout << "Digite o nome do jogador" << endl;
+            cin >> nome;
+            p.RegisterPlayer(nick, nome);
+            break;
+        }
+        case 'd':
+        {
+            string nick;
+            cout << "Digite o nick do jogador que deseja deletar" << endl;
+            cin >> nick;
+            p.DeletePlayer(nick);
+            break;
+        }
+        case 'g':
+        {
+            string jogador;
+            cout << "digite o nick do jogador que ira ganhar Lig4" << endl;
+            cin >> jogador;
+            p.LigWon(jogador);
+            break;
+        }
+        case 'G':
+        {
+            string jogador;
+            cout << "digite o nick do jogador que ira ganhar Reversi" << endl;
+            cin >> jogador;
+            p.RevWon(jogador);
+            break;
+        }
+        case 'p':
+        {
+            string jogador;
+            cout << "digite o nick do jogador que ira perder Lig4" << endl;
+            cin >> jogador;
+            p.LigLost(jogador);
+            break;
+        }
+        case 'P':
+        {
+            string jogador;
+            cout << "digite o nick do jogador que ira perder Reversi" << endl;
+            cin >> jogador;
+            p.RevLost(jogador);
+            break;
+        }
+        case 'l':
+        {
+            p.ListPlayersbyNick();
+            break;
+        }
+        case 'L':
+        {
+            p.ListPlayersbyName();
+            break;
+        }
+        case 'v':
+        {
+            p.Victory();
+            p.WriteArq();
+            break;
+        }
+
+        default:
+            cout << "opção inválida" << endl;
+            break;
+        }
+    }
 }
