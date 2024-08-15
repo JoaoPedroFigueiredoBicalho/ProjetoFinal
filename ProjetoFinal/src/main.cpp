@@ -87,8 +87,14 @@ int main()
 
         tabuleiro->inicializar_tabuleiro(tamanho);
         tabuleiro->imprimir_tabuleiro();
-
+        int contador = 0;
         while(!tabuleiro->tabuleiro_cheio()){
+          if(contador % 2 == 0){
+            cout << "Turno do " << jogador << endl;
+          }
+          else if(contador % 2 != 0){
+            cout << "Turno do " << jogador2 << endl;
+          }
           int coluna;
           cout << "Digite a coluna de entrada (0-" << tamanho - 1 << "): ";
           cin >> coluna;
@@ -105,7 +111,7 @@ int main()
             cout << "Vitoria do jogador O!" << endl;
             break;
           }
-
+        contador++;
         }
 
       }
