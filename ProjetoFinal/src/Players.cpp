@@ -256,7 +256,6 @@ void Player::Victory()
 void Player::WriteArq()
 {
     ofstream arq("Players.txt");
-    arq << NumPlayers;
     arq << PlayersCount;
     Player *temp;
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
