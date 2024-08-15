@@ -17,7 +17,7 @@ int main()
   cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
   cout << "Digite um comando: " << endl;
 
-  while (fim)
+  while (fim != 0)
   {
     string comando;
     cin >> comando;
@@ -79,6 +79,35 @@ int main()
       }
       case 'L':
       {
+        //obs: se der problema use Lig4 tabuleiro;
+        Lig4 *tabuleiro = new Lig4;
+        cout << "Digite o tamanho do tabuleiro n x n" << endl;
+        int tamanho;
+        cin >> tamanho;
+
+        tabuleiro->inicializar_tabuleiro(tamanho);
+        tabuleiro->imprimir_tabuleiro();
+
+        while(!tabuleiro->tabuleiro_cheio()){
+          int coluna;
+          cout << "Digite a coluna de entrada (0-" << tamanho - 1 << "): ";
+          cin >> coluna;
+
+          tabuleiro->lerjogada(coluna);
+          tabuleiro->imprimir_tabuleiro();
+
+          //verifica se o jogador venceu
+          if(tabuleiro->checarvitoria('X')){
+            cout << "Vitoria do jogador X!" << endl;
+            break;
+          }
+          if(tabuleiro->checarvitoria('O')){
+            cout << "Vitoria do jogador O!" << endl;
+            break;
+          }
+
+        }
+
       }
       }
       break;
