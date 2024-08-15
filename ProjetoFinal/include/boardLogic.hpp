@@ -11,17 +11,16 @@ private:
   int tamanho;
 
 protected:
-   char jogada = 'X';
+  char jogada = 'X';
 
 public:
   virtual void lerjogada(int jogadaLinha, int jogadaColuna, char jogada);
   void imprimir_tabuleiro();
   void inicializar_tabuleiro();
-  std::vector<std::vector<char>> get_tabuleiro();
+  std::vector<std::vector<char>> &get_tabuleiro();
   void set_tabuleiro(int linha, int coluna, char jogada);
-  int get_tamanho() ;
+  int get_tamanho();
   void set_tamanho(int tamanho);
-
 };
 
 #endif
