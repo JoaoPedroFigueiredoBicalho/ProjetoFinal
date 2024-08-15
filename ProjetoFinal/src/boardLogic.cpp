@@ -33,7 +33,7 @@ void boardLogic::imprimir_tabuleiro()
         std::cout << "|";
     }
   }
-  std::cout << "#########" << std::endl;
+  std::cout << std::endl << "#########" << std::endl;
 }
 
 int boardLogic::get_tamanho()  {
@@ -44,6 +44,6 @@ void boardLogic::set_tamanho(int tamanho)
   this->tamanho = tamanho;
 }
 
-std::vector<std::vector<char>>& boardLogic::get_tabuleiro() {
+std::vector<std::vector<char>> boardLogic::get_tabuleiro() {
   return tabuleiro;
 };
