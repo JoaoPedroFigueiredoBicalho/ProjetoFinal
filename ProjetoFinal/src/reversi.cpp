@@ -47,7 +47,7 @@ void Reversi::lerjogada(int linha, int coluna, char jogador)
   }
 }
 
-void Reversi::checar_jogada(char jogador, char oponente)
+bool Reversi::checar_jogada(char jogador, char oponente)
 {
   int linha, coluna;
   int dir = 1;
@@ -83,9 +83,13 @@ void Reversi::checar_jogada(char jogador, char oponente)
   }
   if (JogadasValidas.empty())
   {
-    std::cout << "O jogador nao possui jogadas validas!" << std::endl;
+    std::cout << "O jogador " << jogador << " nao possui jogadas validas!" << std::endl;
+    termino++;
     game_over();
+    return false;
   }
+  else
+    return true;
 }
 
 bool Reversi::checar_se_dentro_do_tabuleiro(int linha, int coluna)
@@ -189,9 +193,11 @@ void Reversi::virar_casas(int linha, int coluna, int dir_l, int dir_c, int i, ch
 
 bool Reversi::game_over()
 {
-  termino++;
   if (termino == 2 || num_pecas_X == 0 || num_pecas_O == 0)
-    return (false);
+  {
+    if (num_pecas_X > num_pecas_O)
+      return (false);
+  }
 
   return (true);
 }

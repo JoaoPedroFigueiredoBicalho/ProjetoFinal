@@ -132,6 +132,7 @@ int main()
         char auxiliar = '\0';
         int contador;
         while (tabuleiro->game_over())
+
         {
           if (contador % 2 == 0)
           {
@@ -143,9 +144,12 @@ int main()
           }
           tabuleiro->checar_jogada(jogador_reversi, oponente_reversi);
           int linha, coluna;
-          std::cin >> linha;
-          std::cin >> coluna;
-          tabuleiro->lerjogada((linha - 1), (coluna - 1), jogador_reversi);
+          if (tabuleiro->checar_jogada(jogador_reversi, oponente_reversi))
+          {
+            std::cin >> linha;
+            std::cin >> coluna;
+            tabuleiro->lerjogada((linha - 1), (coluna - 1), jogador_reversi);
+          }
           auxiliar = jogador_reversi;
           jogador_reversi = oponente_reversi;
           oponente_reversi = auxiliar;
