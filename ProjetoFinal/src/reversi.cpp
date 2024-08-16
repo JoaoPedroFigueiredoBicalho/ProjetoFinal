@@ -37,17 +37,23 @@ void Reversi::checar_jogada_multidirecional(int i, int linha, int coluna, char j
 
 void Reversi::lerjogada(int linha, int coluna, char jogador)
 {
+
+  int jogadaCerta = 0;
   for (int i = 0; i < JogadasValidas.size(); i++)
   {
     if ((JogadasValidas[i][0] == linha) && (JogadasValidas[i][1] == coluna))
     {
       checar_jogada_multidirecional(i, linha, coluna, jogador);
       virar_casas(JogadasValidas[i][0], JogadasValidas[i][1], JogadasValidas[i][2], JogadasValidas[i][3], JogadasValidas[i][4], jogador);
+      jogadaCerta = 1;
     }
-  }
-  if (!JogadasValidas.empty())
-  {
-    throw std::invalid_argument(" Jogador realizou uma jogada não valida");
+    if (i == JogadasValidas.size() - 1 && jogadaCerta == 0)
+    {
+      if (!JogadasValidas.empty())
+      {
+        throw std::invalid_argument("Jogador realizou uma jogada nao valida");
+      }
+    }
   }
 }
 
