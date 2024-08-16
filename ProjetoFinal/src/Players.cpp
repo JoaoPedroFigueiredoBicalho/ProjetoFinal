@@ -194,7 +194,7 @@ void Player::DeletePlayer(string nick)
         if (temp->NickName == nick)
         {
             PlayersList.erase(it);
-            cout << "Jogador" << temp->NickName << "removido com sucesso" << endl;
+            cout << "Jogador " << temp->NickName << " removido com sucesso" << endl;
             erro = 0;
         }
     }
