@@ -38,18 +38,18 @@ bool jogoVelha::checarvitoria(char jogador) const{
 
     //verificação horizontal
     for (int i = 0; i < 3; i++){
-        for (int j = 0; j < 3; j++){
-            if(tabuleiro[i][j] == jogador && tabuleiro[i][j] == jogador && tabuleiro[i][j] == jogador){
+        for (int j = 0; j < 1; j++){
+            if(tabuleiro[i][j] == jogador && tabuleiro[i][j+1] == jogador && tabuleiro[i][j+2] == jogador){
                 return true;
             }
         }
     }
 
 
-    //verificação horizontal
+    //verificação vertical
     for (int i = 0; i < 3; i++){
-        for (int j = 0; j < 3; j++){
-            if(tabuleiro[j][i] == jogador && tabuleiro[j][i] == jogador && tabuleiro[j][i] == jogador){
+        for (int j = 0; j < 1; j++){
+            if(tabuleiro[j][i] == jogador && tabuleiro[j+1][i] == jogador && tabuleiro[j+2][i] == jogador){
                 return true;
             }
         }
