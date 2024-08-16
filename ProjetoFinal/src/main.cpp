@@ -7,20 +7,22 @@ int main()
 {
   Player *p = new Player();
   int fim = 1;
+  cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
+  cout << "Lista de comandos:" << endl;
+  cout << "CJ: Criar Jogador" << endl
+       << "RJ: Remover Jogador" << endl
+       << "LJ: [A/N] Listar jogadores" << endl;
+  cout << "EP: Executar Partida" << endl
+       << "FS: Finalizar Sistema" << endl;
+  cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
 
   while (fim != 0)
   {
     int teste = 0;
     string comando;
-    cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
-    cout << "Lista de comandos:" << endl;
-    cout << "CJ: Criar Jogador" << endl
-         << "RJ: Remover Jogador" << endl
-         << "LJ: [A/N] Listar jogadores" << endl;
-    cout << "EP: Executar Partida" << endl
-         << "FS: Finalizar Sistema" << endl;
-    cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
-    cout << "Digite um comando: " << endl;
+    cout << "Digite um comando" << endl;
+    cout << "(Para rever lista de comandos digite 0)" << endl;
+    cout << "Comando: ";
     cin >> comando;
     if (comando == "CJ")
     {
@@ -31,6 +33,7 @@ int main()
       {
         try
         {
+          cout << "Nick: ";
           cin >> nick;
           if ((nick.find(" ") != string::npos))
           {
@@ -52,12 +55,13 @@ int main()
         catch (const bad_exception &e)
         {
           cout << "Seu nickname não pode conter espaços em branco" << endl;
+          cout << "Digite outro nickname: ";
           cin >> nick;
         }
         catch (const invalid_argument &e)
         {
           cout << e.what() << endl;
-          cout << "Digite outro nickname" << endl;
+          cout << "Digite outro nickname: " << endl;
           cin >> nick;
         }
       }
@@ -92,18 +96,22 @@ int main()
       cout << "Digite R para jogar Reversi ou L para jogar Lig4" << endl;
       cin >> jogo;
       cout << "Digite os nicks dos jogadores que irão jogar" << endl;
+      cout << "Jogador1: ";
       cin >> jogador;
       while (p->CheckPlayer(jogador) == false)
       {
         cout << "Erro: jogador não encontrado." << endl;
-        cout << "Digite o Nick do jogador novamente" << endl;
+        cout << "Digite o Nick do jogador1 novamente" << endl;
+        cout << "Jogador1: ";
         cin >> jogador;
       }
+      cout << "Jogador2: ";
       cin >> jogador2;
       while (p->CheckPlayer(jogador2) == false)
       {
         cout << "Erro: jogador não encontrado." << endl;
-        cout << "Digite o Nick do jogador novamente" << endl;
+        cout << "Digite o Nick do jogador2 novamente" << endl;
+        cout << "Jogador2: ";
         cin >> jogador2;
       }
       switch (jogo)
