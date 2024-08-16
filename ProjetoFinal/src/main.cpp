@@ -181,6 +181,7 @@ int main()
     {
       fim = 0;
       p->Victory();
+      p->WriteArq();
       break;
     }
     else
