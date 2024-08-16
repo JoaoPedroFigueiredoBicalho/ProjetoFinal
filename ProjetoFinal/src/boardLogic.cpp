@@ -20,8 +20,12 @@ std::vector<std::vector<char>> &boardLogic::get_tabuleiro()
 
 void boardLogic::inicializar_tabuleiro(int tamanho)
 {
+<<<<<<< HEAD
+  if (tamanho < 4 || tamanho > 10) {
+=======
   if (tamanho < 4 || tamanho > 10)
   {
+>>>>>>> 9b49bbd7b729a7cf7f125a5fc61125844f9f9105
     throw std::out_of_range("O tamanho do tabuleiro deve estar entre 4 e 10.");
   }
   this->tamanho = tamanho;

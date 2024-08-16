@@ -6,7 +6,7 @@
 class jogoVelha : public boardLogic{
 public:
 
-    void lerjogada(int jogadaLinha, int jogadaColuna);
+    bool lerjogada(int jogadaLinha, int jogadaColuna);
 
     bool tabuleiro_cheio() const;
 

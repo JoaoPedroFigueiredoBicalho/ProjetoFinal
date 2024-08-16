@@ -20,6 +20,9 @@ private:
   int RevWins;
   int RevLoss;
   int RevDraws;
+  int VWins;
+  int VLoss;
+  int VDraws;
   vector<Player *> PlayersList;
 
 public:
@@ -27,6 +30,7 @@ public:
   Player();
   ~Player();
   void ReadArq();
+  Player *GetPlayer();
   void LigWon(string nick);
   void LigLost(string nick);
   void LigDraw(string nick, string nick2);
