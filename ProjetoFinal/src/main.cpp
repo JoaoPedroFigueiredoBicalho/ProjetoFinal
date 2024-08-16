@@ -2,6 +2,7 @@
 #include "lig4.hpp"
 #include "boardLogic.hpp"
 #include "reversi.hpp"
+#include "jogoVelha.hpp"
 
 int main()
 {
@@ -176,8 +177,10 @@ int main()
                           << "Numero de pecas do Jogador 2: " << tabuleiro->get_num_pecas_O() << std::endl;
 
                 delete tabuleiro;
-                
-            }
+
+            }//fim do case R
+
+
             case 'L':
             {
                 Lig4 *tabuleiro = new Lig4;
@@ -240,9 +243,55 @@ int main()
                     }
                 }
                 delete tabuleiro;
-                
+
+            }//fim do case L
+
+            case 'V':
+            {
+                jogoVelha *tabuleiro = new jogoVelha;
+                int tamanho = 3;
+                tabuleiro->inicializar_tabuleiro(tamanho);
+                tabuleiro->imprimir_tabuleiro();
+                int contador = 0;
+                int Endgame = 0;
+                while (Endgame == 0){
+                    if (contador % 2 == 0){
+                        cout << "Turno do " << jogador << endl;
+                    }
+                    else{
+                        cout << "Turno do " << jogador2 << endl;
+                    }
+                    int linha;
+                    cout << "Digite a linha de entrada (1-3): ";
+                    cin >> linha;
+                    linha--;
+                    int coluna;
+                    cout << "Digite a coluna de entrada (1-3): ";
+                    cin >> coluna;
+                    coluna--;
+                    if (tabuleiro->lerjogada(linha, coluna)) {
+                        tabuleiro->imprimir_tabuleiro();
+                        if (tabuleiro->checarvitoria('X')) {
+                            p->LigWon(jogador);
+                            p->LigLost(jogador2);
+                            Endgame = 1;
+                        }
+                        if (tabuleiro->checarvitoria('O')) {
+                            p->LigWon(jogador2);
+                            p->LigLost(jogador);
+                            Endgame = 1;
+                        }
+                        if (tabuleiro->tabuleiro_cheio()) {
+                            Endgame = 1;
+                        }
+                        contador++;
+                    }
+                }
+                delete tabuleiro;
             }
-            }
+
+
+            }//fim do switch
         }
         else if (comando == "LJ")
         {
