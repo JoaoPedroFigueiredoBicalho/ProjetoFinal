@@ -1,11 +1,11 @@
-#include "Lig4.hpp"
+#include "lig4.hpp"
 #include <iostream>
 
-void Lig4::lerjogada(int jogadaColuna) {
+bool Lig4::lerjogada(int jogadaColuna) {
     // Verifica se a coluna é válida
     if (jogadaColuna < 0 || jogadaColuna >= tamanho) {
         std::cout << "Coluna inválida!" << std::endl;
-        return;
+        return false;
     }
 
     bool coluna_cheia = true;
@@ -21,11 +21,12 @@ void Lig4::lerjogada(int jogadaColuna) {
     // Informa se a coluna está cheia
     if (coluna_cheia) {
         std::cout << "Coluna cheia!" << std::endl;
-        return;
+        return false;
     }
 
     // Alterna o jogador após uma jogada
     alternar_jogador();
+    return true;
 }
 
 bool Lig4::tabuleiro_cheio() const {
