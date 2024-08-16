@@ -45,6 +45,10 @@ void Reversi::lerjogada(int linha, int coluna, char jogador)
       virar_casas(JogadasValidas[i][0], JogadasValidas[i][1], JogadasValidas[i][2], JogadasValidas[i][3], JogadasValidas[i][4], jogador);
     }
   }
+  if (!JogadasValidas.empty())
+  {
+    throw std::invalid_argument(" Jogador realizou uma jogada não valida");
+  }
 }
 
 bool Reversi::checar_jogada(char jogador, char oponente)

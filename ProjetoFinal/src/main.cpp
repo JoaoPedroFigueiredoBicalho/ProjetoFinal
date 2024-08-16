@@ -124,7 +124,6 @@ int main()
         cout << "Digite o tamanho do tabuleiro n x n, entre 4 e 10. O padrão para Reversi é um tabuleiro 8x8." << std::endl;
         int tamanho;
         cin >> tamanho;
-
         tabuleiro->inicializar_tabuleiro(tamanho);
         tabuleiro->imprimir_tabuleiro();
         char jogador_reversi = 'X';
@@ -134,21 +133,30 @@ int main()
         while (tabuleiro->game_over())
 
         {
-          if (contador % 2 == 0)
+          try
           {
-            cout << "Turno do " << jogador << endl;
+            if (contador % 2 == 0)
+            {
+              cout << "Turno do " << jogador << endl;
+            }
+            else if (contador % 2 != 0)
+            {
+              cout << "Turno do " << jogador2 << endl;
+            }
+            tabuleiro->checar_jogada(jogador_reversi, oponente_reversi);
+            int linha, coluna;
+            if (tabuleiro->checar_jogada(jogador_reversi, oponente_reversi))
+            {
+              std::cin >> linha;
+              std::cin >> coluna;
+              tabuleiro->lerjogada((linha - 1), (coluna - 1), jogador_reversi);
+            }
           }
-          else if (contador % 2 != 0)
+          catch (const invalid_argument &e)
           {
-            cout << "Turno do " << jogador2 << endl;
-          }
-          tabuleiro->checar_jogada(jogador_reversi, oponente_reversi);
-          int linha, coluna;
-          if (tabuleiro->checar_jogada(jogador_reversi, oponente_reversi))
-          {
-            std::cin >> linha;
-            std::cin >> coluna;
-            tabuleiro->lerjogada((linha - 1), (coluna - 1), jogador_reversi);
+            cout << e.what() << endl;
+            cout << "Digite outra jogada" << endl;
+            continue;
           }
           auxiliar = jogador_reversi;
           jogador_reversi = oponente_reversi;
