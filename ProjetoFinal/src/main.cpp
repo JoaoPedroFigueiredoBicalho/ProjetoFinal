@@ -283,61 +283,6 @@ int main()
                 delete tabuleiro;
 
             }//fim do case R
-
-
-            case 'L':
-            {
-                Lig4 *tabuleiro = new Lig4;
-                int tamanho;
-                bool tamanhoValido = false;
-
-                while (!tamanhoValido)
-                {
-                    try
-                    {
-                        if (contador % 2 == 0)
-                        {
-                            cout << "Turno do " << jogador << endl;
-                        }
-                        else
-                        {
-                            cout << "Turno do " << jogador2 << endl;
-                        }
-                        int linha;
-                        cout << "Digite a linha de entrada (1-3): ";
-                        cin >> linha;
-                        linha--;
-                        int coluna;
-                        cout << "Digite a coluna de entrada (1-3): ";
-                        cin >> coluna;
-                        coluna--;
-                        if (tabuleiro->lerjogada(linha, coluna))
-                        {
-                            tabuleiro->imprimir_tabuleiro();
-                            if (tabuleiro->checarvitoria('X'))
-                            {
-                                p->VWon(jogador);
-                                p->VLost(jogador2);
-                                Endgame = 1;
-                            }
-                            if (tabuleiro->checarvitoria('O'))
-                            {
-                                p->VWon(jogador2);
-                                p->VLost(jogador);
-                                Endgame = 1;
-                            }
-                            if (tabuleiro->tabuleiro_cheio())
-                            {
-                                p->VDraw(jogador, jogador2);
-                                Endgame = 1;
-                            }
-                            contador++;
-                        }
-                    }
-                    delete tabuleiro;
-                }
-                }
-
             } // fim do switch
         }
         else if (comando == "LJ")
