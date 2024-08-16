@@ -172,9 +172,9 @@ int main()
                 }
 
                 std::cout << std::endl
-                          << "Numero de pecas do Jogador 1: " << tabuleiro->get_num_pecas_X() << std::endl;
+                          << "Numero de pecas do: " << jogador << tabuleiro->get_num_pecas_X() << std::endl;
                 std::cout << std::endl
-                          << "Numero de pecas do Jogador 2: " << tabuleiro->get_num_pecas_O() << std::endl;
+                          << "Numero de pecas do: " << jogador2 <<  tabuleiro->get_num_pecas_O() << std::endl;
 
                 delete tabuleiro;
 
