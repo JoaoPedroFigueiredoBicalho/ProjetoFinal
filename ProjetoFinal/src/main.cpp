@@ -243,7 +243,12 @@ int main()
     }
     else if (comando == "LJ")
     {
-      p->ListPlayersbyNick();
+      char parameter;
+      cin >> parameter;
+      if(parameter=='A')
+        p->ListPlayersbyNick();
+      if (parameter == 'N')
+        p->ListPlayersbyName();
     }
     else if (comando == "FS")
     {
