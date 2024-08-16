@@ -2,6 +2,7 @@
 
 void Reversi::inicializar_tabuleiro(int tamanho)
 {
+  /// Método override que inicializa o tabuleiro colocando quatro peças iniciais no centro.
   boardLogic::inicializar_tabuleiro(tamanho);
   set_tabuleiro(tamanho / 2, (tamanho / 2), 'X');
   set_tabuleiro((tamanho / 2) - 1, (tamanho / 2), 'O');
@@ -11,6 +12,7 @@ void Reversi::inicializar_tabuleiro(int tamanho)
 
 void Reversi::checar_jogada_multidirecional(int i, int linha, int coluna, char jogador)
 {
+  /// Checa se uma jogada irá virar casas em múltiplas direções, e ajusta o cálculo de número de peças conforme necessário.
   if (i == JogadasValidas.size() - 1)
   {
     if (jogador == 'X')
@@ -37,7 +39,7 @@ void Reversi::checar_jogada_multidirecional(int i, int linha, int coluna, char j
 
 void Reversi::lerjogada(int linha, int coluna, char jogador)
 {
-
+  /// Recebe a jogada colocada pelo jogador, a compara com as jogadas válidas daquela posição e chama os métodos corretos dependendo da jogada ser ou não válida.
   int jogadaCerta = 0;
   for (int i = 0; i < JogadasValidas.size(); i++)
   {
@@ -59,6 +61,7 @@ void Reversi::lerjogada(int linha, int coluna, char jogador)
 
 bool Reversi::checar_jogada(char jogador, char oponente)
 {
+  /// Checa as jogadas válidas em uma determinada posição, além de que quais casas virariam.
   int linha, coluna;
   int dir = 1;
   JogadasValidas.clear();
@@ -104,6 +107,7 @@ bool Reversi::checar_jogada(char jogador, char oponente)
 
 bool Reversi::checar_se_dentro_do_tabuleiro(int linha, int coluna)
 {
+  /// Checa se uma determinada posição está dentro do tabuleiro ou não.
   bool valido = true;
   if (((linha >= get_tabuleiro().size()) || (linha < 0)) || ((coluna >= get_tabuleiro().size()) || (coluna < 0)))
     valido = false;
@@ -112,6 +116,7 @@ bool Reversi::checar_se_dentro_do_tabuleiro(int linha, int coluna)
 
 void Reversi::checar_casas_a_virar(int linha, int coluna, int dir_l, int dir_c, char oponente)
 {
+  /// Checa a quantidade de casas que serão viradas dado uma jogada válida.
   for (int i = 1; checar_se_dentro_do_tabuleiro(linha + (i * dir_l), coluna + (i * dir_c)); i++)
   {
     if (get_tabuleiro()[linha + (i * dir_l)][coluna + (i * dir_c)] == oponente)
@@ -137,6 +142,7 @@ void Reversi::checar_casas_a_virar(int linha, int coluna, int dir_l, int dir_c, 
 
 void Reversi::checar_direcao(int linha, int coluna, int direcao, char oponente)
 {
+  /// Checa a direção que uma determinada jogada irá virar casas.
   switch (direcao)
   {
   case 1:
@@ -184,6 +190,7 @@ void Reversi::checar_direcao(int linha, int coluna, int direcao, char oponente)
 
 void Reversi::virar_casas(int linha, int coluna, int dir_l, int dir_c, int i, char jogador)
 {
+  /// Realiza a jogada válida, virando as casas em seu caminho.
   for (i; i > 0; i--)
   {
     set_tabuleiro(linha - (i * dir_l), coluna - (i * dir_c), jogador);
@@ -203,6 +210,7 @@ void Reversi::virar_casas(int linha, int coluna, int dir_l, int dir_c, int i, ch
 
 bool Reversi::game_over()
 {
+  /// Método que retorna uma booleana e confere se o jogo terminou.
   if (termino == 2 || num_pecas_X == 0 || num_pecas_O == 0)
   {
     if (num_pecas_X > num_pecas_O)
@@ -214,15 +222,18 @@ bool Reversi::game_over()
 
 int Reversi::get_termino()
 {
+  /// Retorna o número utilizado na análise do fim do jogo.
   return this->termino;
 }
 
 int Reversi::get_num_pecas_O()
 {
+  /// Retorna o número de peças do jogador 2.
   return num_pecas_O;
 }
 
 int Reversi::get_num_pecas_X()
+/// Retorna o número de peças do jogador 1.
 {
   return num_pecas_X;
 }
