@@ -84,34 +84,33 @@ void Player::ReadArq()
     }
 }
 
-Player* Player::GetPlayer()
-{
-    for (vector<Player *>::const_iterator &it = PlayersList.begin(); it != PlayersList.end(); it++)
-    {
-        Player *temp = *it;
-        if (temp->NickName == nick)
-        {
-            return ();
-        }
-    }
-}
-
-bool Player::CheckPlayer(string nick)
+Player* Player::GetPlayer(string nick)
 {
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
         Player *temp = *it;
         if (temp->NickName == nick)
         {
-            return (true);
+            return (*it);
         }
     }
+}
+
+bool Player::CheckPlayer(string nick)
+{
+   
+        Player *temp = GetPlayer(nick);
+        if (temp->NickName == nick)
+        {
+            return (true);
+        }
+    
     return (false);
 }
 
 void Player::LigWon(string nick)
 {
-    
+    Player *temp = GetPlayer(nick);
     if (temp->NickName == nick)
     {
         temp->LigWins++;
@@ -121,70 +120,82 @@ void Player::LigWon(string nick)
 
 void Player::LigLost(string nick)
 {
-    Player *temp;
-    for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
+    Player *temp = GetPlayer(nick);
+    if (temp->NickName == nick)
     {
-        temp = *it;
-        if (temp->NickName == nick)
-        {
-            temp->LigLoss++;
-        }
-    };
+        temp->LigLoss++;
+    }
 }
 
 void Player::LigDraw(string nick, string nick2)
 {
-    Player *temp;
-    for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
+    Player *temp = GetPlayer(nick);
+    Player *temp2 = GetPlayer(nick2);
     {
-        temp = *it;
-        if ((temp->NickName == nick) || (temp->NickName == nick2))
-        {
-            temp->LigDraws++;
-            cout << "====== EMPATE ======" << endl;
-        }
-    };
+        temp->LigDraws++;
+        temp2->LigDraws++;
+        cout << "====== EMPATE ======" << endl;
+    }
 }
 
 void Player::RevWon(string nick)
 {
-    Player *temp;
-    for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
+    Player *temp = GetPlayer(nick);
+    if (temp->NickName == nick)
     {
-        temp = *it;
-        if (temp->NickName == nick)
-        {
-            temp->RevWins++;
-            cout << "====== " << nick << " GANHOU!" << " ======" << endl;
-        }
-    };
+        temp->RevWins++;
+        cout << "====== " << nick << " GANHOU!" << " ======" << endl;
+    }
 }
 
 void Player::RevLost(string nick)
 {
-    Player *temp;
-    for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
+    Player *temp = GetPlayer(nick);
+    if (temp->NickName == nick)
     {
-        temp = *it;
-        if (temp->NickName == nick)
-        {
-            temp->RevLoss++;
-        }
-    };
+        temp->RevLoss++;
+    }
 }
 
 void Player::RevDraw(string nick, string nick2)
 {
-    Player *temp;
-    for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
+    Player *temp = GetPlayer(nick);
+    Player *temp2 = GetPlayer(nick2);
     {
-        temp = *it;
-        if ((temp->NickName == nick) || (temp->NickName == nick2))
-        {
-            temp->RevDraws++;
-            cout << "====== EMPATE ======" << endl;
-        }
-    };
+        temp->RevDraws++;
+        temp2->RevDraws++;
+        cout << "====== EMPATE ======" << endl;
+    }
+}
+
+void Player::VWon(string nick)
+{
+    Player *temp = GetPlayer(nick);
+    if (temp->NickName == nick)
+    {
+        temp->VWins++;
+        cout << "====== " << nick << " GANHOU!" << " ======" << endl;
+    }
+}
+
+void Player::VLost(string nick)
+{
+    Player *temp = GetPlayer(nick);
+    if (temp->NickName == nick)
+    {
+        temp->VLoss++;
+    }
+}
+
+void Player::VDraw(string nick, string nick2)
+{
+    Player *temp = GetPlayer(nick);
+    Player *temp2 = GetPlayer(nick2);
+    {
+        temp->VDraws++;
+        temp2->VDraws++;
+        cout << "====== EMPATE ======" << endl;
+    }
 }
 
 void Player::RegisterPlayer(string nick, string nome)
@@ -259,6 +270,11 @@ void Player::ListPlayersbyName()
     }
 }
 
+int Player::SumPoints()
+{
+    return ((this->LigWins * 3) + (this->RevWins * 3) + (this->VWins * 3) + (this->LigDraws + this->RevDraws + this->VDraws));
+}
+
 void Player::Victory()
 
 {
@@ -270,11 +286,11 @@ void Player::Victory()
     int empate = 1;
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end() - 1; it++)
     {
-        for (vector<Player *>::const_iterator it2 = PlayersList.begin() + 1; it2 != PlayersList.end(); it2++)
+        for (vector<Player *>::const_iterator it2 = PlayersList.begin() + 1; it2 != PlayersList.end()-1; it2++)
         {
             temp = *it;
             temp2 = *it2;
-            if ((temp->LigWins + temp->RevWins) > (temp2->LigWins + temp2->RevWins))
+            if (temp->SumPoints() > temp2->SumPoints())
             {
                 empate = 0;
                 vencedor = temp->NickName;
