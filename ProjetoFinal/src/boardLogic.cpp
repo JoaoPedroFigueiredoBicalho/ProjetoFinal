@@ -24,15 +24,19 @@ void boardLogic::inicializar_tabuleiro(int tamanho)
 
 void boardLogic::imprimir_tabuleiro()
 {
-  std::cout << "##############" << std::endl;
+  std::cout << "##############" << std::endl
+            << "  |";
   for (int contador = 0; contador < tabuleiro.size(); contador++)
   {
-    std::cout << " |" << contador + 1 << "|";
+    std::cout << contador + 1 << "|";
   }
   for (int i = 0; i < tabuleiro.size(); i++)
   {
-    std::cout << std::endl
-              << i + 1;
+    std::cout << std::endl;
+    if (i + 1 < 10)
+      std::cout << " ";
+    std::cout << i + 1;
+
     for (int j = 0; j < tabuleiro[i].size(); j++)
     {
       std::cout << "|" << tabuleiro[i][j];
