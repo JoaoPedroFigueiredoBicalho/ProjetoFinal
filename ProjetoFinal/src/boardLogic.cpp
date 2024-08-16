@@ -21,8 +21,7 @@ void boardLogic::inicializar_tabuleiro(int tamanho)
     throw std::out_of_range("O tamanho do tabuleiro deve estar entre 4 e 10.");
   }
   this->tamanho = tamanho;
-  // Redimensiona o vetor 'tabuleiro' para 'tamanho x tamanho' e inicializa com
-  // espaços vazios
+  /// Redimensiona o tabuleiro no tamanho escolhido e o inicializa com espaços vazios.
   tabuleiro.resize(tamanho, std::vector<char>(tamanho, ' '));
 }
 
