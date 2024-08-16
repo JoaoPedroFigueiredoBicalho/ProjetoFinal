@@ -112,7 +112,7 @@ int main()
           {
             try
             {
-              cout << "Digite o tamanho do tabuleiro n x n, entre 4 e 10. O padrão para Reversi é um tabuleiro 8x8." << std::endl;
+              cout << "Digite o tamanho do tabuleiro n x n, entre 4 e 10. O padrao para Reversi e um tabuleiro 8x8." << std::endl;
               cin >> tamanho;
               tabuleiro->inicializar_tabuleiro(tamanho);
               tamanhoValido = true;
@@ -140,13 +140,35 @@ int main()
               {
                 cout << "Turno do " << jogador2 << endl;
               }
-              tabuleiro->checar_jogada(jogador_reversi, oponente_reversi);
               int linha, coluna;
               if (tabuleiro->checar_jogada(jogador_reversi, oponente_reversi))
               {
-                std::cin >> linha;
-                std::cin >> coluna;
-                tabuleiro->lerjogada((linha - 1), (coluna - 1), jogador_reversi);
+
+                try
+                {
+                  while (true)
+                  {
+                    std::cout << "Digite a linha e coluna de sua jogada: ";
+                    std::cin >> linha;
+                    std::cin >> coluna;
+                    if (std::cin.fail() || linha > tamanho || coluna > tamanho)
+                    {
+                      std::cin.clear();
+                      std::cin.ignore(1000, '\n');
+                      throw std::out_of_range("Digite apenas numeros validos.");
+                    }
+                    else
+                      break;
+                  }
+
+                  tabuleiro->lerjogada((linha - 1), (coluna - 1), jogador_reversi);
+                }
+                catch (const out_of_range &e)
+                {
+                  cout << e.what() << endl;
+                  cout << "Digite outra jogada" << endl;
+                  continue;
+                }
               }
             }
             catch (const invalid_argument &e)
@@ -158,7 +180,8 @@ int main()
             auxiliar = jogador_reversi;
             jogador_reversi = oponente_reversi;
             oponente_reversi = auxiliar;
-            tabuleiro->imprimir_tabuleiro();
+            if (tabuleiro->get_termino() == 0)
+              tabuleiro->imprimir_tabuleiro();
             contador++;
           }
 
