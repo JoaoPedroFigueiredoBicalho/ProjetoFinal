@@ -1,16 +1,20 @@
 #include "boardLogic.hpp"
 #include <iostream>
 
-void boardLogic::lerjogada(int jogadaLinha, int jogadaColuna, char jogada) {}
+void boardLogic::lerjogada(int jogadaLinha, int jogadaColuna, char jogada)
+{
+  /// Método virtual que é sobrecarregado pelas classes jogo, utilizado para ler as jogadas.
+}
 
 void boardLogic::set_tabuleiro(int linha, int coluna, char jogada)
 {
+  /// Coloca um caractere específico em uma casa selecionada no tabuleiro.
   tabuleiro[linha][coluna] = jogada;
 }
 
-// mudança
 std::vector<std::vector<char>> &boardLogic::get_tabuleiro()
 {
+  /// Retorna o tabuleiro.
   return tabuleiro;
 };
 
@@ -27,6 +31,7 @@ void boardLogic::inicializar_tabuleiro(int tamanho)
 
 void boardLogic::imprimir_tabuleiro()
 {
+  /// Imprime o tabuleiro, com número de linhas e colunas colocados nas extremidades.
   std::cout << "##############" << std::endl
             << "  |";
   for (int contador = 0; contador < tabuleiro.size(); contador++)
@@ -51,9 +56,18 @@ void boardLogic::imprimir_tabuleiro()
             << "##############" << std::endl;
 }
 
-char boardLogic::get_jogada_atual() const { return jogada; }
+char boardLogic::get_jogada_atual() const
+{
+  /// Retorna a jogada atual.
+  return jogada;
+}
 
-void boardLogic::alternar_jogador() { jogada = (jogada == 'X') ? 'O' : 'X'; }
+void boardLogic::alternar_jogador()
+{ /// Altera os caracteres dos jogadores.
+  jogada = (jogada == 'X') ? 'O' : 'X';
+}
 
-// pro reversi
-int boardLogic::get_tamanho() { return tamanho; }
+int boardLogic::get_tamanho()
+{ /// Retorna o tamanho do tabuleiro.
+  return tamanho;
+}
