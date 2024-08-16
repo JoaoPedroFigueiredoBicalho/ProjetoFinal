@@ -1,5 +1,5 @@
 #include "Players.hpp"
-#include "reversi.hpp"
+
 #include "lig4.hpp"
 #include "boardLogic.hpp"
 
@@ -27,7 +27,7 @@ int main()
       string nick;
       string nome;
       cout << "Digite o nick do jogador" << endl;
-      while (teste==0)
+      while (teste == 0)
       {
         try
         {
@@ -35,29 +35,33 @@ int main()
           if ((nick.find(" ") != string::npos))
           {
             throw bad_exception();
-          }else{
+          }
+          else
+          {
             teste = 1;
           }
           if (p->CheckPlayer(nick) == true)
           {
             throw invalid_argument(" Erro : este nick já está em uso !");
-          }else{
+          }
+          else
+          {
             teste = 1;
           }
-                          }
-        catch(const bad_exception& e)
+        }
+        catch (const bad_exception &e)
         {
-          cout << "NickName não pode conter espaços em branco" << endl;
+          cout << "Seu nickname não pode conter espaços em branco" << endl;
           cin >> nick;
         }
-        catch(const invalid_argument& e)
+        catch (const invalid_argument &e)
         {
-          cout << e.what();
-          cout << "Digite outro nome de usuário" << endl;
+          cout << e.what() << endl;
+          cout << "Digite outro nickname" << endl;
           cin >> nick;
         }
       }
-      
+
       // while (nick.find(" ")!=string::npos)
       // {
       //   cout << "NickName não pode conter espaços em branco" << endl;
@@ -91,12 +95,14 @@ int main()
       cin >> jogador;
       while (p->CheckPlayer(jogador) == false)
       {
+        cout << "Erro: jogador não encontrado." << endl;
         cout << "Digite o Nick do jogador novamente" << endl;
         cin >> jogador;
       }
       cin >> jogador2;
       while (p->CheckPlayer(jogador2) == false)
       {
+        cout << "Erro: jogador não encontrado." << endl;
         cout << "Digite o Nick do jogador novamente" << endl;
         cin >> jogador2;
       }
@@ -104,28 +110,6 @@ int main()
       {
       case 'R':
       {
-        Reversi *tabuleiro = new Reversi;
-        cout << "Digite o tamanho do tabuleiro n x n" << endl;
-        int tamanho;
-        cin >> tamanho;
-        Reversi *tabuleiro = new Reversi;
-        tabuleiro->inicializar_tabuleiro(tamanho);
-        tabuleiro->imprimir_tabuleiro();
-        char jogador1 = 'X';
-        char jogador2 = 'O';
-        char auxiliar;
-        while (tabuleiro->get_termino() < 2)
-        {
-          tabuleiro->checar_jogada(jogador1, jogador2);
-          int linha, coluna;
-          std::cin >> linha;
-          std::cin >> coluna;
-          tabuleiro->lerjogada(linha, coluna, jogador1);
-          auxiliar = jogador1;
-          jogador1 = jogador2;
-          jogador2 = auxiliar;
-          tabuleiro->imprimir_tabuleiro();
-        }
       }
       case 'L':
       {
@@ -138,7 +122,8 @@ int main()
         tabuleiro->inicializar_tabuleiro(tamanho);
         tabuleiro->imprimir_tabuleiro();
         int contador = 0;
-        while (!tabuleiro->tabuleiro_cheio())
+        int Endgame = 0;
+        while (Endgame == 0)
         {
           if (contador % 2 == 0)
           {
@@ -152,30 +137,33 @@ int main()
           cout << "Digite a coluna de entrada (1-" << tamanho << "): ";
           cin >> coluna;
 
-          //chamar o ler jogada e ver se a jogada foi bem sucedida
-          if(tabuleiro->lerjogada((coluna-1))) {
+          // chamar o ler jogada e ver se a jogada foi bem sucedida
+          if (tabuleiro->lerjogada((coluna - 1)))
+          {
             tabuleiro->imprimir_tabuleiro();
-          
 
-          // verifica se o jogador venceu
-          if (tabuleiro->checarvitoria('X'))
-          {
-            p->LigWon(jogador);
-            p->LigLost(jogador2);
-            break;
-          }
-          if (tabuleiro->checarvitoria('O'))
-          {
-            p->LigWon(jogador2);
-            p->LigLost(jogador);
-            break;
-          }
-          contador++;
+            // verifica se o jogador venceu
+            if (tabuleiro->checarvitoria('X'))
+            {
+              p->LigWon(jogador);
+              p->LigLost(jogador2);
+              Endgame = 1;
+            }
+            if (tabuleiro->checarvitoria('O'))
+            {
+              p->LigWon(jogador2);
+              p->LigLost(jogador);
+              Endgame = 1;
+            }
+            if (tabuleiro->tabuleiro_cheio())
+            {
+              Endgame = 1;
+            }
+            contador++;
           }
         }
       }
       }
-      break;
     }
     else if (comando == "LJ")
     {
