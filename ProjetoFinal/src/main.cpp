@@ -58,16 +58,16 @@ int main()
         }
       }
       
-      /*while (nick.find(" ")!=string::npos)
-      {
-        cout << "NickName não pode conter espaços em branco" << endl;
-        cin >> nick;
-      }
-      while (p->CheckPlayer(nick)==true)
-      {
-        cout << "Erro: este nick já está em uso!" << endl;
-        cout << "Digite outro nome de usuário" << endl;
-      }*/
+      // while (nick.find(" ")!=string::npos)
+      // {
+      //   cout << "NickName não pode conter espaços em branco" << endl;
+      //   cin >> nick;
+      // }
+      // while (p->CheckPlayer(nick)==true)
+      // {
+      //   cout << "Erro: este nick já está em uso!" << endl;
+      //   cout << "Digite outro nome de usuário" << endl;
+      // }
 
       cout << "Digite o nome do jogador" << endl;
       cin >> nome;
