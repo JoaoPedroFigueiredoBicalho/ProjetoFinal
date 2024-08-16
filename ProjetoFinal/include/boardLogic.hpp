@@ -3,10 +3,11 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 class boardLogic {
 protected:
-    std::vector<std::vector<char> > tabuleiro;
+    std::vector<std::vector<char>> tabuleiro;
     int tamanho;
     char jogada = 'X';
 
@@ -15,7 +16,7 @@ public:
     //metodo virtual
     virtual void lerjogada(int jogadaLinha, int jogadaColuna, char jogada);
 
-    std::vector<std::vector<char> > &get_tabuleiro();
+    std::vector<std::vector<char>> &get_tabuleiro();
 
     void set_tabuleiro(int linha, int coluna, char jogada);
 
