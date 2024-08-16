@@ -16,8 +16,10 @@ Player::Player(string nick, string nome)
     this->NickName = nick;
     this->LigLoss = 0;
     this->LigWins = 0;
+    this->LigDraws = 0;
     this->RevLoss = 0;
     this->RevWins = 0;
+    this->RevDraws = 0;
 }
 
 Player::~Player()
@@ -196,6 +198,7 @@ void Player::DeletePlayer(string nick)
             PlayersList.erase(it);
             cout << "Jogador " << temp->NickName << " removido com sucesso" << endl;
             erro = 0;
+            PlayersCount--;
         }
     }
     if (erro == 1)
@@ -280,7 +283,7 @@ void Player::Victory()
 void Player::WriteArq()
 {
     ofstream arq("Players.txt");
-    arq << PlayersCount;
+    arq << PlayersCount << endl;
     Player *temp;
 
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
