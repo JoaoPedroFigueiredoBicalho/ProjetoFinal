@@ -162,6 +162,7 @@ int main()
           jogador_reversi = oponente_reversi;
           oponente_reversi = auxiliar;
           tabuleiro->imprimir_tabuleiro();
+          contador++;
         }
 
         if (tabuleiro->get_num_pecas_X() > tabuleiro->get_num_pecas_O())
