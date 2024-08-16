@@ -121,6 +121,7 @@ int main()
       case 'R':
       {
         Reversi *tabuleiro = new Reversi;
+<<<<<<< HEAD
         int tamanho;
         bool tamanhoValido = false;
 
@@ -138,6 +139,12 @@ int main()
           }
         }
         
+=======
+        cout << "Digite o tamanho do tabuleiro n x n, entre 4 e 10. O padrão para Reversi é um tabuleiro 8x8." << std::endl;
+        int tamanho;
+        cin >> tamanho;
+        tabuleiro->inicializar_tabuleiro(tamanho);
+>>>>>>> eca8ed80030a85f66190eb8385eb3fd1c8f70c71
         tabuleiro->imprimir_tabuleiro();
         char jogador_reversi = 'X';
         char oponente_reversi = 'O';
@@ -182,6 +189,7 @@ int main()
         {
           p->RevWon(jogador);
           p->RevLost(jogador2);
+<<<<<<< HEAD
         }
         else if (tabuleiro->get_num_pecas_X() < tabuleiro->get_num_pecas_O())
         {
@@ -192,6 +200,18 @@ int main()
         {
           p->RevDraw(jogador, jogador2);
         }
+=======
+        }
+        else if (tabuleiro->get_num_pecas_X() < tabuleiro->get_num_pecas_O())
+        {
+          p->RevWon(jogador2);
+          p->RevLost(jogador);
+        }
+        else
+        {
+          p->RevDraw(jogador, jogador2);
+        }
+>>>>>>> eca8ed80030a85f66190eb8385eb3fd1c8f70c71
         std::cout << std::endl
                   << "Numero de pecas do Jogador 1: " << tabuleiro->get_num_pecas_X() << std::endl;
         std::cout << std::endl
@@ -271,7 +291,11 @@ int main()
     {
       char parameter;
       cin >> parameter;
+<<<<<<< HEAD
       if (parameter == 'A')
+=======
+      if(parameter=='A')
+>>>>>>> eca8ed80030a85f66190eb8385eb3fd1c8f70c71
         p->ListPlayersbyNick();
       if (parameter == 'N')
         p->ListPlayersbyName();
