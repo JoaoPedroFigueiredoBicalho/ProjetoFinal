@@ -7,6 +7,7 @@
 int main()
 {
   Player *p = new Player();
+  p->ReadArq();
   int fim = 1;
   cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
   cout << "Lista de comandos:" << endl;
@@ -46,7 +47,7 @@ int main()
           }
           if (p->CheckPlayer(nick) == true)
           {
-            throw invalid_argument(" Erro : este nick já está em uso !");
+            throw invalid_argument(" Erro : este nick ja esta em uso !");
           }
           else
           {
