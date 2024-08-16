@@ -7,9 +7,9 @@ private:
   const char Jogador1 = 'X';
   const char Jogador2 = 'O';
   std::vector<std::vector<int>> JogadasValidas;
-  int num_pecas_X=2;
-  int num_pecas_O=2;
-  int termino=0;
+  int num_pecas_X = 2;
+  int num_pecas_O = 2;
+  int termino = 0;
 
 public:
   void inicializar_tabuleiro(int tamanho);
@@ -23,5 +23,7 @@ public:
   void virar_casas(int linha, int coluna, int dir_l, int dir_c, int i, char jogador);
   bool game_over();
   int get_termino();
+  int get_num_pecas_O();
+  int get_num_pecas_X();
 };
 #endif

@@ -83,7 +83,7 @@ void Reversi::checar_jogada(char jogador, char oponente)
   }
   if (JogadasValidas.empty())
   {
-    std::cout << "O jogador " << jogador << " nao possui jogadas validas!" << std::endl;
+    std::cout << "O jogador nao possui jogadas validas!" << std::endl;
     game_over();
   }
 }
@@ -191,19 +191,7 @@ bool Reversi::game_over()
 {
   termino++;
   if (termino == 2 || num_pecas_X == 0 || num_pecas_O == 0)
-  {
-    if (num_pecas_X > num_pecas_O)
-      std::cout << "Jogador 1 venceu!";
-    else if (num_pecas_X < num_pecas_O)
-      std::cout << "Jogador 2 venceu!";
-    else
-      std::cout << "Empate";
-    std::cout << std::endl
-              << "Numero de pecas do Jogador 1: " << num_pecas_X << std::endl;
-    std::cout << std::endl
-              << "Numero de pecas do Jogador 2: " << num_pecas_O << std::endl;
     return (false);
-  }
 
   return (true);
 }
@@ -211,4 +199,14 @@ bool Reversi::game_over()
 int Reversi::get_termino()
 {
   return this->termino;
+}
+
+int Reversi::get_num_pecas_O()
+{
+  return num_pecas_O;
+}
+
+int Reversi::get_num_pecas_X()
+{
+  return num_pecas_X;
 }

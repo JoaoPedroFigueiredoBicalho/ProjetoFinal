@@ -150,6 +150,26 @@ int main()
           oponente_reversi = auxiliar;
           tabuleiro->imprimir_tabuleiro();
         }
+
+        if (tabuleiro->get_num_pecas_X() > tabuleiro->get_num_pecas_O())
+        {
+          p->RevWon(jogador);
+          p->RevLost(jogador2);
+        }
+        else if (tabuleiro->get_num_pecas_X() < tabuleiro->get_num_pecas_O())
+        {
+          p->RevWon(jogador2);
+          p->RevLost(jogador);
+        }
+        else
+        {
+          p->RevDraw(jogador, jogador2);
+        }
+        std::cout << std::endl
+                  << "Numero de pecas do Jogador 1: " << tabuleiro->get_num_pecas_X() << std::endl;
+        std::cout << std::endl
+                  << "Numero de pecas do Jogador 2: " << tabuleiro->get_num_pecas_O() << std::endl;
+
         delete tabuleiro;
       }
       case 'L':
