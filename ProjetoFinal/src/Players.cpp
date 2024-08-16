@@ -266,11 +266,11 @@ void Player::Victory()
     }
     if (empate == 0)
     {
-        cout << "###################" << endl
+        cout << "###########################" << endl
              << endl;
         cout << vencedor << " VENCEU!" << endl
              << endl;
-        cout << "###################" << endl;
+        cout << "###########################" << endl;
     }
     if (empate == 1)
     {
