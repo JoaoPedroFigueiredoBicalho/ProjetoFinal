@@ -17,6 +17,7 @@ Player::Player()
     this->VLoss = 0;
     this->VWins = 0;
     this->VDraws = 0;
+    this->PlayersCount = 0;
 }
 
 Player::Player(string nick, string nome)
@@ -47,17 +48,14 @@ void Player::ReadArq()
     string linha;
     int tamanho;
     ifstream arquivo("Players.txt");
-    if (arquivo.eof())
-    {
-    }
-    else
+    if (arquivo)
     {
         getline(arquivo, linha);
         tamanho = stoi(linha);
-        Player *temp = new Player();
         string linha;
         for (int i = 0; i < tamanho; i++)
         {
+            Player *temp = new Player();
             getline(arquivo, temp->NickName);
             getline(arquivo, temp->Nome);
             getline(arquivo, linha);
@@ -70,41 +68,57 @@ void Player::ReadArq()
             temp->LigWins = stoi(linha);
             getline(arquivo, linha);
             temp->LigLoss = stoi(linha);
-            PlayersList.push_back(temp);
             getline(arquivo, linha);
             temp->LigDraws = stoi(linha);
+            getline(arquivo, linha);
             temp->VWins = stoi(linha);
             getline(arquivo, linha);
             temp->VLoss = stoi(linha);
-            PlayersList.push_back(temp);
             getline(arquivo, linha);
             temp->VDraws = stoi(linha);
+            PlayersList.push_back(temp);
+            PlayersCount++;
         }
         arquivo.close();
     }
 }
 
-Player* Player::GetPlayer(string nick)
+Player *Player::GetPlayer(string nick)
 {
-    for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
+    if (PlayersCount == 0)
     {
-        Player *temp = *it;
-        if (temp->NickName == nick)
+        return (nullptr);
+    }
+    else
+    {
+        for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
         {
-            return (*it);
+            Player *temp = *it;
+            if (temp->NickName == nick)
+            {
+                return (*it);
+            }
         }
     }
 }
 
+int Player::GetPlayersCount()
+{
+    return (PlayersCount);
+}
+
 bool Player::CheckPlayer(string nick)
 {
-   
-        Player *temp = GetPlayer(nick);
-        if (temp->NickName == nick)
-        {
-            return (true);
-        }
-    
+    if (PlayersCount == 0)
+    {
+        return (false);
+    }
+    Player *temp = GetPlayer(nick);
+    if (temp->NickName == nick)
+    {
+        return (true);
+    }
+
     return (false);
 }
 
@@ -250,9 +264,10 @@ void Player::ListPlayersbyNick()
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
         temp = *it;
-        cout << ">>>>>>>>> " << temp->NickName << " <<<<<<<<<" << endl;
-        cout << "  | REVERSI - V: " << temp->RevWins << " D: " << temp->RevLoss << " E: " << temp->RevDraws << " |" << endl;
-        cout << "  | LIG4    - V: " << temp->LigWins << " D: " << temp->LigLoss << " E: " << temp->LigDraws << " |" << endl;
+        cout << ">>>>>>>>>>> " << temp->NickName << " <<<<<<<<<<<" << endl;
+        cout << "  | REVERSI       - V: " << temp->RevWins << " D: " << temp->RevLoss << " E: " << temp->RevDraws << " |" << endl;
+        cout << "  | LIG4          - V: " << temp->LigWins << " D: " << temp->LigLoss << " E: " << temp->LigDraws << " |" << endl;
+        cout << "  | JOGO DA VELHA - V: " << temp->VWins << " D: " << temp->VLoss << " E: " << temp->VDraws << " |" << endl;
         cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
     }
 }
@@ -264,18 +279,19 @@ void Player::ListPlayersbyName()
     {
         temp = *it;
         cout << ">>>>>>>>>>> " << temp->Nome << " <<<<<<<<<<<" << endl;
-        cout << "  | REVERSI - V: " << temp->RevWins << " D: " << temp->RevLoss << " E: " << temp->RevDraws << " |" << endl;
-        cout << "  | LIG4    - V: " << temp->LigWins << " D: " << temp->LigLoss << " E: " << temp->LigDraws << " |" << endl;
+        cout << "  | REVERSI       - V: " << temp->RevWins << " D: " << temp->RevLoss << " E: " << temp->RevDraws << " |" << endl;
+        cout << "  | LIG4          - V: " << temp->LigWins << " D: " << temp->LigLoss << " E: " << temp->LigDraws << " |" << endl;
+        cout << "  | JOGO DA VELHA - V: " << temp->VWins << " D: " << temp->VLoss << " E: " << temp->VDraws << " |" << endl;
         cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
     }
 }
 
-int Player::SumPoints()
+int Player::SumPoints(int l, int r, int v)
 {
-    return ((this->LigWins * 3) + (this->RevWins * 3) + (this->VWins * 3) + (this->LigDraws + this->RevDraws + this->VDraws));
+    return (((this->LigWins * 3) + this->LigDraws) * l + ((this->RevWins * 3) + this->RevDraws) * r + ((this->VWins * 3) + this->VDraws) * v);
 }
 
-void Player::Victory()
+void Player::Victory(int l, int r, int v)
 
 {
     Player *temp;
@@ -284,13 +300,14 @@ void Player::Victory()
     int v1 = 0;
     int v2 = 0;
     int empate = 1;
+    int teste = l * r * v;
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end() - 1; it++)
     {
-        for (vector<Player *>::const_iterator it2 = PlayersList.begin() + 1; it2 != PlayersList.end()-1; it2++)
+        for (vector<Player *>::const_iterator it2 = PlayersList.begin() + 1; it2 != PlayersList.end(); it2++)
         {
             temp = *it;
             temp2 = *it2;
-            if (temp->SumPoints() > temp2->SumPoints())
+            if (temp->SumPoints(l, r, v) > temp2->SumPoints(l, r, v))
             {
                 empate = 0;
                 vencedor = temp->NickName;
@@ -306,11 +323,41 @@ void Player::Victory()
             }
         }
     }
-    if (empate == 0)
+    if (l == 1 && teste == 0)
+    {
+        cout << "Resultado Lig4" << endl;
+        if (empate == 0)
+        {
+            cout << "Vencedor: " << vencedor << endl;
+        }
+        else
+            cout << "EMPATE!" << endl;
+    }
+    else if (r == 1 && teste == 0)
+    {
+        cout << "Resultado Reversi" << endl;
+        if (empate == 0)
+        {
+            cout << "Vencedor: " << vencedor << endl;
+        }
+        else
+            cout << "EMPATE!" << endl;
+    }
+    else if (v == 1 && teste == 1)
+    {
+        cout << "Resultado Jogo da Velha" << endl;
+        if (empate == 0)
+        {
+            cout << "Vencedor: " << vencedor << endl;
+        }
+        else
+            cout << "EMPATE!" << endl;
+    }
+    else if (empate == 0)
     {
         cout << "###########################" << endl
              << endl;
-        cout << vencedor << " VENCEU!" << endl
+        cout << vencedor << " CAMPEAO!" << endl
              << endl;
         cout << "###########################" << endl;
     }

@@ -31,6 +31,7 @@ public:
   ~Player();
   void ReadArq();
   Player *GetPlayer(string nick);
+  int GetPlayersCount();
   void LigWon(string nick);
   void LigLost(string nick);
   void LigDraw(string nick, string nick2);
@@ -45,8 +46,8 @@ public:
   void DeletePlayer(string nick);
   void ListPlayersbyNick();
   void ListPlayersbyName();
-  int SumPoints();
-  void Victory();
+  int SumPoints(int l, int r, int v);
+  void Victory(int l, int r, int v);
   void WriteArq();
 };
 
