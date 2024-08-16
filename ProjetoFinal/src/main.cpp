@@ -2,6 +2,7 @@
 
 #include "lig4.hpp"
 #include "boardLogic.hpp"
+#include "reversi.hpp"
 
 int main()
 {
@@ -118,6 +119,38 @@ int main()
       {
       case 'R':
       {
+        Reversi *tabuleiro = new Reversi;
+        cout << "Digite o tamanho do tabuleiro n x n, entre 4 e 10. O padrão para Reversi é um tabuleiro 8x8." << std::endl;
+        int tamanho;
+        cin >> tamanho;
+
+        tabuleiro->inicializar_tabuleiro(tamanho);
+        tabuleiro->imprimir_tabuleiro();
+        char jogador_reversi = 'X';
+        char oponente_reversi = 'O';
+        char auxiliar = '\0';
+        int contador;
+        while (tabuleiro->game_over())
+        {
+          if (contador % 2 == 0)
+          {
+            cout << "Turno do " << jogador << endl;
+          }
+          else if (contador % 2 != 0)
+          {
+            cout << "Turno do " << jogador2 << endl;
+          }
+          tabuleiro->checar_jogada(jogador_reversi, oponente_reversi);
+          int linha, coluna;
+          std::cin >> linha;
+          std::cin >> coluna;
+          tabuleiro->lerjogada((linha - 1), (coluna - 1), jogador_reversi);
+          auxiliar = jogador_reversi;
+          jogador_reversi = oponente_reversi;
+          oponente_reversi = auxiliar;
+          tabuleiro->imprimir_tabuleiro();
+        }
+        delete tabuleiro;
       }
       case 'L':
       {
@@ -170,6 +203,7 @@ int main()
             contador++;
           }
         }
+        delete tabuleiro;
       }
       }
     }
