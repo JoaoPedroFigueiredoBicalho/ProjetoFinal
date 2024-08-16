@@ -95,7 +95,7 @@ int main()
       char jogo;
       cout << "Digite R para jogar Reversi ou L para jogar Lig4" << endl;
       cin >> jogo;
-      cout << "Digite os nicks dos jogadores que irão jogar" << endl;
+      cout << "Digite os nicks dos jogadores que irao jogar" << endl;
       cout << "Jogador1: ";
       cin >> jogador;
       while (p->CheckPlayer(jogador) == false)
