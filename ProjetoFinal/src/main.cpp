@@ -199,7 +199,7 @@ int main()
           {
             p->RevDraw(jogador, jogador2);
           }
-
+          std::cout << "Fim de jogo!" << std::endl;
           std::cout << std::endl
                     << "Numero de pecas do " << jogador << ": " << tabuleiro->get_num_pecas_X() << std::endl;
           std::cout << std::endl
