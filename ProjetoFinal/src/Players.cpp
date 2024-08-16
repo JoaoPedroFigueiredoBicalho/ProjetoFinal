@@ -8,6 +8,15 @@ Player::Player()
     this->LigWins = 0;
     this->RevLoss = 0;
     this->RevWins = 0;
+    this->LigLoss = 0;
+    this->LigWins = 0;
+    this->LigDraws = 0;
+    this->RevLoss = 0;
+    this->RevWins = 0;
+    this->RevDraws = 0;
+    this->VLoss = 0;
+    this->VWins = 0;
+    this->VDraws = 0;
 }
 
 Player::Player(string nick, string nome)
@@ -20,6 +29,9 @@ Player::Player(string nick, string nome)
     this->RevLoss = 0;
     this->RevWins = 0;
     this->RevDraws = 0;
+    this->VLoss = 0;
+    this->VWins = 0;
+    this->VDraws = 0;
 }
 
 Player::~Player()
@@ -61,8 +73,26 @@ void Player::ReadArq()
             PlayersList.push_back(temp);
             getline(arquivo, linha);
             temp->LigDraws = stoi(linha);
+            temp->VWins = stoi(linha);
+            getline(arquivo, linha);
+            temp->VLoss = stoi(linha);
+            PlayersList.push_back(temp);
+            getline(arquivo, linha);
+            temp->VDraws = stoi(linha);
         }
         arquivo.close();
+    }
+}
+
+Player* Player::GetPlayer()
+{
+    for (vector<Player *>::const_iterator &it = PlayersList.begin(); it != PlayersList.end(); it++)
+    {
+        Player *temp = *it;
+        if (temp->NickName == nick)
+        {
+            return ();
+        }
     }
 }
 
@@ -81,16 +111,12 @@ bool Player::CheckPlayer(string nick)
 
 void Player::LigWon(string nick)
 {
-    Player *temp;
-    for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
+    
+    if (temp->NickName == nick)
     {
-        temp = *it;
-        if (temp->NickName == nick)
-        {
-            temp->LigWins++;
-            cout << "======= " << nick << " GANHOU!" << " ======" << endl;
-        }
-    };
+        temp->LigWins++;
+        cout << "======= " << nick << " GANHOU!" << " ======" << endl;
+    }
 }
 
 void Player::LigLost(string nick)
@@ -297,6 +323,9 @@ void Player::WriteArq()
         arq << temp->LigWins << endl;
         arq << temp->LigLoss << endl;
         arq << temp->LigDraws << endl;
+        arq << temp->VWins << endl;
+        arq << temp->VLoss << endl;
+        arq << temp->VDraws << endl;
     }
     arq.close();
 }
