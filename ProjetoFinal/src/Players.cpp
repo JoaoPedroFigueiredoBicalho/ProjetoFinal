@@ -9,14 +9,17 @@ Player::Player()
     this->RevLoss = 0;
     this->RevWins = 0;
 }
+
 Player::Player(string nick, string nome)
 {
-  this->Nome = nome;
-  this->NickName = nick;
-  this->LigLoss = 0;
-  this->LigWins = 0;
-  this->RevLoss = 0;
-  this->RevWins = 0;
+    this->Nome = nome;
+    this->NickName = nick;
+    this->LigLoss = 0;
+    this->LigWins = 0;
+    this->LigDraws = 0;
+    this->RevLoss = 0;
+    this->RevWins = 0;
+    this->RevDraws = 0;
 }
 
 Player::~Player()
@@ -63,31 +66,17 @@ void Player::ReadArq()
     }
 }
 
-
-
-Player *Player::getPlayer(string nick)
+bool Player::CheckPlayer(string nick)
 {
-    int x = 0;
-    int erro = 1;
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
         Player *temp = *it;
-        x++;
         if (temp->NickName == nick)
         {
-            erro = 0;
-            break;
+            return (true);
         }
     }
-    if (erro == 0)
-    {
-        return (PlayersList[x]);
-    }
-    else
-    {
-        cout << "ERRO: jogador inexistente";
-        return (nullptr);
-    }
+    return (false);
 }
 
 void Player::LigWon(string nick)
@@ -99,7 +88,7 @@ void Player::LigWon(string nick)
         if (temp->NickName == nick)
         {
             temp->LigWins++;
-            cout << "@@@" << nick << "GANHOU!" << "@@@" << endl;
+            cout << "======= " << nick << " GANHOU!" << " ======" << endl;
         }
     };
 }
@@ -116,18 +105,21 @@ void Player::LigLost(string nick)
         }
     };
 }
-void Player::LigDraw(string nick)
+
+void Player::LigDraw(string nick, string nick2)
 {
     Player *temp;
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
         temp = *it;
-        if (temp->NickName == nick)
+        if ((temp->NickName == nick) || (temp->NickName == nick2))
         {
             temp->LigDraws++;
+            cout << "====== EMPATE ======" << endl;
         }
     };
 }
+
 void Player::RevWon(string nick)
 {
     Player *temp;
@@ -137,7 +129,7 @@ void Player::RevWon(string nick)
         if (temp->NickName == nick)
         {
             temp->RevWins++;
-            cout << "@@@" << nick << "GANHOU!" << "@@@" << endl;
+            cout << "====== " << nick << " GANHOU!" << " ======" << endl;
         }
     };
 }
@@ -154,60 +146,65 @@ void Player::RevLost(string nick)
         }
     };
 }
-void Player::RevDraw(string nick)
+
+void Player::RevDraw(string nick, string nick2)
 {
+    Player *temp;
+    for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
+    {
+        temp = *it;
+        if ((temp->NickName == nick) || (temp->NickName == nick2))
+        {
+            temp->RevDraws++;
+            cout << "====== EMPATE ======" << endl;
+        }
+    };
+}
+
+void Player::RegisterPlayer(string nick, string nome)
+{
+    int erro = 0;
+    Player *temp;
+    for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
+    {
+        temp = *it;
+        if (temp->NickName == nick)
+            erro = 1;
+        //        throw std::invalid_argument("ERRO: jogador repetido");
+    }
+
+    if (erro == 1)
+    {
+        cout << "ERRO: jogador repetido" << endl;
+    }
+    else
+    {
+        temp = new Player(nick, nome);
+        PlayersList.push_back(temp);
+        cout << "Jogador " << temp->NickName << " cadastrado com sucesso" << endl;
+        PlayersCount++;
+    }
+}
+
+void Player::DeletePlayer(string nick)
+{
+    int erro = 1;
     Player *temp;
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
         temp = *it;
         if (temp->NickName == nick)
         {
-            temp->RevDraws++;
+            PlayersList.erase(it);
+            cout << "Jogador " << temp->NickName << " removido com sucesso" << endl;
+            erro = 0;
+            PlayersCount--;
         }
-    };
-}
-void Player::RegisterPlayer(string nick, string nome)
-{
-  int erro = 0;
-  Player *temp;
-  for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
-  {
-    temp = *it;
-    if (temp->NickName == nick)
-      erro = 1;
-    //        throw std::invalid_argument("ERRO: jogador repetido");
-  }
-
-  if (erro == 1)
-  {
-    cout << "ERRO: jogador repetido" << endl;
-  }
-  else
-  {
-    temp = new Player(nick, nome);
-    PlayersList.push_back(temp);
-    cout << "Jogador " << temp->NickName << " cadastrado com sucesso" << endl;
-    PlayersCount++;
-  }
-}
-void Player::DeletePlayer(string nick)
-{
-  int erro = 1;
-  Player *temp;
-  for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
-  {
-    temp = *it;
-    if (temp->NickName == nick)
-    {
-      PlayersList.erase(it);
-      cout << "Jogador" << temp->NickName << "removido com sucesso" << endl;
-      erro = 0;
     }
-  }
-  if (erro == 1)
-  {
-    cout << "ERRO: jogador inexistente" << endl;
-  }
+    if (erro == 1)
+    {
+        cout << "ERRO: jogador inexistente" << endl;
+    }
 }
 
 void Player::ListPlayersbyNick()
@@ -216,12 +213,13 @@ void Player::ListPlayersbyNick()
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
         temp = *it;
-        cout << ">>>>>>>>>>> " << temp->NickName << " <<<<<<<<<<<" << endl;
+        cout << ">>>>>>>>> " << temp->NickName << " <<<<<<<<<" << endl;
         cout << "  | REVERSI - V: " << temp->RevWins << " D: " << temp->RevLoss << " E: " << temp->RevDraws << " |" << endl;
         cout << "  | LIG4    - V: " << temp->LigWins << " D: " << temp->LigLoss << " E: " << temp->LigDraws << " |" << endl;
         cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
     }
 }
+
 void Player::ListPlayersbyName()
 {
     Player *temp;
@@ -229,13 +227,14 @@ void Player::ListPlayersbyName()
     {
         temp = *it;
         cout << ">>>>>>>>>>> " << temp->Nome << " <<<<<<<<<<<" << endl;
-        cout << "  | REVERSI - V: " << temp->RevWins << " D: " << temp->RevLoss << " E: " <<temp->RevDraws << " |" << endl;
+        cout << "  | REVERSI - V: " << temp->RevWins << " D: " << temp->RevLoss << " E: " << temp->RevDraws << " |" << endl;
         cout << "  | LIG4    - V: " << temp->LigWins << " D: " << temp->LigLoss << " E: " << temp->LigDraws << " |" << endl;
         cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
     }
 }
 
 void Player::Victory()
+
 {
     Player *temp;
     Player *temp2;
@@ -267,11 +266,11 @@ void Player::Victory()
     }
     if (empate == 0)
     {
-        cout << "###################" << endl
+        cout << "###########################" << endl
              << endl;
         cout << vencedor << " VENCEU!" << endl
              << endl;
-        cout << "###################" << endl;
+        cout << "###########################" << endl;
     }
     if (empate == 1)
     {
@@ -284,8 +283,9 @@ void Player::Victory()
 void Player::WriteArq()
 {
     ofstream arq("Players.txt");
-    arq << PlayersCount;
+    arq << PlayersCount << endl;
     Player *temp;
+
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
         temp = *it;
