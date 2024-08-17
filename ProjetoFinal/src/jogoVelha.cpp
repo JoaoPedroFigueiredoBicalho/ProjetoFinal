@@ -11,7 +11,7 @@ void jogoVelha::inicializar_tabuleiro(int tamanho)
 
 bool jogoVelha::lerjogada(int jogadaLinha, int jogadaColuna)
 {  
-  ///Método que lê a kogada do usuário (linha e coluna) e substitui o espaço vazio pela jogada do jogador, caso a entrada seja válida. Por fim alterna o jogador para a próxima rodada
+  ///Método que lê a jogada do usuário (linha e coluna) e substitui o espaço vazio pela jogada do jogador, caso a entrada seja válida. Por fim alterna o jogador para a próxima rodada
   if (jogadaColuna < 0 || jogadaColuna >= tamanho || jogadaLinha < 0 || jogadaLinha >= tamanho)
   {
     std::cout << "Jogada inválida!" << std::endl;
