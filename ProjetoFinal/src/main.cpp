@@ -128,6 +128,8 @@ int main()
           char oponente_reversi = 'O';
           char auxiliar = '\0';
           int contador = 0;
+          bool jogador1_desistiu = false;
+          bool jogador2_desistiu = false;
           while (tabuleiro->game_over())
           {
             try
@@ -156,10 +158,12 @@ int main()
                       if (contador % 2 == 0)
                       {
                         cout << "O jogador " << jogador << " desistiu!" << endl;
+                        jogador1_desistiu = true;
                       }
                       else
                       {
                         cout << "O jogador " << jogador2 << " desistiu!" << endl;
+                        jogador2_desistiu = true;
                       }
                       goto endgame;
                     }
@@ -198,12 +202,12 @@ int main()
           }
 
         endgame:
-          if (tabuleiro->get_num_pecas_X() > tabuleiro->get_num_pecas_O())
+          if (tabuleiro->get_num_pecas_X() > tabuleiro->get_num_pecas_O() || jogador2_desistiu)
           {
             p->RevWon(jogador);
             p->RevLost(jogador2);
           }
-          else if (tabuleiro->get_num_pecas_X() < tabuleiro->get_num_pecas_O())
+          else if (tabuleiro->get_num_pecas_X() < tabuleiro->get_num_pecas_O() || jogador1_desistiu)
           {
             p->RevWon(jogador2);
             p->RevLost(jogador);
