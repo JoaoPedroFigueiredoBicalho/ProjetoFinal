@@ -1,6 +1,12 @@
 #include "jogoVelha.hpp"
 #include <iostream>
 
+void jogoVelha::inicializar_tabuleiro()
+{
+  /// Redimensiona o tabuleiro no tamanho do jogo da velha e o inicializa com espaços vazios.
+  tabuleiro.resize(3, std::vector<char>(tamanho, ' '));
+}
+
 bool jogoVelha::lerjogada(int jogadaLinha, int jogadaColuna)
 {
   if (jogadaColuna < 0 || jogadaColuna >= tamanho || jogadaLinha < 0 || jogadaLinha >= tamanho)

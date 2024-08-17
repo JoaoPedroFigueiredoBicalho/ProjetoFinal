@@ -278,32 +278,53 @@ int main()
         {
           jogoVelha *tabuleiro = new jogoVelha;
           int tamanho = 3;
-          tabuleiro->inicializar_tabuleiro(tamanho);
+          tabuleiro->inicializar_tabuleiro();
           tabuleiro->imprimir_tabuleiro();
-          contador++;
-        }
-
-          if (tabuleiro->get_num_pecas_X() > tabuleiro->get_num_pecas_O())
+          int contador = 0;
+          int Endgame = 0;
+          while (Endgame == 0)
           {
-            p->RevWon(jogador);
-            p->RevLost(jogador2);
+            if (contador % 2 == 0)
+            {
+              cout << "Turno do " << jogador << endl;
+            }
+            else
+            {
+              cout << "Turno do " << jogador2 << endl;
+            }
+            int linha;
+            cout << "Digite a linha de entrada (1-3): ";
+            cin >> linha;
+            linha--;
+            int coluna;
+            cout << "Digite a coluna de entrada (1-3): ";
+            cin >> coluna;
+            coluna--;
+            if (tabuleiro->lerjogada(linha, coluna))
+            {
+              tabuleiro->imprimir_tabuleiro();
+              if (tabuleiro->checarvitoria('X'))
+              {
+                p->VWon(jogador);
+                p->VLost(jogador2);
+                Endgame = 1;
+              }
+              if (tabuleiro->checarvitoria('O'))
+              {
+                p->VWon(jogador2);
+                p->VLost(jogador);
+                Endgame = 1;
+              }
+              if (tabuleiro->tabuleiro_cheio())
+              {
+                p->VDraw(jogador, jogador2);
+                Endgame = 1;
+              }
+              contador++;
+            }
           }
-          else if (tabuleiro->get_num_pecas_X() < tabuleiro->get_num_pecas_O())
-          {
-            p->RevWon(jogador2);
-            p->RevLost(jogador);
-          }
-          else
-          {
-            p->RevDraw(jogador, jogador2);
-          }
-
-          std::cout << std::endl
-                    << "Numero de pecas do " << jogador << ": " << tabuleiro->get_num_pecas_X() << std::endl;
-          std::cout << std::endl
-                    << "Numero de pecas do " << jogador2 << ": " << tabuleiro->get_num_pecas_O() << std::endl;
-
           delete tabuleiro;
+        }
 
         } // fim do case R
       } // fim do switch
