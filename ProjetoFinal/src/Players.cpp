@@ -1,394 +1,336 @@
 #include "Players.hpp"
+#include "lig4.hpp"
+#include "boardLogic.hpp"
+#include "reversi.hpp"
+#include "jogoVelha.hpp"
 
-Player::Player()
+int main()
 {
-    this->Nome = " ";
-    this->NickName = " ";
-    this->LigLoss = 0;
-    this->LigWins = 0;
-    this->RevLoss = 0;
-    this->RevWins = 0;
-    this->LigLoss = 0;
-    this->LigWins = 0;
-    this->LigDraws = 0;
-    this->RevLoss = 0;
-    this->RevWins = 0;
-    this->RevDraws = 0;
-    this->VLoss = 0;
-    this->VWins = 0;
-    this->VDraws = 0;
-    this->PlayersCount = 0;
-}
+    Player *p = new Player();
+    p->ReadArq();
+    int fim = 1;
+    cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
+    cout << "Lista de comandos:" << endl;
+    cout << "CJ: Criar Jogador" << endl
+         << "RJ: Remover Jogador" << endl
+         << "LJ: [A/N] Listar jogadores" << endl;
+    cout << "EP: Executar Partida" << endl
+         << "FS: Finalizar Sistema" << endl;
+    cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
 
-Player::Player(string nick, string nome)
-{
-    this->Nome = nome;
-    this->NickName = nick;
-    this->LigLoss = 0;
-    this->LigWins = 0;
-    this->LigDraws = 0;
-    this->RevLoss = 0;
-    this->RevWins = 0;
-    this->RevDraws = 0;
-    this->VLoss = 0;
-    this->VWins = 0;
-    this->VDraws = 0;
-}
-
-Player::~Player()
-{
-    for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
+    while (fim != 0)
     {
-        PlayersList.erase(it);
-    }
-}
-
-void Player::ReadArq()
-{
-    string linha;
-    int tamanho;
-    ifstream arquivo("Players.txt");
-    if (arquivo)
-    {
-        getline(arquivo, linha);
-        tamanho = stoi(linha);
-        string linha;
-        for (int i = 0; i < tamanho; i++)
+        int teste = 0;
+        string comando;
+        cout << "Digite um comando" << endl;
+        cout << "(Para rever lista de comandos digite 0)" << endl;
+        cout << "Comando: ";
+        cin >> comando;
+        if (comando == "CJ")
         {
-            Player *temp = new Player();
-            getline(arquivo, temp->NickName);
-            getline(arquivo, temp->Nome);
-            getline(arquivo, linha);
-            temp->RevWins = stoi(linha);
-            getline(arquivo, linha);
-            temp->RevLoss = stoi(linha);
-            getline(arquivo, linha);
-            temp->RevDraws = stoi(linha);
-            getline(arquivo, linha);
-            temp->LigWins = stoi(linha);
-            getline(arquivo, linha);
-            temp->LigLoss = stoi(linha);
-            getline(arquivo, linha);
-            temp->LigDraws = stoi(linha);
-            getline(arquivo, linha);
-            temp->VWins = stoi(linha);
-            getline(arquivo, linha);
-            temp->VLoss = stoi(linha);
-            getline(arquivo, linha);
-            temp->VDraws = stoi(linha);
-            PlayersList.push_back(temp);
-            PlayersCount++;
-        }
-        arquivo.close();
-    }
-}
-
-Player *Player::GetPlayer(string nick)
-{
-    if (PlayersCount == 0)
-    {
-        return (nullptr);
-    }
-    else
-    {
-        for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
-        {
-            Player *temp = *it;
-            if (temp->NickName == nick)
+            string nick;
+            string nome;
+            cout << "Digite o nick do jogador" << endl;
+            while (teste == 0)
             {
-                return (*it);
+                try
+                {
+                    cout << "Nick: ";
+                    cin >> nick;
+                    if ((nick.find(" ") != string::npos))
+                    {
+                        throw bad_exception();
+                    }
+                    if (p->CheckPlayer(nick) == true)
+                    {
+                        throw invalid_argument(" Erro : este nick ja esta em uso !");
+                    }
+                    teste = 1;
+                }
+                catch (const bad_exception &e)
+                {
+                    cout << "Seu nickname não pode conter espaços em branco" << endl;
+                }
+                catch (const invalid_argument &e)
+                {
+                    cout << e.what() << endl;
+                }
             }
+
+            cout << "Digite o nome do jogador" << endl;
+            cin >> nome;
+            p->RegisterPlayer(nick, nome);
         }
-    }
-}
-
-int Player::GetPlayersCount()
-{
-    return (PlayersCount);
-}
-
-bool Player::CheckPlayer(string nick)
-{
-    if (PlayersCount == 0)
-    {
-        return (false);
-    }
-    Player *temp = GetPlayer(nick);
-    if (temp->NickName == nick)
-    {
-        return (true);
-    }
-
-    return (false);
-}
-
-void Player::LigWon(string nick)
-{
-    Player *temp = GetPlayer(nick);
-    if (temp->NickName == nick)
-    {
-        temp->LigWins++;
-        cout << "======= " << nick << " GANHOU!" << " ======" << endl;
-    }
-}
-
-void Player::LigLost(string nick)
-{
-    Player *temp = GetPlayer(nick);
-    if (temp->NickName == nick)
-    {
-        temp->LigLoss++;
-    }
-}
-
-void Player::LigDraw(string nick, string nick2)
-{
-    Player *temp = GetPlayer(nick);
-    Player *temp2 = GetPlayer(nick2);
-    {
-        temp->LigDraws++;
-        temp2->LigDraws++;
-        cout << "====== EMPATE ======" << endl;
-    }
-}
-
-void Player::RevWon(string nick)
-{
-    Player *temp = GetPlayer(nick);
-    if (temp->NickName == nick)
-    {
-        temp->RevWins++;
-        cout << "====== " << nick << " GANHOU!" << " ======" << endl;
-    }
-}
-
-void Player::RevLost(string nick)
-{
-    Player *temp = GetPlayer(nick);
-    if (temp->NickName == nick)
-    {
-        temp->RevLoss++;
-    }
-}
-
-void Player::RevDraw(string nick, string nick2)
-{
-    Player *temp = GetPlayer(nick);
-    Player *temp2 = GetPlayer(nick2);
-    {
-        temp->RevDraws++;
-        temp2->RevDraws++;
-        cout << "====== EMPATE ======" << endl;
-    }
-}
-
-void Player::VWon(string nick)
-{
-    Player *temp = GetPlayer(nick);
-    if (temp->NickName == nick)
-    {
-        temp->VWins++;
-        cout << "====== " << nick << " GANHOU!" << " ======" << endl;
-    }
-}
-
-void Player::VLost(string nick)
-{
-    Player *temp = GetPlayer(nick);
-    if (temp->NickName == nick)
-    {
-        temp->VLoss++;
-    }
-}
-
-void Player::VDraw(string nick, string nick2)
-{
-    Player *temp = GetPlayer(nick);
-    Player *temp2 = GetPlayer(nick2);
-    {
-        temp->VDraws++;
-        temp2->VDraws++;
-        cout << "====== EMPATE ======" << endl;
-    }
-}
-
-void Player::RegisterPlayer(string nick, string nome)
-{
-    int erro = 0;
-    Player *temp;
-    for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
-    {
-        temp = *it;
-        if (temp->NickName == nick)
-            erro = 1;
-        //        throw std::invalid_argument("ERRO: jogador repetido");
-    }
-
-    if (erro == 1)
-    {
-        cout << "ERRO: jogador repetido" << endl;
-    }
-    else
-    {
-        temp = new Player(nick, nome);
-        PlayersList.push_back(temp);
-        cout << "Jogador " << temp->NickName << " cadastrado com sucesso" << endl;
-        PlayersCount++;
-    }
-}
-
-void Player::DeletePlayer(string nick)
-{
-    int erro = 1;
-    Player *temp;
-    for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
-    {
-        temp = *it;
-        if (temp->NickName == nick)
+        else if (comando == "RJ")
         {
-            PlayersList.erase(it);
-            cout << "Jogador " << temp->NickName << " removido com sucesso" << endl;
-            erro = 0;
-            PlayersCount--;
+            string nick;
+            cout << "Digite o nick do jogador" << endl;
+            cin >> nick;
+            p->DeletePlayer(nick);
         }
-    }
-    if (erro == 1)
-    {
-        cout << "ERRO: jogador inexistente" << endl;
-    }
-}
-
-void Player::ListPlayersbyNick()
-{
-    Player *temp;
-    for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
-    {
-        temp = *it;
-        cout << ">>>>>>>>>>> " << temp->NickName << " <<<<<<<<<<<" << endl;
-        cout << "  | REVERSI       - V: " << temp->RevWins << " D: " << temp->RevLoss << " E: " << temp->RevDraws << " |" << endl;
-        cout << "  | LIG4          - V: " << temp->LigWins << " D: " << temp->LigLoss << " E: " << temp->LigDraws << " |" << endl;
-        cout << "  | JOGO DA VELHA - V: " << temp->VWins << " D: " << temp->VLoss << " E: " << temp->VDraws << " |" << endl;
-        cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
-    }
-}
-
-void Player::ListPlayersbyName()
-{
-    Player *temp;
-    for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
-    {
-        temp = *it;
-        cout << ">>>>>>>>>>> " << temp->Nome << " <<<<<<<<<<<" << endl;
-        cout << "  | REVERSI       - V: " << temp->RevWins << " D: " << temp->RevLoss << " E: " << temp->RevDraws << " |" << endl;
-        cout << "  | LIG4          - V: " << temp->LigWins << " D: " << temp->LigLoss << " E: " << temp->LigDraws << " |" << endl;
-        cout << "  | JOGO DA VELHA - V: " << temp->VWins << " D: " << temp->VLoss << " E: " << temp->VDraws << " |" << endl;
-        cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
-    }
-}
-
-int Player::SumPoints(int l, int r, int v)
-{
-    return (((this->LigWins * 3) + this->LigDraws) * l + ((this->RevWins * 3) + this->RevDraws) * r + ((this->VWins * 3) + this->VDraws) * v);
-}
-
-void Player::Victory(int l, int r, int v)
-
-{
-    Player *temp;
-    Player *temp2;
-    string vencedor;
-    int v1 = 0;
-    int v2 = 0;
-    int empate = 1;
-    int teste = l * r * v;
-    for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end() - 1; it++)
-    {
-        for (vector<Player *>::const_iterator it2 = PlayersList.begin() + 1; it2 != PlayersList.end(); it2++)
+        else if (comando == "EP")
         {
-            temp = *it;
-            temp2 = *it2;
-            if (temp->SumPoints(l, r, v) > temp2->SumPoints(l, r, v))
+            if (p->GetPlayersCount() < 2)
             {
-                empate = 0;
-                vencedor = temp->NickName;
-            }
-            else if ((temp->LigWins + temp->RevWins) < (temp2->LigWins + temp2->RevWins))
-            {
-                empate = 0;
-                vencedor = temp2->NickName;
+                cout << "E necessario cadastrar mais " << (2 - p->GetPlayersCount()) << "jogador(es) para executar essa função!" << endl;
             }
             else
             {
-                empate = 1;
-            }
-        }
-    }
-    if (l == 1 && teste == 0)
-    {
-        cout << "Resultado Lig4" << endl;
-        if (empate == 0)
-        {
-            cout << "Vencedor: " << vencedor << endl;
-        }
-        else
-            cout << "EMPATE!" << endl;
-    }
-    else if (r == 1 && teste == 0)
-    {
-        cout << "Resultado Reversi" << endl;
-        if (empate == 0)
-        {
-            cout << "Vencedor: " << vencedor << endl;
-        }
-        else
-            cout << "EMPATE!" << endl;
-    }
-    else if (v == 1 && teste == 0)
-    {
-        cout << "Resultado Jogo da Velha" << endl;
-        if (empate == 0)
-        {
-            cout << "Vencedor: " << vencedor << endl;
-        }
-        else
-            cout << "EMPATE!" << endl;
-    }
-    else if (empate == 0 && teste ==1)
-    {
-        cout << "###########################" << endl
-             << endl;
-        cout << vencedor << " CAMPEAO!" << endl
-             << endl;
-        cout << "###########################" << endl;
-    }
-    if (empate == 1 && teste == 1)
-    {
-        cout << "################" << endl;
-        cout << "     EMPATE!    " << endl;
-        cout << "################" << endl;
-    }
-}
+                string jogador;
+                string jogador2;
+                char jogo;
+                cout << "Digite R para jogar Reversi, L para jogar Lig4 ou V para jogar o Jogo da Velha" << endl;
+                cin >> jogo;
+                cout << "Digite os nicks dos jogadores que irao jogar" << endl;
+                cout << "Jogador1: ";
+                cin >> jogador;
+                while (p->CheckPlayer(jogador) == false)
+                {
+                    cout << "Erro: jogador não encontrado." << endl;
+                    cout << "Digite o Nick do jogador1 novamente" << endl;
+                    cout << "Jogador1: ";
+                    cin >> jogador;
+                }
+                cout << "Jogador2: ";
+                cin >> jogador2;
+                while (p->CheckPlayer(jogador2) == false)
+                {
+                    cout << "Erro: jogador não encontrado." << endl;
+                    cout << "Digite o Nick do jogador2 novamente" << endl;
+                    cout << "Jogador2: ";
+                    cin >> jogador2;
+                }
+                switch (jogo)
+                {
+                case 'R':
+                {
+                    Reversi *tabuleiro = new Reversi;
+                    int tamanho;
+                    bool tamanhoValido = false;
 
-void Player::WriteArq()
-{
-    ofstream arq("Players.txt");
-    arq << PlayersCount << endl;
-    Player *temp;
+                    while (!tamanhoValido)
+                    {
+                        try
+                        {
+                            cout << "Digite o tamanho do tabuleiro n x n, entre 4 e 10. O padrão para Reversi é um tabuleiro 8x8." << std::endl;
+                            cin >> tamanho;
+                            tabuleiro->inicializar_tabuleiro(tamanho);
+                            tamanhoValido = true;
+                        }
+                        catch (const std::out_of_range &e)
+                        {
+                            cout << "Erro: " << e.what() << endl;
+                        }
+                    }
 
-    for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
-    {
-        temp = *it;
-        arq << temp->NickName << endl;
-        arq << temp->Nome << endl;
-        arq << temp->RevWins << endl;
-        arq << temp->RevLoss << endl;
-        arq << temp->RevDraws << endl;
-        arq << temp->LigWins << endl;
-        arq << temp->LigLoss << endl;
-        arq << temp->LigDraws << endl;
-        arq << temp->VWins << endl;
-        arq << temp->VLoss << endl;
-        arq << temp->VDraws << endl;
+                    tabuleiro->imprimir_tabuleiro();
+                    char jogador_reversi = 'X';
+                    char oponente_reversi = 'O';
+                    char auxiliar = '\0';
+                    int contador = 0;
+                    while (tabuleiro->game_over())
+                    {
+                        try
+                        {
+                            if (contador % 2 == 0)
+                            {
+                                cout << "Turno do " << jogador << endl;
+                            }
+                            else
+                            {
+                                cout << "Turno do " << jogador2 << endl;
+                            }
+                            tabuleiro->checar_jogada(jogador_reversi, oponente_reversi);
+                            int linha, coluna;
+                            if (tabuleiro->checar_jogada(jogador_reversi, oponente_reversi))
+                            {
+                                std::cin >> linha;
+                                std::cin >> coluna;
+                                tabuleiro->lerjogada((linha - 1), (coluna - 1), jogador_reversi);
+                            }
+                        }
+                        catch (const invalid_argument &e)
+                        {
+                            cout << e.what() << endl;
+                            cout << "Digite outra jogada" << endl;
+                            continue;
+                        }
+                        auxiliar = jogador_reversi;
+                        jogador_reversi = oponente_reversi;
+                        oponente_reversi = auxiliar;
+                        tabuleiro->imprimir_tabuleiro();
+                        contador++;
+                    }
+
+                    if (tabuleiro->get_num_pecas_X() > tabuleiro->get_num_pecas_O())
+                    {
+                        p->RevWon(jogador);
+                        p->RevLost(jogador2);
+                    }
+                    else if (tabuleiro->get_num_pecas_X() < tabuleiro->get_num_pecas_O())
+                    {
+                        p->RevWon(jogador2);
+                        p->RevLost(jogador);
+                    }
+                    else
+                    {
+                        p->RevDraw(jogador, jogador2);
+                    }
+
+                    std::cout << std::endl
+                              << "Numero de pecas do Jogador 1: " << tabuleiro->get_num_pecas_X() << std::endl;
+                    std::cout << std::endl
+                              << "Numero de pecas do Jogador 2: " << tabuleiro->get_num_pecas_O() << std::endl;
+
+                    delete tabuleiro;
+
+                } // fim do case R
+
+                case 'L':
+                {
+                    Lig4 *tabuleiro = new Lig4;
+                    int tamanho;
+                    bool tamanhoValido = false;
+
+                    while (!tamanhoValido)
+                    {
+                        try
+                        {
+                            cout << "Digite o tamanho do tabuleiro n x n (entre 4 e 10): " << endl;
+                            cin >> tamanho;
+                            tabuleiro->inicializar_tabuleiro(tamanho);
+                            tamanhoValido = true;
+                        }
+                        catch (const std::out_of_range &e)
+                        {
+                            cout << "Erro: " << e.what() << endl;
+                        }
+                    }
+
+                    tabuleiro->imprimir_tabuleiro();
+                    int contador = 0;
+                    int Endgame = 0;
+                    while (Endgame == 0)
+                    {
+                        if (contador % 2 == 0)
+                        {
+                            cout << "Turno do " << jogador << endl;
+                        }
+                        else
+                        {
+                            cout << "Turno do " << jogador2 << endl;
+                        }
+                        int coluna;
+                        cout << "Digite a coluna de entrada (1-" << tamanho << "): ";
+                        cin >> coluna;
+
+                        if (tabuleiro->lerjogada((coluna - 1)))
+                        {
+                            tabuleiro->imprimir_tabuleiro();
+
+                            if (tabuleiro->checarvitoria('X'))
+                            {
+                                p->LigWon(jogador);
+                                p->LigLost(jogador2);
+                                Endgame = 1;
+                            }
+                            if (tabuleiro->checarvitoria('O'))
+                            {
+                                p->LigWon(jogador2);
+                                p->LigLost(jogador);
+                                Endgame = 1;
+                            }
+                            if (tabuleiro->tabuleiro_cheio())
+                            {
+                                Endgame = 1;
+                            }
+                            contador++;
+                        }
+                    }
+                    delete tabuleiro;
+
+                } // fim do case L
+
+                case 'V':
+                {
+                    jogoVelha *tabuleiro = new jogoVelha;
+                    int tamanho = 3;
+                    tabuleiro->inicializar_tabuleiro(tamanho);
+                    tabuleiro->imprimir_tabuleiro();
+                    int contador = 0;
+                    int Endgame = 0;
+                    while (Endgame == 0)
+                    {
+                        if (contador % 2 == 0)
+                        {
+                            cout << "Turno do " << jogador << endl;
+                        }
+                        else
+                        {
+                            cout << "Turno do " << jogador2 << endl;
+                        }
+                        int linha;
+                        cout << "Digite a linha de entrada (1-3): ";
+                        cin >> linha;
+                        linha--;
+                        int coluna;
+                        cout << "Digite a coluna de entrada (1-3): ";
+                        cin >> coluna;
+                        coluna--;
+                        if (tabuleiro->lerjogada(linha, coluna))
+                        {
+                            tabuleiro->imprimir_tabuleiro();
+                            if (tabuleiro->checarvitoria('X'))
+                            {
+                                p->VWon(jogador);
+                                p->VLost(jogador2);
+                                Endgame = 1;
+                            }
+                            if (tabuleiro->checarvitoria('O'))
+                            {
+                                p->VWon(jogador2);
+                                p->VLost(jogador);
+                                Endgame = 1;
+                            }
+                            if (tabuleiro->tabuleiro_cheio())
+                            {
+                                p->VDraw(jogador, jogador2);
+                                Endgame = 1;
+                            }
+                            contador++;
+                        }
+                    }
+                    delete tabuleiro;
+                }
+                }
+
+            } // fim do switch
+        }
+        else if (comando == "LJ")
+        {
+            char parameter;
+            cin >> parameter;
+            if (parameter == 'A')
+                p->ListPlayersbyNick();
+            if (parameter == 'N')
+                p->ListPlayersbyName();
+        }
+        else if (comando == "FS")
+        {
+            fim = 0;
+            p->Victory(1, 0, 0);
+            p->Victory(0, 1, 0);
+            p->Victory(0, 0, 1);
+            p->Victory(1, 1, 1);
+            p->WriteArq();
+            break;
+        }
+        else
+        {
+            cout << "Comando inválido :(" << endl;
+            cout << "Digite um novo comando";
+        }
     }
-    arq.close();
+    delete p;
+    return 0;
 }
