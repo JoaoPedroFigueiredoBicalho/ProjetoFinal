@@ -153,7 +153,7 @@ int main()
                     cout << "Digite a linha e coluna de sua jogada, ou 'desisto' para desistir: ";
                     cin >> linha;
                     cin >> coluna;
-                    if (linha == atoi("desisto"))
+                    if (linha == atoi("desisto") || coluna == atoi("desisto"))
                     {
                       if (contador % 2 == 0)
                       {
