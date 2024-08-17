@@ -250,6 +250,7 @@ void Player::DeletePlayer(string nick)
             cout << "Jogador " << temp->NickName << " removido com sucesso" << endl;
             erro = 0;
             PlayersCount--;
+            break;
         }
     }
     if (erro == 1)
@@ -336,6 +337,7 @@ void Player::Victory(int l, int r, int v)
     if (l == 1 && teste == 0)
     {
         cout << "--------------------" << endl;
+        cout << "--------------------" << endl;
         cout << "Resultado Lig4" << endl;
         if (empate == 0)
         {
@@ -343,8 +345,8 @@ void Player::Victory(int l, int r, int v)
             cout << "--------------------" << endl;
         }
         else
-            cout << "EMPATE!" << endl;
-        cout << "--------------------" << endl;
+            cout << "EMPATE!" << endl
+                 << "--------------------" << endl;
     }
     else if (r == 1 && teste == 0)
     {
@@ -356,8 +358,8 @@ void Player::Victory(int l, int r, int v)
             cout << "--------------------" << endl;
         }
         else
-            cout << "EMPATE!" << endl;
-        cout << "--------------------" << endl;
+            cout << "EMPATE!" << endl
+                 << "--------------------" << endl;
     }
     else if (v == 1 && teste == 0)
     {
@@ -367,13 +369,16 @@ void Player::Victory(int l, int r, int v)
         {
             cout << "Vencedor: " << vencedor << endl;
             cout << "--------------------" << endl;
+            cout << "--------------------" << endl;
         }
         else
-            cout << "EMPATE!" << endl;
-        cout << "--------------------" << endl;
+            cout << "EMPATE!" << endl
+                 << "--------------------" << endl
+                 << "--------------------" << endl;
     }
     else if (empate == 0 && teste == 1)
     {
+        cout << "Resultado fnal:" << endl;
         cout << "###########################" << endl
              << endl;
         cout << vencedor << " CAMPEAO!" << endl
@@ -382,8 +387,11 @@ void Player::Victory(int l, int r, int v)
     }
     if (empate == 1 && teste == 1)
     {
-        cout << "################" << endl;
-        cout << "     EMPATE!    " << endl;
+        cout << "Resultado fnal:" << endl;
+        cout << "################" << endl
+             << endl;
+        cout << "     EMPATE!    " << endl
+             << endl;
         cout << "################" << endl;
     }
 }

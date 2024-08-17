@@ -333,12 +333,13 @@ int main()
     }
     else if (comando == "LJ")
     {
-      char parameter;
-      cin >> parameter;
-      if (parameter == 'A')
-        p->ListPlayersbyNick();
-      if (parameter == 'N')
-        p->ListPlayersbyName();
+        cout << "Deseja listar pelo Nick [digite A] ou Nome [diite N]?" << endl;
+        char parameter;
+        cin >> parameter;
+        if (parameter == 'A')
+            p->ListPlayersbyNick();
+        if (parameter == 'N')
+            p->ListPlayersbyName();
     }
     else if (comando == "FS")
     {
