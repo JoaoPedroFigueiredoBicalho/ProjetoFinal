@@ -15,7 +15,7 @@ public:
   void inicializar_tabuleiro(int tamanho);
   void checar_jogadas_validas();
   void lerjogada(int linha, int coluna, char jogador);
-  bool checar_jogada(char jogador, char oponente);
+  bool checar_jogada(char jogador, char oponente, std::string nome_jogador);
   void checar_direcao(int linha, int coluna, int direcao, char oponente);
   bool checar_se_dentro_do_tabuleiro(int linha, int coluna);
   void checar_jogada_multidirecional(int i, int linha, int coluna, char jogador);

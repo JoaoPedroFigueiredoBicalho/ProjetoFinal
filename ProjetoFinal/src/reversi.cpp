@@ -59,7 +59,7 @@ void Reversi::lerjogada(int linha, int coluna, char jogador)
   }
 }
 
-bool Reversi::checar_jogada(char jogador, char oponente)
+bool Reversi::checar_jogada(char jogador, char oponente, std::string nome_jogador)
 {
   /// Checa as jogadas válidas em uma determinada posição, além de que quais casas virariam.
   int linha, coluna;
@@ -96,7 +96,7 @@ bool Reversi::checar_jogada(char jogador, char oponente)
   }
   if (JogadasValidas.empty())
   {
-    std::cout << "O jogador " << jogador << " nao possui jogadas validas!" << std::endl;
+    std::cout << "O jogador " << nome_jogador << " nao possui jogadas validas!" << std::endl;
     termino++;
     game_over();
     return false;
