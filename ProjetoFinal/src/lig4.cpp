@@ -2,14 +2,14 @@
 #include <iostream>
 
 bool Lig4::lerjogada(int jogadaColuna) {
-    // Verifica se a coluna é válida
+    /// Verifica se a coluna é válida, observando se o usuário colocou algum número negativo ou algum número superior ao tamanho do tabuleiro.
     if (jogadaColuna < 0 || jogadaColuna >= tamanho) {
         std::cout << "Coluna inválida!" << std::endl;
         return false;
     }
 
     bool coluna_cheia = true;
-    // Procura a linha disponível para a jogada na coluna especificada
+    /// Procura a linha disponível para a jogada na coluna especificada, e caso a coluna não esteja cheia ele coloca uma peça.
     for (int linha = tamanho - 1; linha >= 0; linha--) {
         if (tabuleiro[linha][jogadaColuna] == ' ') {
             tabuleiro[linha][jogadaColuna] = get_jogada_atual();
@@ -18,18 +18,20 @@ bool Lig4::lerjogada(int jogadaColuna) {
         }
     }
 
-    // Informa se a coluna está cheia
+    /// Informa se a coluna está cheia.
     if (coluna_cheia) {
         std::cout << "Coluna cheia!" << std::endl;
         return false;
     }
 
-    // Alterna o jogador após uma jogada
+    /// Alterna o jogador após uma jogada.
     alternar_jogador();
+
     return true;
 }
 
 bool Lig4::tabuleiro_cheio() const {
+    /// Verifica se todas as entradas estão preenchidas.
     for (const auto& linha : tabuleiro) {
         for (char celula : linha) {
             if (celula == ' ') return false;
@@ -39,10 +41,11 @@ bool Lig4::tabuleiro_cheio() const {
 }
 
 bool Lig4::checarvitoria(char jogador) const {
+    /// Verifica se o jogador da vez ganhou.
     int linhas = tabuleiro.size();
     int colunas = tabuleiro[0].size();
 
-    // Verificação vertical
+    /// Verificação vertical
     for (int i = 0; i < linhas - 3; i++) {
         for (int j = 0; j < colunas; j++) {
             if (tabuleiro[i][j] == jogador &&
@@ -54,7 +57,7 @@ bool Lig4::checarvitoria(char jogador) const {
         }
     }
 
-    // Verificação horizontal
+    /// Verificação horizontal
     for (int i = 0; i < linhas; i++) {
         for (int j = 0; j < colunas - 3; j++) {
             if (tabuleiro[i][j] == jogador &&
@@ -66,7 +69,7 @@ bool Lig4::checarvitoria(char jogador) const {
         }
     }
 
-    // Verificação diagonal principal
+    /// Verificação diagonal principal
     for (int i = 0; i < linhas - 3; i++) {
         for (int j = 0; j < colunas - 3; j++) {
             if (tabuleiro[i][j] == jogador &&
@@ -78,7 +81,7 @@ bool Lig4::checarvitoria(char jogador) const {
         }
     }
 
-    // Verificação diagonal secundária
+    /// Verificação diagonal secundária
     for (int i = 3; i < linhas; ++i) {
         for (int j = 0; j < colunas - 3; ++j) {
             if (tabuleiro[i][j] == jogador &&
