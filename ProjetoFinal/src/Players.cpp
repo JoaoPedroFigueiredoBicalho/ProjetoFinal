@@ -335,33 +335,42 @@ void Player::Victory(int l, int r, int v)
     }
     if (l == 1 && teste == 0)
     {
+        cout << "--------------------" << endl;
         cout << "Resultado Lig4" << endl;
         if (empate == 0)
         {
             cout << "Vencedor: " << vencedor << endl;
+            cout << "--------------------" << endl;
         }
         else
             cout << "EMPATE!" << endl;
+        cout << "--------------------" << endl;
     }
     else if (r == 1 && teste == 0)
     {
+        cout << "--------------------" << endl;
         cout << "Resultado Reversi" << endl;
         if (empate == 0)
         {
             cout << "Vencedor: " << vencedor << endl;
+            cout << "--------------------" << endl;
         }
         else
             cout << "EMPATE!" << endl;
+        cout << "--------------------" << endl;
     }
     else if (v == 1 && teste == 0)
     {
+        cout << "--------------------" << endl;
         cout << "Resultado Jogo da Velha" << endl;
         if (empate == 0)
         {
             cout << "Vencedor: " << vencedor << endl;
+            cout << "--------------------" << endl;
         }
         else
             cout << "EMPATE!" << endl;
+        cout << "--------------------" << endl;
     }
     else if (empate == 0 && teste == 1)
     {
