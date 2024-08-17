@@ -151,6 +151,7 @@ int main()
           char oponente_reversi = 'O';
           char auxiliar = '\0';
           int contador = 0;
+          string entrada;
           while (tabuleiro->game_over())
           {
             try
@@ -172,8 +173,10 @@ int main()
                   while (true)
                   {
                     cout << "Digite a linha e coluna de sua jogada: ";
-                    cin >> linha;
-                    cin >> coluna;
+                    getline(std::cin, entrada, ' ');
+                    linha = stoi(entrada);
+                    getline(std::cin, entrada);
+                    coluna = stoi(entrada);
 
                     if (cin.fail() || linha > tamanho || coluna > tamanho)
                     {
