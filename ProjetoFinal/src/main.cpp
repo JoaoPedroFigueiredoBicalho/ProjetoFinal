@@ -295,7 +295,7 @@ int main()
         {
           jogoVelha *tabuleiro = new jogoVelha;
           int tamanho = 3;
-          tabuleiro->inicializar_tabuleiro(tamanho);
+          tabuleiro->inicializar_tabuleiro();
           tabuleiro->imprimir_tabuleiro();
           int contador = 0;
           int Endgame = 0;
@@ -367,14 +367,14 @@ int main()
     }
     else if (comando == "0")
     {
-        cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
-        cout << "Lista de comandos:" << endl;
-        cout << "CJ: Criar Jogador" << endl
-             << "RJ: Remover Jogador" << endl
-             << "LJ: [A/N] Listar jogadores" << endl;
-        cout << "EP: Executar Partida" << endl
-             << "FS: Finalizar Sistema" << endl;
-        cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
+      cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
+      cout << "Lista de comandos:" << endl;
+      cout << "CJ: Criar Jogador" << endl
+           << "RJ: Remover Jogador" << endl
+           << "LJ: [A/N] Listar jogadores" << endl;
+      cout << "EP: Executar Partida" << endl
+           << "FS: Finalizar Sistema" << endl;
+      cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
     }
     else
     {
