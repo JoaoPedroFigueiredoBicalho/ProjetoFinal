@@ -2,6 +2,7 @@
 
 Player::Player()
 {
+    ///construtor sem parametros
     this->Nome = " ";
     this->NickName = " ";
     this->LigLoss = 0;
@@ -22,6 +23,7 @@ Player::Player()
 
 Player::Player(string nick, string nome)
 {
+    ///construtor com parâmetros
     this->Nome = nome;
     this->NickName = nick;
     this->LigLoss = 0;
@@ -37,6 +39,7 @@ Player::Player(string nick, string nome)
 
 Player::~Player()
 {
+    ///destrutor
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
         PlayersList.erase(it);
@@ -45,6 +48,7 @@ Player::~Player()
 
 void Player::ReadArq()
 {
+    ///testa se o arquivo de cadastro de jogadores exist e caso exista recadastra todos os usuarios ao iniciar o programa
     string linha;
     int tamanho;
     ifstream arquivo("Players.txt");
@@ -85,6 +89,7 @@ void Player::ReadArq()
 
 Player *Player::GetPlayer(string nick)
 {
+    ///busca um jogador no vector de jogadores e retorna um ponteiro apontando para ele
     if (PlayersCount == 0)
     {
         return (nullptr);
@@ -104,11 +109,13 @@ Player *Player::GetPlayer(string nick)
 
 int Player::GetPlayersCount()
 {
+    ///retorna o número atual de jogadores cadastrados
     return (PlayersCount);
 }
 
 bool Player::CheckPlayer(string nick)
 {
+    ///checa se ja existe algum jogador cadastrado com o nick fornecido e retorna true caso exista
     if (PlayersCount == 0)
     {
         return (false);
@@ -124,6 +131,7 @@ bool Player::CheckPlayer(string nick)
 
 void Player::LigWon(string nick)
 {
+    ///incrementa o numero de vitorias no lig4
     Player *temp = GetPlayer(nick);
     if (temp->NickName == nick)
     {
@@ -134,6 +142,7 @@ void Player::LigWon(string nick)
 
 void Player::LigLost(string nick)
 {
+    /// incrementa o numero de derrotas no lig4
     Player *temp = GetPlayer(nick);
     if (temp->NickName == nick)
     {
@@ -143,6 +152,7 @@ void Player::LigLost(string nick)
 
 void Player::LigDraw(string nick, string nick2)
 {
+    /// incrementa o numero de empates no lig4
     Player *temp = GetPlayer(nick);
     Player *temp2 = GetPlayer(nick2);
     {
@@ -154,6 +164,7 @@ void Player::LigDraw(string nick, string nick2)
 
 void Player::RevWon(string nick)
 {
+    /// incrementa o numero de vitorias no reversi
     Player *temp = GetPlayer(nick);
     if (temp->NickName == nick)
     {
@@ -164,6 +175,7 @@ void Player::RevWon(string nick)
 
 void Player::RevLost(string nick)
 {
+    /// incrementa o numero de derrotas no reversi
     Player *temp = GetPlayer(nick);
     if (temp->NickName == nick)
     {
@@ -173,6 +185,7 @@ void Player::RevLost(string nick)
 
 void Player::RevDraw(string nick, string nick2)
 {
+    /// incrementa o numero de empates no reversi
     Player *temp = GetPlayer(nick);
     Player *temp2 = GetPlayer(nick2);
     {
@@ -184,6 +197,7 @@ void Player::RevDraw(string nick, string nick2)
 
 void Player::VWon(string nick)
 {
+    /// incrementa o numero de vitorias no jogo da velha
     Player *temp = GetPlayer(nick);
     if (temp->NickName == nick)
     {
@@ -194,6 +208,7 @@ void Player::VWon(string nick)
 
 void Player::VLost(string nick)
 {
+    /// incrementa o numero de derrotas no jogo da velha
     Player *temp = GetPlayer(nick);
     if (temp->NickName == nick)
     {
@@ -203,6 +218,7 @@ void Player::VLost(string nick)
 
 void Player::VDraw(string nick, string nick2)
 {
+    /// incrementa o numero de empates no jogo da velha
     Player *temp = GetPlayer(nick);
     Player *temp2 = GetPlayer(nick2);
     {
@@ -214,6 +230,7 @@ void Player::VDraw(string nick, string nick2)
 
 void Player::RegisterPlayer(string nick, string nome)
 {
+    ///checa se ja existe um jogador com o nick informado  caso nao exista cria um jogador com o nick e nome informados e  adiciona no vector de jogadores
     int erro = 0;
     Player *temp;
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
@@ -221,7 +238,6 @@ void Player::RegisterPlayer(string nick, string nome)
         temp = *it;
         if (temp->NickName == nick)
             erro = 1;
-        //        throw std::invalid_argument("ERRO: jogador repetido");
     }
 
     if (erro == 1)
@@ -239,6 +255,7 @@ void Player::RegisterPlayer(string nick, string nome)
 
 void Player::DeletePlayer(string nick)
 {
+    ///checa se existe um jogador com o nick informado e deleta le caso exista
     int erro = 1;
     Player *temp;
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
@@ -261,6 +278,7 @@ void Player::DeletePlayer(string nick)
 
 void Player::ListPlayersbyNick()
 {
+    ///imprime uma lista de todos os jogadores pelos nicks e na ordem em que foram cadastrados 
     Player *temp;
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
@@ -275,6 +293,7 @@ void Player::ListPlayersbyNick()
 
 void Player::ListPlayersbyName()
 {
+    /// imprime uma lista de todos os jogadores pelos nomes e na ordem em que foram cadastrados
     Player *temp;
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
@@ -289,12 +308,14 @@ void Player::ListPlayersbyName()
 
 int Player::SumPoints(int l, int r, int v)
 {
+    ///contabiliza o total de pontos de um determinado jogador multiplicando vitorias por 3 e empates po 1
     return (((this->LigWins * 3) + this->LigDraws) * l + ((this->RevWins * 3) + this->RevDraws) * r + ((this->VWins * 3) + this->VDraws) * v);
 }
 
 void Player::Victory(int l, int r, int v)
 
 {
+    ///chama a função sumpoints e contabiliza/imprime o vencedor de cada jogo e o vencedor geral
     Player *temp;
     Player *temp2;
     Player *temp3;
@@ -398,6 +419,7 @@ void Player::Victory(int l, int r, int v)
 
 void Player::WriteArq()
 {
+    ///abre ou cria o arquivo de cadastro e salva todos os usuarios cadastrados nele para leitura na proxima execução do programa
     ofstream arq("Players.txt");
     arq << PlayersCount << endl;
     Player *temp;
