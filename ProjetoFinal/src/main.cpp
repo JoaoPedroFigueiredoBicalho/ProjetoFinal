@@ -112,12 +112,12 @@ int main()
           {
             try
             {
-              cout << "Digite o tamanho do tabuleiro n x n, entre 4 e 10. O padrao para Reversi e um tabuleiro 8x8." << std::endl;
+              cout << "Digite o tamanho do tabuleiro n x n, entre 4 e 10. O padrao para Reversi e um tabuleiro 8x8." << endl;
               cin >> tamanho;
               tabuleiro->inicializar_tabuleiro(tamanho);
               tamanhoValido = true;
             }
-            catch (const std::out_of_range &e)
+            catch (const out_of_range &e)
             {
               cout << "Erro: " << e.what() << endl;
             }
@@ -148,14 +148,14 @@ int main()
                 {
                   while (true)
                   {
-                    std::cout << "Digite a linha e coluna de sua jogada: ";
-                    std::cin >> linha;
-                    std::cin >> coluna;
-                    if (std::cin.fail() || linha > tamanho || coluna > tamanho)
+                    cout << "Digite a linha e coluna de sua jogada: ";
+                    cin >> linha;
+                    cin >> coluna;
+                    if (cin.fail() || linha > tamanho || coluna > tamanho)
                     {
-                      std::cin.clear();
-                      std::cin.ignore(1000, '\n');
-                      throw std::out_of_range("Digite apenas numeros validos.");
+                      cin.clear();
+                      cin.ignore(1000, '\n');
+                      throw out_of_range("Digite apenas numeros validos.");
                     }
                     else
                       break;
@@ -199,11 +199,11 @@ int main()
           {
             p->RevDraw(jogador, jogador2);
           }
-          std::cout << "Fim de jogo!" << std::endl;
-          std::cout << std::endl
-                    << "Numero de pecas do " << jogador << ": " << tabuleiro->get_num_pecas_X() << std::endl;
-          std::cout << std::endl
-                    << "Numero de pecas do " << jogador2 << ": " << tabuleiro->get_num_pecas_O() << std::endl;
+          cout << "Fim de jogo!" << endl;
+          cout << endl
+               << "Numero de pecas do " << jogador << ": " << tabuleiro->get_num_pecas_X() << endl;
+          cout << endl
+               << "Numero de pecas do " << jogador2 << ": " << tabuleiro->get_num_pecas_O() << endl;
 
           delete tabuleiro;
 
@@ -224,7 +224,7 @@ int main()
               tabuleiro->inicializar_tabuleiro(tamanho);
               tamanhoValido = true;
             }
-            catch (const std::out_of_range &e)
+            catch (const out_of_range &e)
             {
               cout << "Erro: " << e.what() << endl;
             }
