@@ -21,7 +21,7 @@ public:
     void set_tabuleiro(int linha, int coluna, char jogada);
 
     // tamanho por parametro
-    void inicializar_tabuleiro(int tamanho);
+    virtual void inicializar_tabuleiro(int tamanho);
 
     // Imprime o tabuleiro no console
     void imprimir_tabuleiro();
