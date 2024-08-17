@@ -148,12 +148,19 @@ int main()
                 {
                   while (true)
                   {
-                    cout << "Digite a linha e coluna de sua jogada: ";
+                    cout << "Digite a linha e coluna de sua jogada, ou 'desisto' para desistir: ";
                     cin >> linha;
                     cin >> coluna;
-                    if (linha == (int)"desisto")
+                    if (linha == atoi("desisto"))
                     {
-                      tabuleiro->set_termino(2);
+                      if (contador % 2 == 0)
+                      {
+                        cout << "O jogador " << jogador << " desistiu!" << endl;
+                      }
+                      else
+                      {
+                        cout << "O jogador " << jogador2 << " desistiu!" << endl;
+                      }
                       goto endgame;
                     }
                     if (cin.fail() || linha > tamanho || coluna > tamanho)
