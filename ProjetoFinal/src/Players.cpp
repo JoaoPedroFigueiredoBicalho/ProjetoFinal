@@ -343,7 +343,7 @@ void Player::Victory(int l, int r, int v)
         else
             cout << "EMPATE!" << endl;
     }
-    else if (v == 1 && teste == 1)
+    else if (v == 1 && teste == 0)
     {
         cout << "Resultado Jogo da Velha" << endl;
         if (empate == 0)
@@ -353,7 +353,7 @@ void Player::Victory(int l, int r, int v)
         else
             cout << "EMPATE!" << endl;
     }
-    else if (empate == 0)
+    else if (empate == 0 && teste ==1)
     {
         cout << "###########################" << endl
              << endl;
@@ -361,7 +361,7 @@ void Player::Victory(int l, int r, int v)
              << endl;
         cout << "###########################" << endl;
     }
-    if (empate == 1)
+    if (empate == 1 && teste == 1)
     {
         cout << "################" << endl;
         cout << "     EMPATE!    " << endl;
