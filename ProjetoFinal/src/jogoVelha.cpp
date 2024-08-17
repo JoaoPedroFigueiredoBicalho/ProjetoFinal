@@ -3,13 +3,15 @@
 
 void jogoVelha::inicializar_tabuleiro(int tamanho)
 {
+  /// Inicializa o tabuleiro por um método override e inicializa com espaços vazios.
   this->tamanho = tamanho;
-  /// Redimensiona o tabuleiro no tamanho escolhido e o inicializa com espaços vazios.
+
   tabuleiro.resize(tamanho, std::vector<char>(tamanho, ' '));
 }
 
 bool jogoVelha::lerjogada(int jogadaLinha, int jogadaColuna)
-{
+{  
+  ///Método que lê a kogada do usuário (linha e coluna) e substitui o espaço vazio pela jogada do jogador, caso a entrada seja válida. Por fim alterna o jogador para a próxima rodada
   if (jogadaColuna < 0 || jogadaColuna >= tamanho || jogadaLinha < 0 || jogadaLinha >= tamanho)
   {
     std::cout << "Jogada inválida!" << std::endl;
@@ -35,6 +37,7 @@ bool jogoVelha::lerjogada(int jogadaLinha, int jogadaColuna)
 
 bool jogoVelha::tabuleiro_cheio() const
 {
+  ///Método para verificar se o tabuleiro está cheio
   for (const auto &linha : tabuleiro)
   {
     for (char celula : linha)
@@ -48,6 +51,7 @@ bool jogoVelha::tabuleiro_cheio() const
 
 bool jogoVelha::checarvitoria(char jogador) const
 {
+  ///Método para checar se o jogador realizou uma sequência de 3 (horizontal, vertical ou diagonal)
   int linhas = 3;
   int colunas = 3;
 
