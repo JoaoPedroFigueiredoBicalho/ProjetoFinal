@@ -6,7 +6,7 @@
 class jogoVelha : public boardLogic
 {
 public:
-  void inicializar_tabuleiro(int tamanho);
+  virtual void inicializar_tabuleiro(int tamanho);
 
   bool lerjogada(int jogadaLinha, int jogadaColuna);
 
