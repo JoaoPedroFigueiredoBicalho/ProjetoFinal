@@ -174,13 +174,12 @@ int main()
                     cout << "Digite a linha e coluna de sua jogada: ";
                     cin >> linha;
                     cin >> coluna;
-                    cin.ignore(2,'\n');
 
                     if (cin.fail() || linha > tamanho || coluna > tamanho)
                     {
                       cin.clear();
                       cin.ignore(1000, '\n');
-                      throw out_of_range("Erro: Jogada invalida.");
+                      throw out_of_range("Digite uma entrada valida.");
                     }
                     else
                       break;
@@ -232,6 +231,7 @@ int main()
                << "Numero de pecas do " << jogador2 << ": " << tabuleiro->get_num_pecas_O() << endl;
 
           delete tabuleiro;
+          break;
 
         } // fim do case R
 
@@ -297,6 +297,7 @@ int main()
             }
           }
           delete tabuleiro;
+          break;
 
         } // fim do case L
 
@@ -350,9 +351,10 @@ int main()
             }
           }
           delete tabuleiro;
+          break;
         }
 
-        } // fim do case R
+        } // fim do case V
       } // fim do switch
     }
     else if (comando == "LJ")
