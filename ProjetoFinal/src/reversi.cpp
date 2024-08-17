@@ -213,8 +213,7 @@ bool Reversi::game_over()
   /// Método que retorna uma booleana e confere se o jogo terminou.
   if (termino == 2 || num_pecas_X == 0 || num_pecas_O == 0)
   {
-    if (num_pecas_X > num_pecas_O)
-      return (false);
+    return (false);
   }
 
   return (true);
