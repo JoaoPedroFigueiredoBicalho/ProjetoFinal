@@ -23,6 +23,7 @@ public:
   void virar_casas(int linha, int coluna, int dir_l, int dir_c, int i, char jogador);
   bool game_over();
   int get_termino();
+  void set_termino(int termino);
   int get_num_pecas_O();
   int get_num_pecas_X();
 };

@@ -151,11 +151,16 @@ int main()
                     cout << "Digite a linha e coluna de sua jogada: ";
                     cin >> linha;
                     cin >> coluna;
+                    if (linha == (int)"desisto")
+                    {
+                      tabuleiro->set_termino(2);
+                      goto endgame;
+                    }
                     if (cin.fail() || linha > tamanho || coluna > tamanho)
                     {
                       cin.clear();
                       cin.ignore(1000, '\n');
-                      throw out_of_range("Digite apenas numeros validos.");
+                      throw out_of_range("Digite uma entrada valida.");
                     }
                     else
                       break;
@@ -185,6 +190,7 @@ int main()
             contador++;
           }
 
+        endgame:
           if (tabuleiro->get_num_pecas_X() > tabuleiro->get_num_pecas_O())
           {
             p->RevWon(jogador);

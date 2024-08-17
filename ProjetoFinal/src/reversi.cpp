@@ -226,6 +226,11 @@ int Reversi::get_termino()
   return this->termino;
 }
 
+void Reversi::set_termino(int termino)
+{
+  this->termino = termino;
+}
+
 int Reversi::get_num_pecas_O()
 {
   /// Retorna o número de peças do jogador 2.
