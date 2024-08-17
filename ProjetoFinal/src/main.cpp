@@ -365,6 +365,17 @@ int main()
       p->WriteArq();
       break;
     }
+    else if (comando == "0")
+    {
+        cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
+        cout << "Lista de comandos:" << endl;
+        cout << "CJ: Criar Jogador" << endl
+             << "RJ: Remover Jogador" << endl
+             << "LJ: [A/N] Listar jogadores" << endl;
+        cout << "EP: Executar Partida" << endl
+             << "FS: Finalizar Sistema" << endl;
+        cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
+    }
     else
     {
       cout << "Comando inválido :(" << endl;
