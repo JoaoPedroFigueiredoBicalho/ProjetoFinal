@@ -11,16 +11,19 @@ void jogoVelha::inicializar_tabuleiro(int tamanho)
 
 bool jogoVelha::lerjogada(int jogadaLinha, int jogadaColuna)
 {  
-  /// Método que lê a jogada do usuário (linha e coluna) e substitui o espaço vazio pela jogada do jogador, caso a entrada seja válida. Por fim alterna o jogador para a próxima rodada.
+  /// Método que lê a jogada do usuário (linha e coluna) e substitui o espaço vazio pela jogada do jogador, caso a entrada seja válida.
   if (jogadaColuna < 0 || jogadaColuna >= tamanho || jogadaLinha < 0 || jogadaLinha >= tamanho)
-  {
+  {  
+    /// Verifica se a jogada está dentro dos limites do tabuleiro.
     std::cout << "Jogada inválida!" << std::endl;
     return false;
   }
 
+  // Variável booleana que será utilizada para checagem da entrada (disponível ou indisponível).
   bool entrada_cheia = true;
   if (tabuleiro[jogadaLinha][jogadaColuna] == ' ')
   {
+    /// Realiza a jogada, caso a entrada solicitada esteja vazia.
     tabuleiro[jogadaLinha][jogadaColuna] = get_jogada_atual();
     entrada_cheia = false;
   }
@@ -31,6 +34,7 @@ bool jogoVelha::lerjogada(int jogadaLinha, int jogadaColuna)
     return false;
   }
 
+  /// Alterna o jogador para a próxima rodada.
   alternar_jogador();
   return true;
 }
@@ -55,6 +59,7 @@ bool jogoVelha::checarvitoria(char jogador) const
   int linhas = 3;
   int colunas = 3;
 
+  /// Verificação horizontal.
   for (int i = 0; i < 3; i++)
   {
     for (int j = 0; j < 1; j++)
@@ -66,6 +71,7 @@ bool jogoVelha::checarvitoria(char jogador) const
     }
   }
 
+  /// Verificação vertical.
   for (int i = 0; i < 3; i++)
   {
     for (int j = 0; j < 1; j++)
@@ -77,11 +83,13 @@ bool jogoVelha::checarvitoria(char jogador) const
     }
   }
 
+  /// Verificação da diagonal principal.
   if (tabuleiro[0][0] == jogador && tabuleiro[1][1] == jogador && tabuleiro[2][2] == jogador)
   {
     return true;
   }
 
+  /// Verificação da diagonal secundária.
   if (tabuleiro[0][2] == jogador && tabuleiro[1][1] == jogador && tabuleiro[2][0] == jogador)
   {
     return true;
