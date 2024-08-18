@@ -45,7 +45,7 @@ bool Lig4::checarvitoria(char jogador) const {
     int linhas = tabuleiro.size();
     int colunas = tabuleiro[0].size();
 
-    /// Verificação vertical
+    /// Verificação vertical.
     for (int i = 0; i < linhas - 3; i++) {
         for (int j = 0; j < colunas; j++) {
             if (tabuleiro[i][j] == jogador &&
@@ -57,7 +57,7 @@ bool Lig4::checarvitoria(char jogador) const {
         }
     }
 
-    /// Verificação horizontal
+    /// Verificação horizontal.
     for (int i = 0; i < linhas; i++) {
         for (int j = 0; j < colunas - 3; j++) {
             if (tabuleiro[i][j] == jogador &&
@@ -69,7 +69,7 @@ bool Lig4::checarvitoria(char jogador) const {
         }
     }
 
-    /// Verificação diagonal principal
+    /// Verificação diagonal principal.
     for (int i = 0; i < linhas - 3; i++) {
         for (int j = 0; j < colunas - 3; j++) {
             if (tabuleiro[i][j] == jogador &&
@@ -81,7 +81,7 @@ bool Lig4::checarvitoria(char jogador) const {
         }
     }
 
-    /// Verificação diagonal secundária
+    /// Verificação diagonal secundária.
     for (int i = 3; i < linhas; ++i) {
         for (int j = 0; j < colunas - 3; ++j) {
             if (tabuleiro[i][j] == jogador &&
