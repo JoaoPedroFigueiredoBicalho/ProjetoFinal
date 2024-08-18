@@ -30,15 +30,19 @@ int main()
     {
       string nick;
       string nome;
+      int erro = 0;
       cout << "Digite o nick do jogador" << endl;
       while (teste == 0)
       {
         try
         {
           cout << "Nick: ";
-          cin >> nick;
+          if (erro == 0)
+            cin.ignore();
+          getline(cin, nick);
           if ((nick.find(" ") != string::npos))
           {
+            erro++;
             throw bad_exception();
           }
           if (p->CheckPlayer(nick) == true)
@@ -58,8 +62,10 @@ int main()
       }
 
       cout << "Digite o nome do jogador" << endl;
-      cin >> nome;
+      cin.ignore(0);
+      getline(cin, nome);
       p->RegisterPlayer(nick, nome);
+      erro = 0;
     }
     else if (comando == "RJ")
     {
@@ -391,7 +397,6 @@ int main()
     else
     {
       cout << "Comando inválido :(" << endl;
-      cout << "Digite um novo comando";
     }
   }
   delete p;
