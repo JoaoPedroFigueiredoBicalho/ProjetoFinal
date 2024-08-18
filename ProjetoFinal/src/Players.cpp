@@ -289,11 +289,11 @@ void Player::ListPlayersbyNick()
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
         temp = *it;
-        cout << ">>>>>>>>>>> " << temp->NickName << " <<<<<<<<<<<" << endl;
+        cout << "  >>>>>>>>>> " << temp->NickName << " <<<<<<<<<<" << endl;
         cout << "  | REVERSI       - V: " << temp->RevWins << " D: " << temp->RevLoss << " E: " << temp->RevDraws << " |" << endl;
         cout << "  | LIG4          - V: " << temp->LigWins << " D: " << temp->LigLoss << " E: " << temp->LigDraws << " |" << endl;
         cout << "  | JOGO DA VELHA - V: " << temp->VWins << " D: " << temp->VLoss << " E: " << temp->VDraws << " |" << endl;
-        cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
+        cout << "  ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
     }
 }
 
@@ -304,11 +304,11 @@ void Player::ListPlayersbyName()
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
         temp = *it;
-        cout << ">>>>>>>>>>> " << temp->Nome << " <<<<<<<<<<<" << endl;
+        cout << "  >>>>>>>>>>> " << temp->Nome << " <<<<<<<<<<<" << endl;
         cout << "  | REVERSI       - V: " << temp->RevWins << " D: " << temp->RevLoss << " E: " << temp->RevDraws << " |" << endl;
         cout << "  | LIG4          - V: " << temp->LigWins << " D: " << temp->LigLoss << " E: " << temp->LigDraws << " |" << endl;
         cout << "  | JOGO DA VELHA - V: " << temp->VWins << " D: " << temp->VLoss << " E: " << temp->VDraws << " |" << endl;
-        cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
+        cout << "  ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
     }
 }
 
@@ -368,7 +368,7 @@ void Player::Victory(int l, int r, int v)
         cout << "Resultado Lig4" << endl;
         if (empate == 0)
         {
-            cout << "Vencedor: " << vencedor << endl;
+            cout << "Vencedor(a): " << vencedor << endl;
             cout << "--------------------" << endl;
         }
         else
@@ -381,7 +381,7 @@ void Player::Victory(int l, int r, int v)
         cout << "Resultado Reversi" << endl;
         if (empate == 0)
         {
-            cout << "Vencedor: " << vencedor << endl;
+            cout << "Vencedor(a): " << vencedor << endl;
             cout << "--------------------" << endl;
         }
         else
@@ -394,7 +394,7 @@ void Player::Victory(int l, int r, int v)
         cout << "Resultado Jogo da Velha" << endl;
         if (empate == 0)
         {
-            cout << "Vencedor: " << vencedor << endl;
+            cout << "Vencedor(a): " << vencedor << endl;
             cout << "--------------------" << endl;
             cout << "--------------------" << endl;
         }
@@ -405,10 +405,10 @@ void Player::Victory(int l, int r, int v)
     }
     else if (empate == 0 && teste == 1)
     {
-        cout << "Resultado fnal:" << endl;
+        cout << "Resultado final:" << endl;
         cout << "###########################" << endl
              << endl;
-        cout << vencedor << " CAMPEAO!" << endl
+        cout << vencedor << " CAMPEA(O)!" << endl
              << endl;
         cout << "###########################" << endl;
     }
