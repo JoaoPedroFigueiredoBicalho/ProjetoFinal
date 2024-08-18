@@ -60,10 +60,29 @@ int main()
           cout << e.what() << endl;
         }
       }
-
+      erro = 0;
+      teste = 0;
       cout << "Digite o nome do jogador" << endl;
-      cin.ignore(0);
-      getline(cin, nome);
+      while (teste == 0)
+      {
+        try
+        {
+          cout << "Nome: ";
+
+          getline(cin, nome);
+          for (int i = 0; i < nome.size(); i++)
+          {
+            if (isdigit(nome[i]))
+              throw bad_exception();
+            erro++;
+          }
+          teste = 1;
+        }
+        catch (const bad_exception &e)
+        {
+          cout << "Seu nome não pode conter números" << endl;
+        }
+      }
       p->RegisterPlayer(nick, nome);
       erro = 0;
     }
