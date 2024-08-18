@@ -414,7 +414,7 @@ void Player::Victory(int l, int r, int v)
     }
     if (empate == 1 && teste == 1)
     {
-        cout << "Resultado fnal:" << endl;
+        cout << "Resultado final:" << endl;
         cout << "################" << endl
              << endl;
         cout << "     EMPATE!    " << endl
