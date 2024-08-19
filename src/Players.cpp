@@ -126,12 +126,14 @@ bool Player::CheckPlayer(string nick)
     {
         return (false);
     }
-    Player *temp = GetPlayer(nick);
-    if (temp->NickName == nick)
-    {
-        return (true);
-    }
-
+    for (vector<Player*>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
+        {
+            Player* temp = *it;
+            if (temp->NickName == nick)
+            {
+                return (true);
+            }
+        }
     return (false);
 }
 
