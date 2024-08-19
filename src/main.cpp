@@ -344,11 +344,11 @@ int main()
               cout << "Turno do " << jogador2 << endl;
             }
             int linha;
-            cout << "Digite a linha de entrada (1-3): ";
+            cout << "Digite a linha de entrada (1-3): " << endl;
             cin >> linha;
             linha--;
             int coluna;
-            cout << "Digite a coluna de entrada (1-3): ";
+            cout << "Digite a coluna de entrada (1-3): "<< endl;
             cin >> coluna;
             coluna--;
             if (tabuleiro->lerjogada(linha, coluna))
