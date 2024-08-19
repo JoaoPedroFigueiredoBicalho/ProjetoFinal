@@ -1,10 +1,10 @@
 #include "jogoVelha.hpp"
 #include <iostream>
 
-void jogoVelha::inicializar_tabuleiro(int tamanho)
+void jogoVelha::inicializar_tabuleiro()
 {
   /// Inicializa o tabuleiro por um método override e inicializa com espaços vazios.
-  this->tamanho = tamanho;
+  this->tamanho = 3;
 
   tabuleiro.resize(tamanho, std::vector<char>(tamanho, ' '));
 }
