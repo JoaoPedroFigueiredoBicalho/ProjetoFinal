@@ -32,7 +32,7 @@ void boardLogic::inicializar_tabuleiro(int tamanho)
 void boardLogic::imprimir_tabuleiro()
 {
   /// Imprime o tabuleiro, com número de linhas e colunas colocados nas extremidades.
-  std::cout << "##############" << std::endl
+  std::cout<< std::endl << "##############" << std::endl
             << "  |";
   for (int contador = 0; contador < tabuleiro.size(); contador++)
   {
