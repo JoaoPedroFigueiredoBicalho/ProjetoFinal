@@ -329,8 +329,7 @@ int main()
         case 'V':
         {
           jogoVelha *tabuleiro = new jogoVelha;
-          int tamanho = 3;
-          tabuleiro->inicializar_tabuleiro(tamanho);
+          tabuleiro->inicializar_tabuleiro();
           tabuleiro->imprimir_tabuleiro();
           int contador = 0;
           int Endgame = 0;
