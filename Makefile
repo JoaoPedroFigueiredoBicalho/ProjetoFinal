@@ -9,8 +9,15 @@ SRC_DIR = src
 # Flags para o compilador
 CPPFLAGS = -Wall -g -O3 -std=c++11
 
-# Arquivos de Origem e Objeto
-SRCS = $(wildcard $(SRC_DIR)/*.cpp)
+# Arquivos de Origem
+SRCS = $(SRC_DIR)/main.cpp \
+       $(SRC_DIR)/Players.cpp \
+       $(SRC_DIR)/BoardLogic.cpp \
+       $(SRC_DIR)/Lig4.cpp \
+       $(SRC_DIR)/Reversi.cpp \
+       $(SRC_DIR)/JogoVelha.cpp
+
+# Arquivos Objeto
 OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
 # Regra Padrão
