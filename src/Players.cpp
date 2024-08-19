@@ -61,7 +61,7 @@ void Player::ReadArq()
     /// testa se o arquivo de cadastro de jogadores exist e caso exista recadastra todos os usuarios ao iniciar o programa
     string linha;
     int tamanho;
-    ifstream arquivo("Players.txt");
+    ifstream arquivo("bin/Players.txt");
     if (arquivo)
     {
         getline(arquivo, linha);
@@ -426,7 +426,7 @@ void Player::Victory(int l, int r, int v)
 void Player::WriteArq()
 {
     /// abre ou cria o arquivo de cadastro e salva todos os usuarios cadastrados nele para leitura na proxima execução do programa
-    ofstream arq("Players.txt");
+    ofstream arq("bin/Players.txt");
     arq << PlayersCount << endl;
     Player *temp;
 
