@@ -47,6 +47,7 @@ int main()
           }
           if (p->CheckPlayer(nick) == true)
           {
+            erro++;
             throw invalid_argument(" Erro : este nick ja esta em uso !");
           }
           teste = 1;
@@ -199,12 +200,13 @@ int main()
                     cout << "Digite a linha e coluna de sua jogada: ";
                     cin >> linha;
                     cin >> coluna;
+                    cin.ignore(2,'\n');
 
                     if (cin.fail() || linha > tamanho || coluna > tamanho)
                     {
                       cin.clear();
                       cin.ignore(1000, '\n');
-                      throw out_of_range("Digite uma entrada valida.");
+                      throw out_of_range("Erro: Jogada invalida.");
                     }
                     else
                       break;
