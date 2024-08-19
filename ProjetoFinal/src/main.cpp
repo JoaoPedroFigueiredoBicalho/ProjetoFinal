@@ -415,7 +415,7 @@ int main()
     }
     else
     {
-      cout << "Comando inválido :(" << endl;
+      cout << "Comando invalido :(" << endl;
     }
   }
   delete p;
