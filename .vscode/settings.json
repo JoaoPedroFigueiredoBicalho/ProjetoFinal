@@ -6,5 +6,6 @@
     "ostream": "cpp",
     "string": "cpp"
   },
-  "makefile.buildLog": "C:\\Users\\arwyn\\Projeto-Final-08-24"
+  "makefile.buildLog": "C:\\Users\\arwyn\\Projeto-Final-08-24",
+  "makefile.makePath": "make"
 }
