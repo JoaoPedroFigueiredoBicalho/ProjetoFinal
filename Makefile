@@ -1,5 +1,5 @@
 # Nome do Programa
-NAME = vpl_execution
+NAME = main
 
 #Diretórios
 OBJ_DIR = obj
@@ -18,11 +18,11 @@ all: $(NAME)
 
 # Regra para rodar o programa com o make
 run: all
-	./$(NAME)
+	bin/./$(NAME)
 
 # Regra para construir o programa
 $(NAME): $(OBJS)
-	g++ $(CPPFLAGS) -I$(INCLUDE_DIR) -o $@ $^
+	g++ $(CPPFLAGS) -I$(INCLUDE_DIR) -o bin/$@ $^
 
 # Regra para os arquivos objeto
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
@@ -32,4 +32,4 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 
 clean:
 	rm -f $(OBJ_DIR)/*.o
-	rm -f $(NAME)
+	rm -f bin/$(NAME)
