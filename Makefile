@@ -1,28 +1,35 @@
-CC=g++
-CFLAGS=-std=c++11 -Wall
-SRC_DIR=src
-INCLUDE_DIR=include
-OBJ_DIR=obj
+# Nome do Programa
+NAME = vpl_execution
 
-all: projetofinal_execution
+#Diretórios
+OBJ_DIR = obj
+INCLUDE_DIR = include
+SRC_DIR = src
 
-$(OBJ_DIR)/boardLogic.o: $(INCLUDE_DIR)/boardLogic.hpp $(SRC_DIR)/boardLogic.cpp
-	$(CC) $(CFLAGS) -c $(SRC_DIR)/boardLogic.cpp -I$(INCLUDE_DIR) -o $(OBJ_DIR)/boardLogic.o
+# Flags para o compilador
+CPPFLAGS = -g -O3
 
-$(OBJ_DIR)/jogoVelha.o: $(INCLUDE_DIR)/jogoVelha.hpp $(INCLUDE_DIR)/boardLogic.hpp $(SRC_DIR)/jogoVelha.cpp
-	$(CC) $(CFLAGS) -c $(SRC_DIR)/jogoVelha.cpp -I$(INCLUDE_DIR) -o $(OBJ_DIR)/jogoVelha.o
+# Arquivos de Origem e Objeto
+SRCS = $(wildcard $(SRC_DIR)/*.cpp)
+OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
-$(OBJ_DIR)/lig4.o: $(INCLUDE_DIR)/lig4.hpp $(INCLUDE_DIR)/boardLogic.hpp $(SRC_DIR)/lig4.cpp
-	$(CC) $(CFLAGS) -c $(SRC_DIR)/lig4.cpp -I$(INCLUDE_DIR) -o $(OBJ_DIR)/lig4.o
+# Regra Padrão
+all: $(NAME)
 
-$(OBJ_DIR)/Players.o: $(INCLUDE_DIR)/Players.hpp $(SRC_DIR)/Players.cpp
-	$(CC) $(CFLAGS) -c $(SRC_DIR)/Players.cpp -I$(INCLUDE_DIR) -o $(OBJ_DIR)/Players.o
+# Regra para rodar o programa com o make
+run: all
+	./$(NAME)
 
-$(OBJ_DIR)/reversi.o: $(INCLUDE_DIR)/reversi.hpp $(INCLUDE_DIR)/boardLogic.hpp $(SRC_DIR)/reversi.cpp
-	$(CC) $(CFLAGS) -c $(SRC_DIR)/reversi.cpp -I$(INCLUDE_DIR) -o $(OBJ_DIR)/reversi.o
+# Regra para construir o programa
+$(NAME): $(OBJS)
+	g++ $(CPPFLAGS) -I$(INCLUDE_DIR) -o $@ $^
 
-$(OBJ_DIR)/main.o: $(INCLUDE_DIR)/boardLogic.hpp $(INCLUDE_DIR)/jogoVelha.hpp $(INCLUDE_DIR)/lig4.hpp $(INCLUDE_DIR)/Players.hpp $(INCLUDE_DIR)/reversi.hpp $(SRC_DIR)/main.cpp 
-	$(CC) $(CFLAGS) -c $(SRC_DIR)/main.cpp -I$(INCLUDE_DIR) -o $(OBJ_DIR)/main.o
+# Regra para os arquivos objeto
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	g++ $(CPPFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
 
-projetofinal_execution: $(OBJ_DIR)/main.o $(OBJ_DIR)/boardLogic.o $(OBJ_DIR)/jogoVelha.o $(OBJ_DIR)/reversi.o $(OBJ_DIR)/Players.o $(OBJ_DIR)/lig4.o
-	$(CC) $(CFLAGS) $(OBJ_DIR)/main.o $(OBJ_DIR)/boardLogic.o $(OBJ_DIR)/jogoVelha.o $(OBJ_DIR)/reversi.o $(OBJ_DIR)/Players.o $(OBJ_DIR)/lig4.o -o bin/projetofinal_execution
+
+
+clean:
+	rm -f $(OBJ_DIR)/*.o
+	rm -f $(NAME)
