@@ -26,4 +26,4 @@ $(OBJ_DIR)/main.o: $(INCLUDE_DIR)/boardLogic.hpp $(INCLUDE_DIR)/jogoVelha.hpp $(
 	$(CC) $(CFLAGS) -c $(SRC_DIR)/main.cpp -I$(INCLUDE_DIR) -o $(OBJ_DIR)/main.o
 
 projetofinal_execution: $(OBJ_DIR)/main.o $(OBJ_DIR)/boardLogic.o $(OBJ_DIR)/jogoVelha.o $(OBJ_DIR)/reversi.o $(OBJ_DIR)/Players.o $(OBJ_DIR)/lig4.o
-	$(CC) $(CFLAGS) $(OBJ_DIR)/main.o $(OBJ_DIR)/boardLogic.o $(OBJ_DIR)/jogoVelha.o $(OBJ_DIR)/reversi.o $(OBJ_DIR)/Players.o $(OBJ_DIR)/lig4.o -o projetofinal_execution
+	$(CC) $(CFLAGS) $(OBJ_DIR)/main.o $(OBJ_DIR)/boardLogic.o $(OBJ_DIR)/jogoVelha.o $(OBJ_DIR)/reversi.o $(OBJ_DIR)/Players.o $(OBJ_DIR)/lig4.o -o bin/projetofinal_execution
