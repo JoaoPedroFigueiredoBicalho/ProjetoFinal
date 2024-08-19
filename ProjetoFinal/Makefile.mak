@@ -1,5 +1,6 @@
 CC=g++
 CFLAGS=-std=c++11 -Wall
+CXXFLAGS = -O0 -g
 SRC_DIR=src
 INCLUDE_DIR=include
 OBJ_DIR=obj
