@@ -300,11 +300,11 @@ int main()
           {
             if (contador % 2 == 0)
             {
-              cout << "Turno do " << jogador << endl;
+              cout << "Turno de " << jogador << endl;
             }
             else
             {
-              cout << "Turno do " << jogador2 << endl;
+              cout << "Turno de " << jogador2 << endl;
             }
             int coluna;
             cout << "Digite a coluna de entrada (1-" << tamanho << "): ";
@@ -349,11 +349,11 @@ int main()
           {
             if (contador % 2 == 0)
             {
-              cout << "Turno do " << jogador << endl;
+              cout << "Turno de " << jogador << endl;
             }
             else
             {
-              cout << "Turno do " << jogador2 << endl;
+              cout << "Turno de " << jogador2 << endl;
             }
             int linha;
             cout << "Digite a linha de entrada (1-3): " << endl;
