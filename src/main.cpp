@@ -94,6 +94,11 @@ int main()
     }
     else if (comando == "RJ")
     {
+      if (p->GetPlayersCount()==0)
+      {
+        cout << "Nenhum jogador cadastrado!" << endl;
+      }
+
       string nick;
       cout << "Digite o nick do jogador que voce quer remover" << endl;
       while (teste == 0)
@@ -101,19 +106,11 @@ int main()
         try
         {
           cin >> nick;
-          if ((nick.find(" ") != string::npos))
-          {
-            throw bad_exception();
-          }
           if (p->CheckPlayer(nick) == false)
           {
             throw invalid_argument(" Erro : Nickname nao encontrado !");
           }
           teste = 1;
-        }
-        catch (const bad_exception &e)
-        {
-          cout << "Nickname não pode conter espaços em branco" << endl;
         }
         catch (const invalid_argument &e)
         {
