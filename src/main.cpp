@@ -13,7 +13,7 @@ int main()
   cout << "Lista de comandos:" << endl;
   cout << "CJ: Criar Jogador" << endl
        << "RJ: Remover Jogador" << endl
-       << "LJ: [A/N] Listar jogadores" << endl;
+       << "LJ: Listar jogadores" << endl;
   cout << "EP: Executar Partida" << endl
        << "FS: Finalizar Sistema" << endl;
   cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;
@@ -395,7 +395,7 @@ int main()
     }
     else if (comando == "LJ")
     {
-      cout << "Deseja listar pelo Nick [digite A] ou Nome [diite N]?" << endl;
+      cout << "Deseja listar pelo Nick [digite A] ou Nome [digite N]?" << endl;
       char parameter;
       cin >> parameter;
       if (parameter == 'A')
@@ -419,7 +419,7 @@ int main()
       cout << "Lista de comandos:" << endl;
       cout << "CJ: Criar Jogador" << endl
            << "RJ: Remover Jogador" << endl
-           << "LJ: [A/N] Listar jogadores" << endl;
+           << "LJ: Listar jogadores" << endl;
       cout << "EP: Executar Partida" << endl
            << "FS: Finalizar Sistema" << endl;
       cout << "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨" << endl;

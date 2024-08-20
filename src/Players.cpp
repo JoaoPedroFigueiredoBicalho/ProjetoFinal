@@ -111,6 +111,7 @@ Player *Player::GetPlayer(string nick)
             }
         }
     }
+    return (nullptr);
 }
 
 int Player::GetPlayersCount()
@@ -232,7 +233,7 @@ void Player::VDraw(string nick, string nick2)
     {
         temp->VDraws++;
         temp2->VDraws++;
-        cout << "====== EMPATE ======" << endl;
+        cout << "====== DEU VELHA ======" << endl;
     }
 }
 
