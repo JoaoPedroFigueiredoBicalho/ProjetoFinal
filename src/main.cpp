@@ -200,8 +200,7 @@ int main()
                     cout << "Digite a linha e coluna de sua jogada: ";
                     cin >> linha;
                     cin >> coluna;
-                    cin.ignore(2,'\n');
-
+                    cin.ignore(1000,'\n');
                     if (cin.fail() || linha > tamanho || coluna > tamanho)
                     {
                       cin.clear();
