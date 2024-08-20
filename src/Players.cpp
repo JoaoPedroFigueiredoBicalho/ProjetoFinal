@@ -291,7 +291,7 @@ void Player::ListPlayersbyNick()
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
         temp = *it;
-        cout << "  >>>>>>>>>> " << temp->NickName << " <<<<<<<<<<" << endl;
+        cout << "   >>>>>>>>>> " << temp->NickName << " <<<<<<<<<<" << endl;
         cout << "  | REVERSI       - V: " << temp->RevWins << " D: " << temp->RevLoss << " E: " << temp->RevDraws << " |" << endl;
         cout << "  | LIG4          - V: " << temp->LigWins << " D: " << temp->LigLoss << " E: " << temp->LigDraws << " |" << endl;
         cout << "  | JOGO DA VELHA - V: " << temp->VWins << " D: " << temp->VLoss << " E: " << temp->VDraws << " |" << endl;
@@ -306,7 +306,7 @@ void Player::ListPlayersbyName()
     for (vector<Player *>::const_iterator it = PlayersList.begin(); it != PlayersList.end(); it++)
     {
         temp = *it;
-        cout << "  >>>>>>>>>>> " << temp->Nome << " <<<<<<<<<<<" << endl;
+        cout << "   >>>>>>>>>>> " << temp->Nome << " <<<<<<<<<<<" << endl;
         cout << "  | REVERSI       - V: " << temp->RevWins << " D: " << temp->RevLoss << " E: " << temp->RevDraws << " |" << endl;
         cout << "  | LIG4          - V: " << temp->LigWins << " D: " << temp->LigLoss << " E: " << temp->LigDraws << " |" << endl;
         cout << "  | JOGO DA VELHA - V: " << temp->VWins << " D: " << temp->VLoss << " E: " << temp->VDraws << " |" << endl;

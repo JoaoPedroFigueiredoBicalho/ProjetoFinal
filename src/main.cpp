@@ -76,10 +76,10 @@ int main()
           cout << "Nome: ";
 
           getline(cin, nome);
-          if (nick.empty())
+          if (nome.empty())
           {
             erro++;
-            throw invalid_argument("Nick nao pode estar em branco!");
+            throw invalid_argument("Nome nao pode estar em branco!");
           }
           for (int i = 0; i < nome.size(); i++)
           {
