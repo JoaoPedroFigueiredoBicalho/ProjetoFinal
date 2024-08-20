@@ -250,13 +250,13 @@ void Player::RegisterPlayer(string nick, string nome)
 
     if (erro == 1)
     {
-        cout << "ERRO: jogador repetido" << endl;
+        cout << "ERRO: jogador(a) repetido" << endl;
     }
     else
     {
         temp = new Player(nick, nome);
         PlayersList.push_back(temp);
-        cout << "Jogador " << temp->NickName << " cadastrado com sucesso" << endl;
+        cout << "Jogador(a) " << temp->NickName << " cadastrado(a) com sucesso" << endl;
         PlayersCount++;
     }
 }
@@ -272,7 +272,7 @@ void Player::DeletePlayer(string nick)
         if (temp->NickName == nick)
         {
             PlayersList.erase(it);
-            cout << "Jogador " << temp->NickName << " removido com sucesso" << endl;
+            cout << "Jogador(a) " << temp->NickName << " removido(a) com sucesso" << endl;
             erro = 0;
             PlayersCount--;
             break;
@@ -280,7 +280,7 @@ void Player::DeletePlayer(string nick)
     }
     if (erro == 1)
     {
-        cout << "ERRO: jogador inexistente" << endl;
+        cout << "ERRO: jogador(a) inexistente" << endl;
     }
 }
 
