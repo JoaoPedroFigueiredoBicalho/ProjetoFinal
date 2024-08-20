@@ -96,7 +96,7 @@ bool Reversi::checar_jogada(char jogador, char oponente, std::string nome_jogado
   }
   if (JogadasValidas.empty())
   {
-    std::cout << "O jogador " << nome_jogador << " nao possui jogadas validas!" << std::endl;
+    std::cout << "O(a) jogador(a) " << nome_jogador << " nao possui jogadas validas!" << std::endl;
     termino++;
     game_over();
     return false;

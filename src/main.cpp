@@ -194,11 +194,11 @@ int main()
             {
               if (contador % 2 == 0)
               {
-                cout << "Turno do " << jogador << endl;
+                cout << "Turno de " << jogador << endl;
               }
               else
               {
-                cout << "Turno do " << jogador2 << endl;
+                cout << "Turno de " << jogador2 << endl;
               }
               int linha, coluna;
               if (tabuleiro->checar_jogada(jogador_reversi, oponente_reversi, jogador))
@@ -263,9 +263,9 @@ int main()
           }
           cout << "Fim de jogo!" << endl;
           cout << endl
-               << "Numero de pecas do " << jogador << ": " << tabuleiro->get_num_pecas_X() << endl;
+               << "Numero de pecas de " << jogador << ": " << tabuleiro->get_num_pecas_X() << endl;
           cout << endl
-               << "Numero de pecas do " << jogador2 << ": " << tabuleiro->get_num_pecas_O() << endl;
+               << "Numero de pecas de " << jogador2 << ": " << tabuleiro->get_num_pecas_O() << endl;
 
           delete tabuleiro;
           break;
