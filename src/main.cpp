@@ -76,6 +76,11 @@ int main()
           cout << "Nome: ";
 
           getline(cin, nome);
+          if (nick.empty())
+          {
+            erro++;
+            throw invalid_argument("Nick nao pode estar em branco!");
+          }
           for (int i = 0; i < nome.size(); i++)
           {
             if (isdigit(nome[i]))
@@ -87,6 +92,10 @@ int main()
         catch (const bad_exception &e)
         {
           cout << "Seu nome não pode conter números" << endl;
+        }
+        catch (const invalid_argument &e)
+        {
+          cout << e.what() << endl;
         }
       }
       p->RegisterPlayer(nick, nome);
