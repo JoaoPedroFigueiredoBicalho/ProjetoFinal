@@ -103,7 +103,7 @@ int main()
     }
     else if (comando == "RJ")
     {
-      if (p->GetPlayersCount()==0)
+      if (p->GetPlayersCount() == 0)
       {
         cout << "Nenhum jogador cadastrado!" << endl;
       }
@@ -211,7 +211,7 @@ int main()
                     cout << "Digite a linha e coluna de sua jogada: ";
                     cin >> linha;
                     cin >> coluna;
-                    cin.ignore(1000,'\n');
+                    cin.ignore(1000, '\n');
                     if (cin.fail() || linha > tamanho || coluna > tamanho)
                     {
                       cin.clear();
@@ -360,7 +360,7 @@ int main()
             cin >> linha;
             linha--;
             int coluna;
-            cout << "Digite a coluna de entrada (1-3): "<< endl;
+            cout << "Digite a coluna de entrada (1-3): " << endl;
             cin >> coluna;
             coluna--;
             if (tabuleiro->lerjogada(linha, coluna))
