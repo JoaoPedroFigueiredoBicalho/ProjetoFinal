@@ -40,6 +40,11 @@ int main()
           if (erro == 0)
             cin.ignore();
           getline(cin, nick);
+          if (nick.empty())
+          {
+            erro++;
+            throw invalid_argument("Nick nao pode estar em branco!");
+          }
           if ((nick.find(" ") != string::npos))
           {
             erro++;
